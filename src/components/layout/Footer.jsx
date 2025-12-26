@@ -5,7 +5,8 @@ import {
   faInstagram, 
   faTwitter, 
   faLinkedinIn, 
-  faYoutube 
+  faYoutube,
+  faWhatsapp 
 } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
@@ -203,6 +204,34 @@ const Footer = () => {
                   }} 
                 />
                 <span>YouTube</span>
+              </a>
+              
+              <a 
+                href="https://wa.me/916374316014?text=Hi%20Cyber%20Monk%20Studioz%2C%20I%20found%20your%20contact%20on%20your%20website" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{ ...socialLinkStyle('whatsapp'), display: 'flex', flexDirection: 'column', alignItems: 'center', textDecoration: 'none' }}
+                onMouseEnter={() => handleMouseEnter('whatsapp')}
+                onMouseLeave={handleMouseLeave}
+                title="Click to chat on WhatsApp (Primary: 6374316014, Alternative: 9344531196)"
+                onClick={(e) => {
+                  // If the primary number doesn't respond within 2 seconds, suggest the alternative
+                  setTimeout(() => {
+                    if (window.confirm('Not getting a response? Would you like to try our alternative WhatsApp number?')) {
+                      window.open('https://wa.me/919344531196?text=Hi%20Cyber%20Monk%20Studioz%2C%20I%20tried%20the%20primary%20number%20first', '_blank');
+                    }
+                  }, 2000);
+                }}
+              >
+                <FontAwesomeIcon 
+                  icon={faWhatsapp} 
+                  style={{ 
+                    fontSize: '1.5rem',
+                    color: '#25D366',
+                    marginBottom: '0.5rem'
+                  }} 
+                />
+                <span>WhatsApp</span>
               </a>
             </div>
           </div>

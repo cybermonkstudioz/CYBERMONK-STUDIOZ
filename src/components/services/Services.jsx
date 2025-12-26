@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
-import { FiArrowRight, FiMessageSquare, FiX, FiFilter, FiCheck, FiClock, FiDollarSign, FiLayers } from 'react-icons/fi';
-import { FaLaptopCode, FaMobileAlt, FaPalette, FaVideo, FaPhotoVideo, FaCameraRetro, FaPrint } from 'react-icons/fa';
+import { FiArrowRight, FiMessageSquare, FiX, FiFilter, FiCheck, FiClock, FiDollarSign, FiLayers, FiMonitor, FiSmartphone, FiVideo, FiScissors, FiCamera } from 'react-icons/fi';
+import { FaPalette, FaInstagram, FaVideo as FaVideoIcon } from 'react-icons/fa';
+import styled, { keyframes } from 'styled-components';
 
 // Modal Component
 const ServiceModal = ({ service, onClose, navigate }) => {
@@ -501,7 +502,7 @@ const Services = () => {
       id: 1,
       title: 'Website Design & Development',
       description: 'Modern, fast, and mobile-friendly websites that turn visitors into customers with seamless user experiences.',
-      icon: <FaLaptopCode className="service-icon" />,
+      icon: <FiMonitor size={36} className="service-icon" style={{ color: '#4f46e5' }} />,
       category: 'web',
       features: ['Responsive Design', 'SEO Optimized', 'E-commerce', 'CMS Integration']
     },
@@ -509,7 +510,7 @@ const Services = () => {
       id: 2,
       title: 'App Design & Development',
       description: 'Intuitive and attractive mobile applications built for both iOS and Android platforms.',
-      icon: <FaMobileAlt className="service-icon" />,
+      icon: <FiSmartphone size={36} className="service-icon" style={{ color: '#3b82f6' }} />,
       category: 'web',
       features: ['iOS & Android', 'Cross-Platform', 'UI/UX Design', 'API Integration']
     },
@@ -517,7 +518,7 @@ const Services = () => {
       id: 3,
       title: 'Graphic Design',
       description: 'Eye-catching designs that build strong brand identity and visual communication.',
-      icon: <FaPalette className="service-icon" />,
+      icon: <FaPalette size={36} className="service-icon" style={{ color: '#ec4899' }} />,
       category: 'design',
       features: ['Logo Design', 'Branding', 'Print Materials', 'Social Media Graphics']
     },
@@ -525,7 +526,7 @@ const Services = () => {
       id: 4,
       title: 'Video Production & Editing',
       description: 'Professional video production and editing services that tell your brand story effectively.',
-      icon: <FaVideo className="service-icon" />,
+      icon: <FiScissors size={36} className="service-icon" style={{ color: '#10b981' }} />,
       category: 'media',
       features: ['4K Quality', 'Motion Graphics', 'Color Grading', 'Sound Design']
     },
@@ -533,7 +534,7 @@ const Services = () => {
       id: 5,
       title: 'Instagram Reels Editing',
       description: 'Engaging content and strategy for all major social media platforms.',
-      icon: <FaPhotoVideo className="service-icon" />,
+      icon: <FaInstagram size={36} className="service-icon" style={{ color: '#e11d48' }} />,
       category: 'media',
       features: ['Content Strategy', 'Reels/Shorts', 'Stories', 'Social Media Management']
     },
@@ -541,7 +542,7 @@ const Services = () => {
       id: 6,
       title: 'Photography Services',
       description: 'Professional photography that captures your brand\'s essence and tells your story.',
-      icon: <FaCameraRetro className="service-icon" />,
+      icon: <FiCamera size={36} className="service-icon" style={{ color: '#3b82f6' }} />,
       category: 'media',
       features: ['Product Photography', 'Portrait', 'Event Coverage', 'Drone Shots']
     },
@@ -549,7 +550,7 @@ const Services = () => {
       id: 7,
       title: 'Print & Packaging',
       description: 'High-quality printing services for all your branding and packaging needs.',
-      icon: <FaPrint className="service-icon" />,
+      icon: <FiLayers size={36} className="service-icon" style={{ color: '#f59e0b' }} />,
       category: 'design',
       features: ['Business Cards', 'Brochures', 'Product Packaging', 'Large Format']
     }
@@ -773,32 +774,44 @@ const Services = () => {
                   zIndex: 1,
                   flexGrow: 1
                 }}>
-                  <div style={{
-                    width: '60px',
-                    height: '60px',
-                    borderRadius: '16px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: '1.5rem',
-                    background: 'linear-gradient(135deg, #4f46e5 0%, #8b5cf6 100%)',
-                    color: 'white',
-                    fontSize: '1.75rem',
-                    transition: 'all 0.3s ease',
-                    transform: hoveredCard === index ? 'rotate(5deg) scale(1.1)' : 'none'
-                  }}>
-                    {service.icon}
-                  </div>
                   
-                  <h3 style={{
-                    fontSize: '1.5rem',
-                    fontWeight: 700,
-                    marginBottom: '1rem',
-                    color: '#1a202c',
-                    lineHeight: 1.3
+                  <div style={{
+                    marginBottom: '1.5rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    padding: '1rem 0'
                   }}>
-                    {service.title}
-                  </h3>
+                    <div className="icon-card" style={{
+                      background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
+                      backdropFilter: 'blur(10px)',
+                      border: '1px solid rgba(255, 255, 255, 0.1)'
+                    }}>
+                      <div className="icon-bg" style={{
+                        backgroundImage: `url('data:image/svg+xml;base64,${btoa(`<svg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'><rect width='100' height='100' fill='none'/><path d='M0,0 L100,100 M100,0 L0,100' stroke='currentColor' stroke-width='0.5' opacity='0.2'/></svg>`)}`
+                      }}></div>
+                      <div className="icon-overlay" style={{
+                        background: `linear-gradient(135deg, ${service.icon.props.style.color}20 0%, ${service.icon.props.style.color}40 100%)`
+                      }}></div>
+                      {React.cloneElement(service.icon, {
+                        style: {
+                          ...service.icon.props.style,
+                          filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))',
+                          zIndex: 2
+                        }
+                      })}
+                    </div>
+                    <h3 style={{
+                      fontSize: '1.5rem',
+                      fontWeight: 700,
+                      margin: '1rem 0 0',
+                      color: '#1a202c',
+                      lineHeight: 1.3,
+                      textAlign: 'center'
+                    }}>
+                      {service.title}
+                    </h3>
+                  </div>
                   
                   <p style={{
                     fontSize: '1rem',
@@ -982,6 +995,102 @@ const Services = () => {
 const styles = `
   .service-card {
     position: relative;
+    transition: all 0.3s ease;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #ffffff;
+    color: #1a1a1a;
+    padding: 2rem;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  }
+  
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .service-icon {
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transform-origin: center;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .icon-card {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+  }
+  
+  .icon-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.1;
+    z-index: -1;
+  }
+  
+  .icon-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    z-index: -1;
+  }
+  
+  .service-card:hover .service-icon {
+    animation: tilt-bounce 0.6s ease-in-out;
+  }
+  
+  .service-card:hover .icon-card {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  @keyframes tilt-bounce {
+    0% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(-3deg) scale(1.05); }
+    50% { transform: rotate(3deg) scale(1.1); }
+    75% { transform: rotate(-2deg) scale(1.07); }
+    100% { transform: rotate(0deg) scale(1.05); }
+  }
+  
+  .service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+  
+  .service-card p {
+    color: #aaa;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
@@ -1002,10 +1111,6 @@ const styles = `
     transform: scaleX(1);
   }
   
-  .service-icon {
-    transition: all 0.3s ease;
-  }
-
   @media (max-width: 768px) {
     .services-grid {
       padding: var(--spacing-xl) 0;

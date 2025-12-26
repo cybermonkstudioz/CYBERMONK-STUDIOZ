@@ -13,6 +13,7 @@ const Portfolio = lazy(() => import('./components/portfolio/Portfolio'));
 const Contact = lazy(() => import('./components/contact/ContactNew'));
 const NotFound = lazy(() => import('./components/common/NotFound'));
 const Booking = lazy(() => import('./components/booking/Booking'));
+const TawkTo = lazy(() => import('./components/common/TawkTo'));
 
 // Layout components
 const Header = lazy(() => import('./components/layout/Header'));
@@ -47,6 +48,7 @@ function App() {
             </AnimatePresence>
           </main>
           <Footer />
+          <TawkTo />
         </Suspense>
       </div>
     </Router>

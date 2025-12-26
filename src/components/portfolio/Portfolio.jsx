@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { FaSearchPlus, FaExternalLinkAlt } from 'react-icons/fa';
 
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [hoveredProject, setHoveredProject] = useState(null);
 
+  // Animation variants
   const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.99]
-      }
+      transition: { duration: 0.6, ease: [0.6, -0.05, 0.01, 0.99] }
     }
   };
 
@@ -24,8 +23,17 @@ const Portfolio = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.2,
+        delayChildren: 0.1,
       }
+    }
+  };
+  
+  const cardHover = {
+    scale: 1.02,
+    boxShadow: '0 15px 40px rgba(0, 0, 0, 0.1)',
+    transition: {
+      duration: 0.3,
+      ease: 'easeInOut'
     }
   };
 
@@ -34,107 +42,165 @@ const Portfolio = () => {
       id: 1,
       title: 'E-commerce Platform',
       category: 'web',
-      image: 'project-1.jpg',
-      url: '/portfolio/ecommerce-platform'
+      description: 'A full-featured e-commerce solution with modern UI/UX',
+      image: 'https://source.unsplash.com/random/800x600/?ecommerce',
+      url: '/portfolio/ecommerce-platform',
+      tags: ['React', 'Node.js', 'MongoDB']
     },
     {
       id: 2,
       title: 'Mobile App Design',
       category: 'app',
-      image: 'project-2.jpg',
-      url: '/portfolio/mobile-app-design'
+      description: 'Intuitive mobile application for task management',
+      image: 'https://source.unsplash.com/random/800x600/?mobile,app',
+      url: '/portfolio/mobile-app-design',
+      tags: ['React Native', 'Firebase']
     },
     {
       id: 3,
       title: 'Brand Identity',
       category: 'branding',
-      image: 'project-3.jpg',
-      url: '/portfolio/brand-identity'
+      description: 'Complete brand identity for a modern startup',
+      image: 'https://source.unsplash.com/random/800x600/?branding',
+      url: '/portfolio/brand-identity',
+      tags: ['Logo Design', 'Brand Guidelines']
     },
     {
       id: 4,
       title: 'Web Application',
       category: 'web',
-      image: 'project-4.jpg',
-      url: '/portfolio/web-application'
+      description: 'Custom web application for business automation',
+      image: 'https://source.unsplash.com/random/800x600/?webapp',
+      url: '/portfolio/web-application',
+      tags: ['Vue.js', 'Django', 'PostgreSQL']
     },
     {
       id: 5,
       title: 'UI/UX Design',
       category: 'design',
-      image: 'project-5.jpg',
-      url: '/portfolio/ui-ux-design'
+      description: 'User-centered design for a fintech platform',
+      image: 'https://source.unsplash.com/random/800x600/?ui,ux',
+      url: '/portfolio/ui-ux-design',
+      tags: ['Figma', 'User Research']
     },
     {
       id: 6,
       title: 'Marketing Website',
       category: 'web',
-      image: 'project-6.jpg',
-      url: '/portfolio/marketing-website'
+      description: 'High-converting marketing website with analytics',
+      image: 'https://source.unsplash.com/random/800x600/?marketing',
+      url: '/portfolio/marketing-website',
+      tags: ['Gatsby', 'Contentful']
     },
   ];
 
-  const categories = ['all', 'web', 'app', 'design', 'branding'];
+  const categories = [
+    { id: 'all', name: 'All Projects' },
+    { id: 'web', name: 'Web Development' },
+    { id: 'app', name: 'Mobile Apps' },
+    { id: 'design', name: 'UI/UX Design' },
+    { id: 'branding', name: 'Branding' }
+  ];
 
   const filteredProjects = activeFilter === 'all' 
     ? projects 
     : projects.filter(project => project.category === activeFilter);
+    
+  // Styles
+  const styles = {
+    container: {
+      maxWidth: '1440px',
+      margin: '0 auto',
+      padding: '0 2rem',
+      overflow: 'hidden',
+    },
+    section: {
+      padding: '6rem 0',
+      position: 'relative',
+    },
+    sectionTitle: {
+      textAlign: 'center',
+      marginBottom: '4rem',
+    },
+    heading2: {
+      fontSize: '2.5rem',
+      fontWeight: 700,
+      marginBottom: '1.5rem',
+      color: '#1a1a1a',
+      lineHeight: 1.2,
+    },
+    heading3: {
+      fontSize: '1.5rem',
+      fontWeight: 600,
+      marginBottom: '1rem',
+      color: '#2d3748',
+    },
+    paragraph: {
+      fontSize: '1.1rem',
+      lineHeight: 1.8,
+      color: '#4a5568',
+      marginBottom: '1.5rem',
+    },
+    divider: {
+      width: '80px',
+      height: '4px',
+      background: 'linear-gradient(90deg, #1b1b1bff, #b6b4baff)',
+      margin: '0 auto 2rem',
+      borderRadius: '2px',
+    },
+    grid: {
+      display: 'grid',
+      gap: '2rem',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+    },
+    card: {
+      background: '#fff',
+      borderRadius: '12px',
+      overflow: 'hidden',
+      boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
+      transition: 'all 0.3s ease',
+      border: '1px solid #e2e8f0',
+    },
+  };
 
   return (
-    <div className="portfolio-page">
+    <div style={styles.container}>
       {/* Hero Section */}
-      <section className="portfolio-hero" style={{
-        padding: 'calc(var(--spacing-xxl) * 1.5) 0',
-        backgroundColor: 'var(--color-white)',
-        color: 'var(--color-black)',
+      <section style={{
+        ...styles.section,
+        paddingTop: '8rem',
+        paddingBottom: '4rem',
+        backgroundColor: '#fff',
       }}>
-        <div className="container">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
-            style={{
-              maxWidth: '1200px',
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+        >
+          <motion.div variants={fadeInUp} style={styles.sectionTitle}>
+            <h2 style={styles.heading2}>Our Portfolio</h2>
+            <div style={styles.divider} />
+            <p style={{
+              ...styles.paragraph,
+              maxWidth: '700px',
               margin: '0 auto',
-              padding: '0 var(--spacing-md)',
-            }}
-          >
-            <motion.div variants={fadeInUp}>
-              <h1 style={{
-                fontSize: 'clamp(2.5rem, 8vw, 4.5rem)',
-                fontWeight: 700,
-                lineHeight: 1.1,
-                letterSpacing: '-0.02em',
-                marginBottom: 'var(--spacing-md)',
-              }}>
-                Our Work
-              </h1>
-              <div style={{
-                width: '80px',
-                height: '3px',
-                backgroundColor: 'var(--color-black)',
-                margin: 'var(--spacing-md) 0',
-              }} />
-              <p style={{
-                fontSize: '1.25rem',
-                maxWidth: '700px',
-                opacity: 0.8,
-                lineHeight: 1.7,
-                marginBottom: 'var(--spacing-xxl)',
-              }}>
-                Explore our portfolio of selected projects we've completed for clients across various industries.
-              </p>
-            </motion.div>
+              textAlign: 'center',
+              fontSize: '1.2rem',
+              color: '#4a5568',
+            }}>
+              Discover our collection of innovative projects and creative solutions that have helped our clients achieve their business goals.
+            </p>
           </motion.div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Portfolio Grid */}
-      <section className="portfolio-grid" style={{
-        padding: '0 0 var(--spacing-xxl)',
-        backgroundColor: 'var(--color-white)',
+      <section style={{
+        ...styles.section,
+        paddingTop: '0',
+        backgroundColor: '#f8f9fa',
       }}>
-        <div className="container">
+        <div style={styles.container}>
           {/* Filter Buttons */}
           <motion.div
             initial="hidden"
@@ -145,31 +211,32 @@ const Portfolio = () => {
               flexWrap: 'wrap',
               gap: '1rem',
               justifyContent: 'center',
-              marginBottom: 'var(--spacing-xl)',
+              marginBottom: '3rem',
             }}
           >
-            {categories.map((category, index) => (
+            {categories.map((category) => (
               <motion.button
-                key={category}
+                key={category.id}
                 variants={fadeInUp}
-                onClick={() => setActiveFilter(category)}
+                onClick={() => setActiveFilter(category.id)}
                 style={{
-                  padding: '0.5rem 1.5rem',
-                  backgroundColor: activeFilter === category ? 'var(--color-black)' : 'transparent',
-                  color: activeFilter === category ? 'var(--color-white)' : 'var(--color-black)',
-                  border: '1px solid var(--color-black)',
+                  padding: '0.6rem 1.8rem',
+                  backgroundColor: activeFilter === category.id ? '#1b1b1b' : 'transparent',
+                  color: activeFilter === category.id ? '#fff' : '#4a5568',
+                  border: `1px solid ${activeFilter === category.id ? '#1b1b1b' : '#e2e8f0'}`,
                   borderRadius: '50px',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
-                  textTransform: 'capitalize',
-                  fontSize: '0.9rem',
+                  fontSize: '0.95rem',
                   fontWeight: 500,
+                  fontFamily: 'inherit',
                 }}
                 whileHover={{
-                  backgroundColor: activeFilter === category ? 'var(--color-black)' : 'rgba(0, 0, 0, 0.05)',
+                  backgroundColor: activeFilter === category.id ? '#1b1b1b' : '#f1f5f9',
+                  borderColor: activeFilter === category.id ? '#1b1b1b' : '#cbd5e1',
                 }}
               >
-                {category}
+                {category.name}
               </motion.button>
             ))}
           </motion.div>
@@ -180,9 +247,9 @@ const Portfolio = () => {
             animate="visible"
             variants={staggerContainer}
             style={{
-              display: 'grid',
+              ...styles.grid,
               gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
-              gap: 'var(--spacing-lg)',
+              gap: '2rem',
             }}
           >
             {filteredProjects.map((project) => (
@@ -190,86 +257,205 @@ const Portfolio = () => {
                 key={project.id}
                 variants={fadeInUp}
                 style={{
+                  ...styles.card,
                   position: 'relative',
                   overflow: 'hidden',
-                  borderRadius: '8px',
-                  aspectRatio: '4/3',
-                  backgroundColor: '#f5f5f5',
                 }}
                 onMouseEnter={() => setHoveredProject(project.id)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
-                <Link 
-                  to={project.url}
-                  style={{
-                    display: 'block',
-                    width: '100%',
-                    height: '100%',
-                    textDecoration: 'none',
-                  }}
-                >
-                  <div style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#999',
+                <div style={{
+                  position: 'relative',
+                  paddingTop: '66.67%', // 3:2 aspect ratio
+                  overflow: 'hidden',
+                }}>
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      transition: 'transform 0.5s ease',
+                      transform: hoveredProject === project.id ? 'scale(1.1)' : 'scale(1)',
+                    }}
+                  />
+                  <AnimatePresence>
+                    {hoveredProject === project.id && (
+                      <motion.div
+                        key={`overlay-${project.id}`}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          background: 'linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(27, 27, 27, 0.8))',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'flex-end',
+                          padding: '1.5rem',
+                          color: '#fff',
+                        }}
+                      >
+                        <h3 style={{
+                          fontSize: '1.5rem',
+                          fontWeight: 600,
+                          marginBottom: '0.5rem',
+                          color: '#fff',
+                        }}>
+                          {project.title}
+                        </h3>
+                        <p style={{
+                          fontSize: '0.95rem',
+                          marginBottom: '1rem',
+                          opacity: 0.9,
+                          lineHeight: 1.6,
+                        }}>
+                          {project.description}
+                        </p>
+                        <div style={{
+                          display: 'flex',
+                          flexWrap: 'wrap',
+                          gap: '0.5rem',
+                          marginBottom: '1.5rem',
+                        }}>
+                          {project.tags.map((tag, i) => (
+                            <span 
+                              key={i} 
+                              style={{
+                                background: 'rgba(255, 255, 255, 0.15)',
+                                padding: '0.25rem 0.75rem',
+                                borderRadius: '50px',
+                                fontSize: '0.75rem',
+                                fontWeight: 500,
+                              }}
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <div style={{
+                          display: 'flex',
+                          gap: '1rem',
+                        }}>
+                          <Link
+                            to={project.url}
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              padding: '0.6rem 1.2rem',
+                              backgroundColor: '#1b1b1b',
+                              color: '#fff',
+                              borderRadius: '6px',
+                              textDecoration: 'none',
+                              fontSize: '0.9rem',
+                              fontWeight: 500,
+                              transition: 'all 0.3s ease',
+                            }}
+                            onMouseEnter={(e) => e.stopPropagation()}
+                          >
+                            <FaSearchPlus style={{ marginRight: '0.5rem' }} />
+                            View Details
+                          </Link>
+                          <a
+                            href={project.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              padding: '0.6rem 1.2rem',
+                              backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                              color: '#fff',
+                              borderRadius: '6px',
+                              textDecoration: 'none',
+                              fontSize: '0.9rem',
+                              fontWeight: 500,
+                              transition: 'all 0.3s ease',
+                              border: '1px solid rgba(255, 255, 255, 0.2)',
+                            }}
+                            onMouseEnter={(e) => e.stopPropagation()}
+                          >
+                            <FaExternalLinkAlt style={{ marginRight: '0.5rem' }} />
+                            Live Demo
+                          </a>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+                <div style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  padding: '1.5rem',
+                  background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%)',
+                  transform: hoveredProject === project.id ? 'translateY(100%)' : 'translateY(0)',
+                  transition: 'transform 0.3s ease',
+                }}>
+                  <h3 style={{
                     fontSize: '1.25rem',
-                    backgroundColor: '#eee',
+                    fontWeight: 600,
+                    margin: 0,
+                    color: '#fff',
+                    marginBottom: '0.25rem',
                   }}>
-                    {project.image}
-                  </div>
-                  <div style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    color: 'var(--color-white)',
-                    opacity: hoveredProject === project.id ? 1 : 0,
-                    transition: 'opacity 0.3s ease',
-                    padding: 'var(--spacing-lg)',
-                    textAlign: 'center',
+                    {project.title}
+                  </h3>
+                  <p style={{
+                    margin: 0,
+                    color: 'rgba(255, 255, 255, 0.8)',
+                    fontSize: '0.9rem',
+                    textTransform: 'capitalize',
+                    marginBottom: '0.5rem',
                   }}>
-                    <h3 style={{
-                      fontSize: '1.5rem',
-                      fontWeight: 600,
-                      marginBottom: '0.5rem',
-                    }}>
-                      {project.title}
-                    </h3>
-                    <span style={{
-                      display: 'inline-block',
-                      padding: '0.25rem 1rem',
-                      backgroundColor: 'var(--color-white)',
-                      color: 'var(--color-black)',
-                      borderRadius: '50px',
-                      fontSize: '0.8rem',
-                      textTransform: 'capitalize',
-                      marginTop: '0.5rem',
-                    }}>
-                      {project.category}
-                    </span>
-                  </div>
-                </Link>
+                    {project.category}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </motion.div>
+          
+          {filteredProjects.length === 0 && (
+            <motion.div
+              variants={fadeInUp}
+              style={{
+                gridColumn: '1 / -1',
+                textAlign: 'center',
+                padding: '4rem 0',
+              }}
+            >
+              <h3 style={{
+                ...styles.heading3,
+                color: '#4a5568',
+                marginBottom: '1rem',
+              }}>
+                No projects found in this category
+              </h3>
+              <p style={{
+                ...styles.paragraph,
+                maxWidth: '600px',
+                margin: '0 auto',
+                color: '#718096',
+              }}>
+                We couldn't find any projects matching the selected category. Please try another filter or check back later for updates.
+              </p>
+            </motion.div>
+          )}
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="cta-section" style={{
-        padding: 'var(--spacing-xxl) 0',
+        padding: '6rem 0',
         backgroundColor: '#f9f9f9',
         textAlign: 'center',
       }}>

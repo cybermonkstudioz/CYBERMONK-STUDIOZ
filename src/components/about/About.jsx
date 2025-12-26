@@ -11,20 +11,18 @@ import {
   FaRocket, 
   FaHeart, 
   FaUsers, 
-  FaChartLine,
-  FaLinkedin, 
-  FaTwitter, 
-  FaGithub, 
-  FaEnvelope 
+  FaChartLine 
 } from 'react-icons/fa';
 import { FiUsers, FiLayers, FiCode, FiCheckCircle } from 'react-icons/fi';
+import Logo from '../common/Logo';
 
 // Import team member images
 import hariImg from '../../../src/assets/images/hari.jpg';
-import CircleMonk from '../../../src/assets/images/CircleMonk.png';
-import aaruhyaImg from '../../../src/assets/images/aaruhya.jpg';
 import ragavImg from '../../../src/assets/images/ragav.jpg';
 import monickImg from '../../../src/assets/images/monick.jpg';
+import NishanthImg from '../../../src/assets/images/Nishanth.jpg';
+import sgkImg from '../../../src/assets/images/sgk.jpeg';
+import aaruhyaImg from '../../../src/assets/images/aaruhya.jpeg';
 
 // Styles
 const styles = {
@@ -104,12 +102,59 @@ const staggerContainer = {
 };
 
 const stats = [
-  { id: 1, value: 50, label: 'Projects Completed', icon: <FiLayers size={40} /> },
-  { id: 2, value: 30, label: 'Happy Clients', icon: <FiUsers size={40} /> },
+  { id: 1, value: 10, label: 'Projects Completed', icon: <FiLayers size={40} /> },
+  { id: 2, value: 10, label: 'Happy Clients', icon: <FiUsers size={40} /> },
   { id: 3, value: 98, label: 'Success Rate', icon: <FiCheckCircle size={40} /> },
 ];
 
 const About = () => {
+  // Team member card styles
+  const teamMemberStyles = `
+    .team-member-card {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transform: translateZ(0);
+      will-change: transform;
+    }
+    
+    .team-member-card:hover {
+      z-index: 10 !important;
+    }
+    
+    .team-member-image-container {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transform: translateZ(0);
+    }
+    
+    .member-bio {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(100%);
+      transition: all 0.3s ease;
+    }
+    
+    .team-member-card:hover .member-bio {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .team-member-card:hover .team-member-image-container img {
+      transform: scale(1.05);
+    }
+  `;
+  // Add styles to the head when component mounts
+  useEffect(() => {
+    const styleElement = document.createElement('style');
+    styleElement.innerHTML = teamMemberStyles;
+    document.head.appendChild(styleElement);
+    
+    return () => {
+      document.head.removeChild(styleElement);
+    };
+  }, []);
+
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -246,35 +291,32 @@ const About = () => {
                   padding: '0.5rem 1.25rem',
                   borderRadius: '50px',
                   fontSize: '0.9rem',
-                  fontWeight: 600,
-                  marginBottom: '1.5rem',
-                  letterSpacing: '1px'
                 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                WELCOME TO CYBER MONK STUDIOZ
+                Inside the Studio
               </motion.span>
               
               <motion.h1 
                 style={{
-                  fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
-                  fontWeight: 800,
-                  lineHeight: 1.2,
-                  margin: '0.5rem 0 1.5rem',
-                  background: 'linear-gradient(90deg, #1a1a1a, #4f46e5)', 
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  maxWidth: '900px',
-                  marginLeft: 'auto',
-                  marginRight: 'auto'
+                  fontSize: '3.5rem',
+                  fontWeight: 700,
+                  margin: '0 0 2rem 0',
+                  color: '#1a1a1a',
+                  lineHeight: 1.1,
+                  textAlign: 'center',
+                  maxWidth: '1000px',
+                  margin: '0 auto 2rem',
+                  padding: '0 2rem',
+                  fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif"
                 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                Crafting Digital Experiences That Inspire & Transform
+                Where Creativity Meets Innovation
               </motion.h1>
               
               <motion.p 
@@ -406,22 +448,25 @@ const About = () => {
             variants={staggerContainer}
           >
             <motion.div variants={fadeInUp} style={{ marginBottom: 'var(--spacing-xl)' }}>
-              <h1 style={{
-                fontSize: 'clamp(2.5rem, 8vw, 4.5rem)',
-                fontWeight: 500,
-                lineHeight: 1.1,
-                letterSpacing: '-0.02em',
-                marginBottom: 'var(--spacing-sm)',
-                fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif"
-              }}>
-                About Cyber Monk Studioz
-              </h1>
               <div style={{
-                width: '80px',
-                height: '3px',
-                backgroundColor: 'var(--color-black)',
-                margin: 'var(--spacing-md) 0',
-              }} />
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                marginBottom: '2rem'
+              }}>
+                <Logo size={80} withText={true} />
+                <motion.div 
+                  style={{
+                    width: '80px',
+                    height: '2px',
+                    backgroundColor: '#1a1a1a',
+                    marginTop: '1.5rem'
+                  }}
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.8, ease: 'easeOut' }}
+                />
+              </div>
             </motion.div>
 
             <div style={{
@@ -432,25 +477,27 @@ const About = () => {
             }}>
               <motion.div variants={fadeInUp}>
                 <h2 style={{
-                  fontSize: '2.25rem',
-                  fontWeight: 700,
-                  marginBottom: '20px',
-                  lineHeight: 1.2,
-                  color: '#1a1a1a',
-                  fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif",
-                  letterSpacing: '-0.02em'
-                }}>
-                  We believe in the power of design to transform businesses and create meaningful connections.
-                </h2>
-                <p style={{
-                  fontSize: '20px',
-                  lineHeight: 1.75,
-                  color: '#4a4a4a',
-                  marginBottom: '15px',
-                  fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif",
+                  fontSize: '2rem',
+                  fontWeight: 400,
+                  marginBottom: '1.5rem',
+                  lineHeight: 1.4,
+                  color: '#333',
+                  fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif",
+                  letterSpacing: '-0.01em',
                   maxWidth: '90%'
                 }}>
-                  Cyber Monk Studioz was founded with a simple mission: to create exceptional digital experiences that make a lasting impact. Our team of designers, developers, and strategists work together to bring ideas to life through thoughtful design and innovative technology.
+                  Where innovation meets precision in digital craftsmanship. We transform visions into impactful digital realities through strategic design and cutting-edge technology.
+                </h2>
+                <p style={{
+                  fontSize: '1.1rem',
+                  lineHeight: 1.8,
+                  color: '#666',
+                  marginBottom: '1.5rem',
+                  fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif",
+                  maxWidth: '90%',
+                  fontWeight: 300
+                }}>
+                  Established with a vision to redefine digital excellence, Cyber Monk Studioz is a collective of passionate designers and developers dedicated to creating sophisticated digital experiences. Our approach combines aesthetic sensibility with technical expertise to deliver solutions that not only look exceptional but drive measurable results.
                 </p>
                 <p style={{
                   fontSize: '20px',
@@ -473,31 +520,43 @@ const About = () => {
                   overflow: 'hidden',
                 }}
               >
-                <div style={{
-                  position: 'absolute',
-                  top: '10px',
-                  left: '10px',
-                  right: '10px',
-                  bottom: '10px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                 <img 
-                   src={CircleMonk} 
-                   alt="Cybermonk" 
-                   style={{ 
-                     width: '100%', 
-                     height: '100%', 
-                     objectFit: 'contain',
-                     filter: 'drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2))',
-                     transition: 'all 0.3s ease',
-                     borderRadius: '15px'
-                   }}
-                   onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-                   onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                 />
+                <div 
+                  style={{
+                    position: 'absolute',
+                    top: '10px',
+                    left: '10px',
+                    right: '10px',
+                    bottom: '10px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                  onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                >
+                  <div className="w-full h-full flex items-center justify-center bg-gray-100 rounded-full">
+                    <Logo size={200} withText={false} color="#1a1a1a" />
+                  </div>
                 </div>
+                <style jsx={"true"}>{`
+                  .director-card:hover .member-bio {
+                    opacity: 1 !important;
+                  }
+                  
+                  .director-card:hover .member-bio p {
+                    animation: fadeInUp 0.5s ease forwards;
+                  }
+                  
+                  @keyframes fadeInUp {
+                    from {
+                      opacity: 0;
+                      transform: translateY(10px);
+                    }
+                    to {
+                      opacity: 1;
+                      transform: translateY(0);
+                    }
+                  }
+                `}</style>
               </motion.div>
             </div>
           </motion.div>
@@ -770,7 +829,7 @@ const About = () => {
                   lineHeight: 1.2
                 }}
               >
-                Meet Our Talented Team
+                Our Team
               </motion.h2>
               <motion.div 
                 style={{
@@ -784,216 +843,335 @@ const About = () => {
             </motion.div>
 
             <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '2rem',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '4rem',
               marginTop: '2rem'
             }}>
-              {[
-                {
-                  name: 'Srihariharn',
-                  role: 'Creative Director',
-                  image: hariImg,
-                  bio: 'Visionary leader with a passion for innovative design and user experience.',
-                  social: {
-                    linkedin: '#',
-                    twitter: '#',
-                    github: '#',
-                    email: 'mailto:srihariharn@example.com'
-                  }
-                },
-                {
-                  name: 'Aaruhya Kumar',
-                  role: 'Design Director',
-                  image: aaruhyaImg,
-                  bio: 'Creative mind with an eye for detail and a love for beautiful interfaces.',
-                  social: {
-                    linkedin: '#',
-                    twitter: '#',
-                    github: '#',
-                    email: 'mailto:aaruhya@example.com'
-                  }
-                },
-                {
+              {/* Directors Section */}
+              <motion.div 
+                variants={fadeInUp}
+                style={{ marginBottom: '5rem' }}
+              >
+                <h3 style={{
+                  textAlign: 'center',
+                  fontSize: '2rem',
+                  fontWeight: 700,
+                  marginBottom: '2.5rem',
+                  color: '#1a1a1a',
+                  position: 'relative',
+                  display: 'inline-block',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  padding: '0 1.5rem'
+                }}>
+                  Directors
+                  <span style={{
+                    position: 'absolute',
+                    bottom: '-10px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '60px',
+                    height: '3px',
+                    background: 'linear-gradient(90deg, #4f46e5, #7c3aed)',
+                    borderRadius: '3px'
+                  }} />
+                </h3>
+                
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  gap: '2rem',
+                  margin: '0 auto',
+                  width: '95%',
+                  maxWidth: '1200px',
+                  padding: '1rem'
+                }}>
+                  {[{
+                    name: 'Srihariharan',
+                    role: 'Creative Director',
+                    image: sgkImg,
+                    bio: 'Visionary mind with a passion for innovative design and user experience.'
+                  }, {
+                    name: 'Aaruhya Kumar',
+                    role: 'Design Director',
+                    image: aaruhyaImg,
+                    bio: 'Creative mind with an eye for detail and a love for beautiful interfaces.'
+                  }, {
+                    name: 'Nishanth Ravikumar',
+                    role: 'Business Director',
+                    image: NishanthImg,
+                    bio: 'Strategic business leader with a focus on growth and project success.'
+                  }].map((member, index) => (
+                  <motion.div
+                    key={index}
+                    variants={fadeInUp}
+                    style={{
+                      backgroundColor: '#fff',
+                      borderRadius: '16px',
+                      overflow: 'visible',
+                      boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
+                      transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                      position: 'relative',
+                      zIndex: 1,
+                      transform: 'translateZ(0)'
+                    }}
+                    className="team-member-card"
+                    whileHover={{
+                      transform: 'translateY(-8px) scale(1.02) translateZ(0)',
+                      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)'
+                    }}
+                  >
+                    <div style={{ 
+                      position: 'relative', 
+                      width: '350px', 
+                      height: '350px', 
+                      overflow: 'hidden', 
+                      margin: '0 auto',
+                      borderRadius: '16px',
+                      boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)'
+                    }} className="team-member-image-container">
+                      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+                        <img 
+                          src={member.image} 
+                          alt={member.name}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            transition: 'transform 0.6s ease',
+                          }}
+                        />
+                      </div>
+                      <div style={{
+                        position: 'absolute',
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        padding: '1.5rem',
+                        background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%)',
+                        color: 'white',
+                        textAlign: 'left',
+                        borderRadius: '0 0 16px 16px',
+                        transformOrigin: 'bottom',
+                        zIndex: 2,
+                        backdropFilter: 'blur(4px)'
+                      }} className="member-bio">
+                        <p style={{
+                          margin: 0,
+                          fontSize: '0.95rem',
+                          lineHeight: 1.6,
+                          marginBottom: '1rem',
+                          color: '#ffffff',
+                          textShadow: '0 1px 2px rgba(0,0,0,0.3)'
+                        }}>
+                          {member.bio}
+                        </p>
+                      </div>
+                    </div>
+                    <div style={{ 
+                      padding: '1.5rem',
+                      textAlign: 'center',
+                      position: 'relative',
+                      zIndex: 3,
+                      backgroundColor: '#fff',
+                      borderRadius: '0 0 16px 16px'
+                    }}>
+                      <h3 style={{
+                        margin: '0 0 0.25rem',
+                        fontSize: '1.5rem',
+                        fontWeight: 700,
+                        color: '#1a1a1a'
+                      }}>
+                        {member.name}
+                      </h3>
+                      <p style={{
+                        color: '#4f46e5',
+                        margin: '0 0 1rem',
+                        fontWeight: 600,
+                        fontSize: '0.9rem',
+                        letterSpacing: '0.1em',
+                        textTransform: 'uppercase',
+                      }}>
+                        {member.role}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+              </motion.div>
+              
+              {/* Creative Unit Section */}
+              <motion.div 
+                variants={fadeInUp}
+                style={{ margin: '5rem 0' }}
+              >
+                <h3 style={{
+                  textAlign: 'center',
+                  fontSize: '2rem',
+                  fontWeight: 700,
+                  marginBottom: '2.5rem',
+                  color: '#1a1a1a',
+                  position: 'relative',
+                  display: 'inline-block',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  padding: '0 1.5rem'
+                }}>
+                  Creative Unit
+                  <span style={{
+                    position: 'absolute',
+                    bottom: '-10px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '60px',
+                    height: '3px',
+                    background: 'linear-gradient(90deg, #4f46e5, #7c3aed)',
+                    borderRadius: '3px'
+                  }} />
+                </h3>
+                
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                  gap: '1rem',
+                  margin: '0 auto',
+                  width: '90%',
+                  maxWidth: '900px',
+                  padding: '0.5rem'
+                }}>
+                {[{
                   name: 'Rahav',
                   role: 'App Developer',
                   image: ragavImg,
-                  bio: 'Tech enthusiast who transforms complex ideas into seamless mobile experiences.',
-                  social: {
-                    linkedin: '#',
-                    twitter: '#',
-                    github: '#',
-                    email: 'mailto:rahav@example.com'
-                  }
-                },
-                {
+                  bio: 'Tech enthusiast who transforms complex ideas into seamless mobile experiences.'
+                }, {
                   name: 'Monick Kannan',
                   role: 'Web Developer',
                   image: monickImg,
-                  bio: 'Full-stack developer with a passion for clean code and elegant solutions.',
-                  social: {
-                    linkedin: '#',
-                    twitter: '#',
-                    github: '#',
-                    email: 'mailto:monick@example.com'
-                  }
-                }
-              ].map((member, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  style={{
-                    backgroundColor: '#fff',
-                    borderRadius: '16px',
-                    overflow: 'hidden',
-                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
-                    transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                    position: 'relative',
-                    zIndex: 1
-                  }}
-                  whileHover={{
-                    transform: 'translateY(-8px)',
-                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)'
-                  }}
-                >
-                  <div style={{
-                    width: '100%',
-                    height: '320px',
-                    overflow: 'hidden',
-                    position: 'relative'
-                  }}>
-                    <img 
-                      src={member.image} 
-                      alt={member.name}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        transition: 'transform 0.6s ease',
-                      }}
-                      className="team-member-image"
-                    />
-                    <div style={{
-                      position: 'absolute',
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      padding: '1.5rem',
-                      background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%)',
-                      color: 'white',
-                      transform: 'translateY(100%)',
-                      transition: 'transform 0.3s ease',
-                      textAlign: 'left'
-                    }} className="member-bio">
-                      <p style={{
-                        margin: 0,
-                        fontSize: '0.95rem',
-                        lineHeight: 1.6,
-                        marginBottom: '1rem'
-                      }}>
-                        {member.bio}
-                      </p>
+                  bio: 'Full-stack developer with a passion for clean code and elegant solutions.'
+                }].map((member, index) => (
+                  <motion.div
+                    key={index}
+                    variants={fadeInUp}
+                    style={{
+                      backgroundColor: '#fff',
+                      borderRadius: '16px',
+                      overflow: 'visible',
+                      boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
+                      transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                      position: 'relative',
+                      zIndex: 1,
+                      transform: 'translateZ(0)'
+                    }}
+                    className="team-member-card"
+                    whileHover={{
+                      transform: 'translateY(-8px) scale(1.02) translateZ(0)',
+                      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)'
+                    }}
+                  >
+                    <div style={{ 
+                      position: 'relative', 
+                      width: '350px', 
+                      height: '350px', 
+                      overflow: 'hidden', 
+                      margin: '0 auto',
+                      borderRadius: '16px',
+                      boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)'
+                    }} className="team-member-image-container">
+                      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+                        <img 
+                          src={member.image} 
+                          alt={member.name}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            transition: 'transform 0.6s ease',
+                          }}
+                        />
+                      </div>
                       <div style={{
-                        display: 'flex',
-                        gap: '0.75rem',
-                        marginTop: '1rem'
-                      }}>
-                        <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer" style={{
-                          color: 'white',
-                          fontSize: '1.1rem',
-                          transition: 'color 0.2s ease',
-                          ':hover': {
-                            color: '#4f46e5'
-                          }
+                        position: 'absolute',
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        padding: '1.5rem',
+                        background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%)',
+                        color: 'white',
+                        textAlign: 'left',
+                        borderRadius: '0 0 16px 16px',
+                        transformOrigin: 'bottom',
+                        zIndex: 2,
+                        backdropFilter: 'blur(4px)'
+                      }} className="member-bio">
+                        <p style={{
+                          margin: 0,
+                          fontSize: '0.95rem',
+                          lineHeight: 1.6,
+                          marginBottom: '1rem',
+                          color: '#ffffff',
+                          textShadow: '0 1px 2px rgba(0,0,0,0.3)'
                         }}>
-                          <FaLinkedin />
-                        </a>
-                        <a href={member.social.twitter} target="_blank" rel="noopener noreferrer" style={{
-                          color: 'white',
-                          fontSize: '1.1rem',
-                          transition: 'color 0.2s ease',
-                          ':hover': {
-                            color: '#4f46e5'
-                          }
-                        }}>
-                          <FaTwitter />
-                        </a>
-                        <a href={member.social.github} target="_blank" rel="noopener noreferrer" style={{
-                          color: 'white',
-                          fontSize: '1.1rem',
-                          transition: 'color 0.2s ease',
-                          ':hover': {
-                            color: '#4f46e5'
-                          }
-                        }}>
-                          <FaGithub />
-                        </a>
-                        <a href={member.social.email} style={{
-                          color: 'white',
-                          fontSize: '1.1rem',
-                          transition: 'color 0.2s ease',
-                          ':hover': {
-                            color: '#4f46e5'
-                          }
-                        }}>
-                          <FaEnvelope />
-                        </a>
+                          {member.bio}
+                        </p>
                       </div>
                     </div>
-                  </div>
-                  <div style={{ 
-                    padding: '1.5rem',
-                    textAlign: 'center',
-                    position: 'relative',
-                    zIndex: 2,
-                    backgroundColor: '#fff'
-                  }}>
-                    <h3 style={{
-                      margin: '0 0 0.25rem',
-                      fontSize: '1.5rem',
-                      fontWeight: 700,
-                      color: '#1a1a1a'
+                    <div style={{ 
+                      padding: '1.5rem',
+                      textAlign: 'center',
+                      position: 'relative',
+                      zIndex: 3,
+                      backgroundColor: '#fff',
+                      borderRadius: '0 0 16px 16px'
                     }}>
-                      {member.name}
-                    </h3>
-                    <p style={{
-                      color: '#4f46e5',
-                      margin: '0 0 1rem',
-                      fontWeight: 600,
-                      fontSize: '0.9rem',
-                      letterSpacing: '0.1em',
-                      textTransform: 'uppercase',
-                    }}>
-                      {member.role}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
+                      <h3 style={{
+                        margin: '0 0 0.25rem',
+                        fontSize: '1.5rem',
+                        fontWeight: 700,
+                        color: '#1a1a1a'
+                      }}>
+                        {member.name}
+                      </h3>
+                      <p style={{
+                        color: '#4f46e5',
+                        margin: '0 0 1rem',
+                        fontWeight: 600,
+                        fontSize: '0.9rem',
+                        letterSpacing: '0.1em',
+                        textTransform: 'uppercase',
+                      }}>
+                        {member.role}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+              </motion.div>
             </div>
+            <div style={{
+              position: 'absolute',
+              top: '10%',
+              right: '-100px',
+              width: '400px',
+              height: '400px',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(79, 70, 229, 0.05) 0%, rgba(79, 70, 229, 0) 70%)',
+              zIndex: 0
+            }} />
+            <div style={{
+              position: 'absolute',
+              bottom: '10%',
+              left: '-100px',
+              width: '500px',
+              height: '500px',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(124, 58, 237, 0.05) 0%, rgba(124, 58, 237, 0) 70%)',
+              zIndex: 0
+            }} />
           </motion.div>
         </div>
-        
-        {/* Decorative Elements */}
-        <div style={{
-          position: 'absolute',
-          top: '10%',
-          right: '-100px',
-          width: '400px',
-          height: '400px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(79, 70, 229, 0.05) 0%, rgba(79, 70, 229, 0) 70%)',
-          zIndex: 0
-        }} />
-        <div style={{
-          position: 'absolute',
-          bottom: '10%',
-          left: '-100px',
-          width: '500px',
-          height: '500px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(124, 58, 237, 0.05) 0%, rgba(124, 58, 237, 0) 70%)',
-          zIndex: 0
-        }} />
       </section>
     </div>
   );
