@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { FiArrowRight, FiMessageSquare, FiX, FiFilter, FiCheck, FiClock, FiDollarSign, FiLayers, FiMonitor, FiSmartphone, FiVideo, FiScissors, FiCamera } from 'react-icons/fi';
 import { FaPalette, FaInstagram, FaVideo as FaVideoIcon } from 'react-icons/fa';
+import { IoIosSwitch } from 'react-icons/io';
 import styled, { keyframes } from 'styled-components';
 
 // Modal Component
@@ -560,8 +561,9 @@ const Services = () => {
     ? services 
     : services.filter(service => service.category === selectedCategory);
 
+  // Toggle cursor effect
   return (
-    <div className="services-page">
+    <div className="min-h-screen bg-gray-50 relative">
       {/* Floating Action Button */}
       <AnimatePresence>
         {isScrolled && (
