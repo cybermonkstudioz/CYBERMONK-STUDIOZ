@@ -5,6 +5,7 @@ import { FiArrowRight, FiMessageSquare, FiX, FiFilter, FiCheck, FiClock, FiDolla
 import { FaPalette, FaInstagram, FaVideo as FaVideoIcon } from 'react-icons/fa';
 import { IoIosSwitch } from 'react-icons/io';
 import styled, { keyframes } from 'styled-components';
+import FluidCursor from '../common/FluidCursor';
 
 // Modal Component
 const ServiceModal = ({ service, onClose, navigate }) => {
@@ -563,7 +564,8 @@ const Services = () => {
 
   // Toggle cursor effect
   return (
-    <div className="min-h-screen bg-gray-50 relative">
+    <div className="min-h-screen bg-gray-50 relative overflow-hidden">
+      <FluidCursor />
       {/* Floating Action Button */}
       <AnimatePresence>
         {isScrolled && (

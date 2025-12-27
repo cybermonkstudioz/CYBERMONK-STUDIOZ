@@ -1,4 +1,5 @@
 import React, { Suspense, lazy } from 'react';
+import FluidCursor from './components/common/FluidCursor';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
@@ -32,6 +33,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <FluidCursor />
         <Suspense fallback={<Loading />}>
           <Header />
           <main>
