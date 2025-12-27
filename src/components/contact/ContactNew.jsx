@@ -14,7 +14,7 @@ const Contact = () => {
 
   // Initialize EmailJS with your public key
   useEffect(() => {
-    init("V_o7S1Ir5CqHmt1oy");
+    init("yfXCm23iQXArKUeA8");
   }, []);
 
   const handleChange = (e) => {
@@ -61,9 +61,9 @@ const Contact = () => {
       // Send the form using the form element
       const response = await sendForm(
         'service_ddvryn8',
-        'template_6b0x5jq',
+        'template_tjw8fqi',
         e.target,
-        'V_o7S1Ir5CqHmt1oy'
+        'yfXCm23iQXArKUeA8'
       );
       
       if (response.status === 200) {
