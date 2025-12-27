@@ -1,6 +1,6 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import FluidCursor from './components/common/FluidCursor';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
 // Import global styles
@@ -15,6 +15,7 @@ const Contact = lazy(() => import('./components/contact/ContactNew'));
 const NotFound = lazy(() => import('./components/common/NotFound'));
 const Booking = lazy(() => import('./components/booking/Booking'));
 const TawkTo = lazy(() => import('./components/common/TawkTo'));
+const ScrollToTop = lazy(() => import('./components/common/ScrollToTop'));
 
 // Layout components
 const Header = lazy(() => import('./components/layout/Header'));
@@ -30,11 +31,22 @@ const Loading = () => (
 );
 
 function App() {
+  // Handle page refresh
+  useEffect(() => {
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    };
+    return () => {
+      window.onbeforeunload = null;
+    };
+  }, []);
+
   return (
     <Router>
       <div className="App">
         <FluidCursor />
         <Suspense fallback={<Loading />}>
+          <ScrollToTop />
           <Header />
           <main>
             <AnimatePresence mode="wait">

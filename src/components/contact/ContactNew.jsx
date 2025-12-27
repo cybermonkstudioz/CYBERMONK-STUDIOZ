@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaEnvelope, FaMapMarkerAlt, FaPhone, FaLinkedin, FaTwitter, FaGithub } from 'react-icons/fa';
+import { FaEnvelope, FaMapMarkerAlt, FaPhone, FaLinkedin, FaTwitter, FaGithub, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
+import { init, sendForm } from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,28 +12,10 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.99]
-      }
-    }
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      }
-    }
-  };
+  // Initialize EmailJS with your public key
+  useEffect(() => {
+    init("V_o7S1Ir5CqHmt1oy");
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,26 +27,61 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Check if all required fields are filled
+    if (!formData.name || !formData.email || !formData.message) {
+      setSubmitStatus({
+        success: false,
+        message: 'Please fill in all required fields.'
+      });
+      return;
+    }
+    
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setSubmitStatus({
+        success: false,
+        message: 'Please enter a valid email address.'
+      });
+      return;
+    }
+    
     setIsSubmitting(true);
     
     try {
-      // Here you would typically send the form data to your backend
-      console.log('Form submitted', formData);
+      // Send email using EmailJS
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        to_email: 'cybermonkstudioz@gmail.com',
+        message: formData.message
+      };
       
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Send the form using the form element
+      const response = await sendForm(
+        'service_ddvryn8',
+        'template_6b0x5jq',
+        e.target,
+        'V_o7S1Ir5CqHmt1oy'
+      );
       
-      setSubmitStatus({
-        success: true,
-        message: 'Message sent successfully!'
-      });
-      
-      // Reset form
-      setFormData({ name: '', email: '', message: '' });
+      if (response.status === 200) {
+        setSubmitStatus({
+          success: true,
+          message: 'Message sent successfully! We\'ll get back to you soon.'
+        });
+        
+        // Reset form
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        throw new Error('Failed to send message');
+      }
     } catch (error) {
+      console.error('Error sending email:', error);
       setSubmitStatus({
         success: false,
-        message: 'Failed to send message. Please try again.'
+        message: 'Failed to send message. Please try again later.'
       });
     } finally {
       setIsSubmitting(false);
@@ -124,6 +142,29 @@ const Contact = () => {
       transition: 'all 0.3s ease',
       border: '1px solid #e2e8f0',
     },
+  };
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.6, -0.05, 0.01, 0.99]
+      }
+    }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      }
+    }
   };
 
   return (
@@ -254,7 +295,7 @@ const Contact = () => {
                 }}
                 onMouseOver={(e) => {
                   e.target.style.transform = 'translateY(-2px)';
-                  e.target.style.boxShadow = '0 6px 20px rgba(201, 162, 77, 0.4)';
+                  e.target.style.boxShadow = '0 6px 20px rgba(79, 70, 229, 0.4)';
                 }}
                 onMouseOut={(e) => {
                   e.target.style.transform = 'translateY(0)';
@@ -330,7 +371,7 @@ const Contact = () => {
                   <span style={{
                     fontSize: '2.5rem',
                     color: 'var(--color-accent)'
-                  }}>✉️</span>
+                  }}></span>
                 </div>
                 <h3 style={{
                   fontSize: '1.75rem',
@@ -343,7 +384,7 @@ const Contact = () => {
                 <p style={{
                   fontSize: '1.1rem',
                   color: '#666',
-                  marginBottom: 'var(--spacing-xl)',
+                  marginBottom: '1rem',
                   maxWidth: '80%',
                   lineHeight: 1.6
                 }}>
@@ -352,14 +393,20 @@ const Contact = () => {
                 
                 <div style={{
                   width: '100%',
-                  maxWidth: '400px',
-                  margin: '0 auto'
+                  maxWidth: '450px',
+                  margin: '-50px auto 0',
+                  position: 'relative',
+                  zIndex: 1,
+                  padding: '30px',
+                  backgroundColor: 'white',
+                  borderRadius: '16px',
+                  boxShadow: '0 10px 30px rgba(0,0,0,0.08)'
                 }}>
                   <form onSubmit={handleSubmit}>
                     <div style={{ marginBottom: 'var(--spacing-md)' }}>
                       <input
                         type="text"
-                        placeholder="Your Name"
+                        placeholder="Your Name *"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
@@ -372,15 +419,13 @@ const Contact = () => {
                           fontSize: '1rem',
                           backgroundColor: 'white',
                           transition: 'all 0.3s ease',
-                          boxShadow: '0 2px 10px rgba(0,0,0,0.03)'
+                          boxShadow: '0 2px 10px rgba(0,0,0,0.03)',
+                          marginBottom: '1rem'
                         }}
                       />
-                    </div>
-                    
-                    <div style={{ marginBottom: 'var(--spacing-md)' }}>
                       <input
                         type="email"
-                        placeholder="Your Email"
+                        placeholder="Your Email *"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
@@ -393,68 +438,109 @@ const Contact = () => {
                           fontSize: '1rem',
                           backgroundColor: 'white',
                           transition: 'all 0.3s ease',
-                          boxShadow: '0 2px 10px rgba(0,0,0,0.03)'
+                          boxShadow: '0 2px 10px rgba(0,0,0,0.03)',
+                          marginBottom: '1rem'
                         }}
                       />
-                    </div>
-                    
-                    <div style={{ marginBottom: 'var(--spacing-lg)' }}>
                       <textarea
-                        placeholder="Your Message"
+                        placeholder="Your Message *"
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
                         required
-                        rows="4"
+                        rows="3"
                         style={{
                           width: '100%',
-                          padding: '1rem 1.5rem',
+                          minHeight: '100px',
+                          maxHeight: '120px',
+                          padding: '0.8rem 1.2rem',
                           border: '1px solid #e0e0e0',
                           borderRadius: '8px',
-                          fontSize: '1rem',
+                          fontSize: '0.95rem',
                           backgroundColor: 'white',
                           transition: 'all 0.3s ease',
-                          resize: 'none',
-                          boxShadow: '0 2px 10px rgba(0,0,0,0.03)'
+                          resize: 'vertical',
+                          boxShadow: '0 2px 10px rgba(0,0,0,0.03)',
+                          marginBottom: '0.5rem',
+                          fontFamily: 'inherit',
+                          lineHeight: '1.5'
                         }}
                       />
+                      
+                      <div style={{ margin: '1rem 0' }}>
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          style={{
+                            width: '100%',
+                            padding: '0.6rem 1.5rem',
+                            background: 'linear-gradient(45deg, #4f46e5, #7c3aed)',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '10px',
+                            fontSize: '1rem',
+                            fontWeight: 600,
+                            cursor: 'pointer',
+                            transition: 'all 0.3s ease',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '0.75rem',
+                            boxShadow: '0 4px 15px rgba(79, 70, 229, 0.3)',
+                            margin: '0 auto',
+                            maxWidth: '100%',
+                            boxSizing: 'border-box'
+                          }}
+                          onMouseOver={(e) => {
+                            e.target.style.transform = 'translateY(-2px)';
+                            e.target.style.boxShadow = '0 6px 20px rgba(79, 70, 229, 0.4)';
+                          }}
+                          onMouseOut={(e) => {
+                            e.target.style.transform = 'translateY(0)';
+                            e.target.style.boxShadow = '0 4px 15px rgba(79, 70, 229, 0.3)';
+                          }}
+                        >
+                        {isSubmitting ? 'Sending...' : (
+                          <>
+                            <span>Send Message</span>
+                            <span style={{ fontSize: '1.2rem' }}>→</span>
+                          </>
+                        )}
+                        </button>
+                      </div>
                     </div>
                     
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      style={{
-                        width: '100%',
-                        padding: '1rem',
-                        backgroundColor: 'var(--color-accent)',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '8px',
-                        fontSize: '1rem',
-                        fontWeight: 600,
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '0.5rem'
-                      }}
-                      onMouseOver={(e) => {
-                        e.target.style.transform = 'translateY(-2px)';
-                        e.target.style.boxShadow = '0 4px 15px rgba(201, 162, 77, 0.4)';
-                      }}
-                      onMouseOut={(e) => {
-                        e.target.style.transform = 'translateY(0)';
-                        e.target.style.boxShadow = 'none';
-                      }}
-                    >
-                      {isSubmitting ? 'Sending...' : (
-                        <>
-                          <span>Send Message</span>
-                          <span style={{ fontSize: '1.2rem' }}>→</span>
-                        </>
-                      )}
-                    </button>
+                    {/* Status Message */}
+                    {submitStatus && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        style={{
+                          marginTop: '1rem',
+                          padding: '0.75rem 1rem',
+                          borderRadius: '8px',
+                          backgroundColor: submitStatus.success ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)',
+                          color: submitStatus.success ? '#10b981' : '#ef4444',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '0.5rem',
+                          fontSize: '0.9rem',
+                          fontWeight: 500
+                        }}
+                      >
+                        {submitStatus.success ? (
+                          <>
+                            <FaCheckCircle />
+                            <span>{submitStatus.message}</span>
+                          </>
+                        ) : (
+                          <>
+                            <FaTimesCircle />
+                            <span>{submitStatus.message}</span>
+                          </>
+                        )}
+                      </motion.div>
+                    )}
                   </form>
                 </div>
               </div>
