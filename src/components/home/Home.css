@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600;700&display=swap');
+
+.home {
+  height: 100vh;
+  background: #0b0b0b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.brand-text {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2.2rem, 6vw, 5rem);
+  letter-spacing: 0.08em;
+  color: #ffffff;
+}
+
+.brand-text span {
+  display: inline-block;
+}
