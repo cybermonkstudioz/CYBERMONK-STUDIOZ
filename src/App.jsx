@@ -1,5 +1,6 @@
-import React, { Suspense, lazy, useEffect } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import FluidCursor from './components/common/FluidCursor';
+import LoadingPage from './components/common/LoadingPage';
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { useAuth } from './context/AuthContext';
@@ -40,6 +41,32 @@ const CursorLayer = () => {
 };
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Show loading page for 3 seconds initially
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Handle page refresh
+  useEffect(() => {
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    };
+    return () => {
+      window.onbeforeunload = null;
+    };
+  }, []);
+
+  // Show loading page
+  if (isLoading) {
+    return <LoadingPage />;
+  }
+
   const ProtectedRoute = ({ children }) => {
     const { isAuthenticated } = useAuth();
     const location = useLocation();
@@ -54,16 +81,6 @@ function App() {
       />
     );
   };
-
-  // Handle page refresh
-  useEffect(() => {
-    window.onbeforeunload = function () {
-      window.scrollTo(0, 0);
-    };
-    return () => {
-      window.onbeforeunload = null;
-    };
-  }, []);
 
   return (
     <Router>
