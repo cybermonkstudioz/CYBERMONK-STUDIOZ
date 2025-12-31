@@ -20,10 +20,11 @@ import './About.css';
 // Import team member images
 import hariImg from '../../../src/assets/images/hari.jpg';
 import ragavImg from '../../../src/assets/images/ragav.jpg';
-import monickImg from '../../../src/assets/images/monick.jpg';
+import monickImg from '../../../src/assets/images/MONICK.jpeg';
 import NishanthImg from '../../../src/assets/images/Nishanth.jpg';
 import sgkImg from '../../../src/assets/images/sgk.jpeg';
 import aaruhyaImg from '../../../src/assets/images/aaruhya.jpeg';
+import harishImg from '../../../src/assets/images/harish.jpg';
 
 // Styles
 const styles = {
@@ -297,14 +298,17 @@ const About = () => {
                 }}
               >
                 <motion.span 
+                  className="studio-title-white"
                   style={{
                     display: 'inline-block',
-                    backgroundColor: 'rgba(124, 58, 237, 0.1)',
-                    color: '#7c3aed',
+                    backgroundColor: 'rgba(79, 70, 229, 0.8)',
+                    color: 'white',
                     padding: '0.5rem 1.25rem',
                     borderRadius: '50px',
                     fontSize: '1.2rem',
-                    zIndex: 2
+                    zIndex: 2,
+                    WebkitTextFillColor: 'white',
+                    textShadow: 'none'
                   }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -319,7 +323,7 @@ const About = () => {
                   fontSize: '3.5rem',
                   fontWeight: 700,
                   margin: '0 0 2rem 0',
-                  color: '#1a1a1a',
+                  color: '#ffffff',
                   lineHeight: 1.1,
                   textAlign: 'center',
                   maxWidth: '1000px',
@@ -338,7 +342,7 @@ const About = () => {
                 style={{
                   fontSize: '1.25rem',
                   lineHeight: 1.7,
-                  color: '#4a5568',
+                  color: '#ffffff',
                   maxWidth: '700px',
                   margin: '0 auto 2.5rem',
                   fontWeight: 400
@@ -446,7 +450,7 @@ const About = () => {
             width: '500px',
             height: '500px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, rgba(124, 58, 237, 0) 70%)',
+            background: 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0) 70%)',
             zIndex: -1
           }} />
         </div>
@@ -476,7 +480,7 @@ const About = () => {
                   style={{
                     width: '80px',
                     height: '2px',
-                    backgroundColor: '#1a1a1a',
+                    backgroundColor: '#8b5cf6',
                     marginTop: '1.5rem'
                   }}
                   initial={{ scaleX: 0 }}
@@ -500,7 +504,7 @@ const About = () => {
                   fontWeight: 400,
                   marginBottom: '1.5rem',
                   lineHeight: 1.4,
-                  color: '#333',
+                  color: '#ffffff',
                   fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif",
                   letterSpacing: '-0.01em',
                   maxWidth: '90%'
@@ -510,7 +514,7 @@ const About = () => {
                 <p style={{
                   fontSize: '1.1rem',
                   lineHeight: 1.8,
-                  color: '#5f5c53ff',
+                  color: '#ffffff',
                   marginBottom: '1.5rem',
                   fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif",
                   maxWidth: '100%',
@@ -521,7 +525,7 @@ const About = () => {
                 <p style={{
                   fontSize: '20px',
                   lineHeight: 1.75,
-                  color: '#4a4a4a',
+                  color: '#ffffff',
                   marginBottom: '1.5rem',
                   fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif",
                   maxWidth: '90%'
@@ -660,7 +664,7 @@ const About = () => {
                   fontSize: '2.75rem',
                   fontWeight: 800,
                   margin: '0.5rem 0 1.5rem',
-                  background: 'linear-gradient(90deg, #1a1a1a, #4d4d4dff)',
+                  background: 'linear-gradient(90deg, #1a202c, #4a5568)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   lineHeight: 1.2
@@ -672,21 +676,23 @@ const About = () => {
                 style={{
                   width: '80px',
                   height: '4px',
-                  background: 'linear-gradient(90deg, #161616ff, #464546ff)',
+                  background: 'linear-gradient(90deg, #4f46e5, #8b5cf6)',
                   margin: '0 auto',
                   borderRadius: '2px'
                 }}
               />
             </motion.div>
 
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr',
-              gap: '1.5rem',
-              marginTop: '2rem',
-              padding: '0 1rem'
-            }}
-            className="values-grid-responsive"
+            <div 
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr',
+                gap: '1.5rem',
+                marginTop: '2rem',
+                padding: '0 1rem'
+              }}
+              className="values-grid-responsive"
+            >
               {[
                 {
                   icon: <FaLightbulb style={{
@@ -768,7 +774,7 @@ const About = () => {
                     left: 0,
                     width: '100%',
                     height: '100%',
-                    background: 'linear-gradient(135deg, rgba(79, 70, 229, 0.03) 0%, rgba(124, 58, 237, 0.03) 100%)',
+                    background: 'linear-gradient(135deg, rgba(79, 70, 229, 0.03) 0%, rgba(139, 92, 246, 0.03) 100%)',
                     zIndex: -1,
                     opacity: 0,
                     transition: 'opacity 0.3s ease'
@@ -780,7 +786,7 @@ const About = () => {
                     fontSize: '1.5rem',
                     fontWeight: 700,
                     marginBottom: '1rem',
-                    color: '#1a1a1a',
+                    color: '#ffffff',
                     position: 'relative',
                     display: 'inline-block'
                   }}>
@@ -791,7 +797,7 @@ const About = () => {
                       left: 0,
                       width: '40px',
                       height: '3px',
-                      background: 'linear-gradient(90deg, #4f46e5, #7c3aed)',
+                      background: 'linear-gradient(90deg, #4f46e5, #8b5cf6)',
                       borderRadius: '3px',
                       transition: 'width 0.3s ease'
                     }} className="underline" />
@@ -829,7 +835,7 @@ const About = () => {
           width: '400px',
           height: '400px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(124, 58, 237, 0.05) 0%, rgba(124, 58, 237, 0) 70%)',
+          background: 'radial-gradient(circle, rgba(139, 92, 246, 0.05) 0%, rgba(139, 92, 246, 0) 70%)',
           zIndex: 0
         }} />
       </section>
@@ -837,7 +843,7 @@ const About = () => {
       {/* Team Section */}
 <section style={{
         padding: '6rem 2rem',
-        backgroundColor: '#f8f9ff',
+        background: 'linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-tertiary) 100%)',
         position: 'relative',
         overflow: 'hidden'
       }}>
@@ -890,9 +896,7 @@ const About = () => {
                   fontSize: '2.75rem',
                   fontWeight: 800,
                   margin: '0.5rem 0 1.5rem',
-                  background: 'linear-gradient(90deg, #1a1a1a, #444444ff)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
+                  color: '#ffffff',
                   lineHeight: 1.2
                 }}
               >
@@ -902,7 +906,7 @@ const About = () => {
                 style={{
                   width: '80px',
                   height: '4px',
-                  background: 'linear-gradient(90deg, #0b0b0bff, #676769ff)',
+                  background: 'linear-gradient(90deg, #4f46e5, #8b5cf6)',
                   margin: '0 auto',
                   borderRadius: '2px'
                 }}
@@ -925,7 +929,7 @@ const About = () => {
                   fontSize: '2rem',
                   fontWeight: 700,
                   marginBottom: '2.5rem',
-                  color: '#1a1a1a',
+                  color: '#ffffff',
                   position: 'relative',
                   display: 'inline-block',
                   left: '50%',
@@ -940,22 +944,24 @@ const About = () => {
                     transform: 'translateX(-50%)',
                     width: '60px',
                     height: '3px',
-                    background: 'linear-gradient(90deg, #4f46e5, #7c3aed)',
+                    background: 'linear-gradient(90deg, #4f46e5, #8b5cf6)',
                     borderRadius: '3px'
                   }} />
                 </h3>
                 
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  gap: '2rem',
-                  margin: '0 auto',
-                  width: '100%',
-                  maxWidth: '1200px',
-                  padding: '1rem'
-                }}
-                className="directors-grid-responsive"
+                <div 
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    gap: '2rem',
+                    margin: '0 auto',
+                    width: '100%',
+                    maxWidth: '1200px',
+                    padding: '1rem'
+                  }}
+                  className="directors-grid-responsive"
+                >
                   {[{
                     name: 'Srihariharan',
                     role: 'Creative Director',
@@ -976,7 +982,7 @@ const About = () => {
                     key={index}
                     variants={fadeInUp}
                     style={{
-                      backgroundColor: '#fff',
+                      backgroundColor: '#ffffff',
                       borderRadius: '16px',
                       overflow: 'visible',
                       boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
@@ -1044,14 +1050,14 @@ const About = () => {
                       textAlign: 'center',
                       position: 'relative',
                       zIndex: 3,
-                      backgroundColor: '#fff',
+                      backgroundColor: '#ffffff',
                       borderRadius: '0 0 16px 16px'
                     }}>
                       <h3 style={{
                         margin: '0 0 0.25rem',
                         fontSize: '1.5rem',
                         fontWeight: 700,
-                        color: '#1a1a1a'
+                        color: '#1a202c'
                       }}>
                         {member.name}
                       </h3>
@@ -1081,7 +1087,7 @@ const About = () => {
                   fontSize: '2rem',
                   fontWeight: 700,
                   marginBottom: '2.5rem',
-                  color: '#1a1a1a',
+                  color: '#ffffff',
                   position: 'relative',
                   display: 'inline-block',
                   left: '50%',
@@ -1096,22 +1102,24 @@ const About = () => {
                     transform: 'translateX(-50%)',
                     width: '60px',
                     height: '3px',
-                    background: 'linear-gradient(90deg, #4f46e5, #7c3aed)',
+                    background: 'linear-gradient(90deg, #4f46e5, #8b5cf6)',
                     borderRadius: '3px'
                   }} />
                 </h3>
                 
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr',
-                  gap: '1.5rem',
-                  margin: '0 auto',
-                  width: '100%',
-                  maxWidth: '900px',
-                  padding: '0.5rem'
-                }}
-                className="creative-unit-grid-responsive"
-                {[{
+                <div 
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: '1fr',
+                    gap: '1.5rem',
+                    margin: '0 auto',
+                    width: '100%',
+                    maxWidth: '900px',
+                    padding: '0.5rem'
+                  }}
+                  className="creative-unit-grid-responsive"
+                >
+                  {[{
                   name: 'Rahav',
                   role: 'App Developer',
                   image: ragavImg,
@@ -1126,7 +1134,7 @@ const About = () => {
                     key={index}
                     variants={fadeInUp}
                     style={{
-                      backgroundColor: '#fff',
+                      backgroundColor: '#ffffff',
                       borderRadius: '16px',
                       overflow: 'visible',
                       boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
@@ -1194,14 +1202,161 @@ const About = () => {
                       textAlign: 'center',
                       position: 'relative',
                       zIndex: 3,
-                      backgroundColor: '#fff',
+                      backgroundColor: '#ffffff',
                       borderRadius: '0 0 16px 16px'
                     }}>
                       <h3 style={{
                         margin: '0 0 0.25rem',
                         fontSize: '1.5rem',
                         fontWeight: 700,
-                        color: '#1a1a1a'
+                        color: '#1a202c'
+                      }}>
+                        {member.name}
+                      </h3>
+                      <p style={{
+                        color: '#4f46e5',
+                        margin: '0 0 1rem',
+                        fontWeight: 600,
+                        fontSize: '0.9rem',
+                        letterSpacing: '0.1em',
+                        textTransform: 'uppercase',
+                      }}>
+                        {member.role}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+                </div>
+              </motion.div>
+              
+              {/* Design Unit Section */}
+              <motion.div 
+                variants={fadeInUp}
+                style={{ margin: '5rem 0' }}
+              >
+                <h3 style={{
+                  textAlign: 'center',
+                  fontSize: '2rem',
+                  fontWeight: 700,
+                  marginBottom: '2.5rem',
+                  color: '#ffffff',
+                  position: 'relative',
+                  display: 'inline-block',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  padding: '0 1.5rem'
+                }}>
+                  Design Unit
+                  <span style={{
+                    position: 'absolute',
+                    bottom: '-10px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '60px',
+                    height: '3px',
+                    background: 'linear-gradient(90deg, #4f46e5, #8b5cf6)',
+                    borderRadius: '3px'
+                  }} />
+                </h3>
+                
+                <div 
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: '1fr',
+                    gap: '1.5rem',
+                    margin: '0 auto',
+                    width: '100%',
+                    maxWidth: '900px',
+                    padding: '0.5rem'
+                  }}
+                  className="design-unit-grid-responsive"
+                >
+                  {[{
+                    name: 'Harish',
+                    role: 'Video Editor',
+                    image: harishImg,
+                    bio: 'Video Editor at Cyber Monk Studioz, crafting compelling visual stories through expert video editing, motion graphics, and post-production excellence.'
+                  }].map((member, index) => (
+                  <motion.div
+                    key={index}
+                    variants={fadeInUp}
+                    style={{
+                      backgroundColor: '#ffffff',
+                      borderRadius: '16px',
+                      overflow: 'visible',
+                      boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
+                      transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                      position: 'relative',
+                      zIndex: 1,
+                      transform: 'translateZ(0)'
+                    }}
+                    className="team-member-card"
+                    whileHover={{
+                      transform: 'translateY(-8px) scale(1.02) translateZ(0)',
+                      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)'
+                    }}
+                  >
+                    <div style={{ 
+                      position: 'relative', 
+                      width: '100%', 
+                      maxWidth: '350px',
+                      height: '350px', 
+                      overflow: 'hidden', 
+                      margin: '0 auto',
+                      borderRadius: '16px',
+                      boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)'
+                    }} className="team-member-image-container">
+                      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+                        <img 
+                          src={member.image} 
+                          alt={member.name}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            transition: 'transform 0.6s ease',
+                          }}
+                        />
+                      </div>
+                      <div style={{
+                        position: 'absolute',
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        padding: '1.5rem',
+                        background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%)',
+                        color: 'white',
+                        textAlign: 'left',
+                        borderRadius: '0 0 16px 16px',
+                        transformOrigin: 'bottom',
+                        zIndex: 2,
+                        backdropFilter: 'blur(4px)'
+                      }} className="member-bio">
+                        <p style={{
+                          margin: 0,
+                          fontSize: '0.95rem',
+                          lineHeight: 1.6,
+                          marginBottom: '1rem',
+                          color: '#ffffff',
+                          textShadow: '0 1px 2px rgba(0,0,0,0.3)'
+                        }}>
+                          {member.bio}
+                        </p>
+                      </div>
+                    </div>
+                    <div style={{ 
+                      padding: '1.5rem',
+                      textAlign: 'center',
+                      position: 'relative',
+                      zIndex: 3,
+                      backgroundColor: '#ffffff',
+                      borderRadius: '0 0 16px 16px'
+                    }}>
+                      <h3 style={{
+                        margin: '0 0 0.25rem',
+                        fontSize: '1.5rem',
+                        fontWeight: 700,
+                        color: '#1a202c'
                       }}>
                         {member.name}
                       </h3>

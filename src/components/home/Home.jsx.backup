@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FiPenTool, FiLayers, FiMonitor, FiCode, FiSmartphone } from 'react-icons/fi';
+import { FiPenTool, FiLayers, FiMonitor, FiCode, FiSmartphone, FiArrowRight } from 'react-icons/fi';
 import { FaQuoteLeft } from 'react-icons/fa';
 
 const HeroSection = styled.section`
@@ -192,59 +192,6 @@ const TestimonialAuthor = styled.p`
   margin: 0;
 `;
 
-// Remove duplicate TestimonialRole
-  }
-`;
-
-// Remove duplicate SectionTitle and other components that are defined above
-  color: #1a1a1a;
-  position: relative;
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, #1b1b1b, #b6b4ba);
-    border-radius: 2px;
-  }
-`;
-
-const Card = styled(motion.div)`
-  background: #fff;
-  border-radius: 12px;
-  padding: 2.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-  border: 1px solid #e2e8f0;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-  }
-`;
-
-const IconWrapper = styled.div`
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #1b1b1b 0%, #b6b4ba 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-  color: white;
-  font-size: 1.5rem;
-`;
-
 const Button = styled(motion.button)`
   background: linear-gradient(135deg, #1b1b1b 0%, #b6b4ba 100%);
   color: white;
@@ -273,100 +220,12 @@ const Button = styled(motion.button)`
   }
 `;
 
-
 const gradientAnimation = `
   @keyframes gradientBG {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
-`;
-
-const ServicesGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-`;
-
-const ServiceCard = styled(motion.div)`
-  background: #ffffff;
-  border-radius: 1rem;
-  padding: 2.5rem 2rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: center;
-  
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  }
-`;
-
-const ServiceIcon = styled.div`
-  width: 70px;
-  height: 70px;
-  margin: 0 auto 1.5rem;
-  background: #f0f4ff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #4f46e5;
-  font-size: 1.75rem;
-`;
-
-const ServiceTitle = styled.h3`
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: #1a1a1a;
-`;
-
-const ServiceDescription = styled.p`
-  color: #4b5563;
-  line-height: 1.6;
-`;
-
-const TestimonialSection = styled(Section)`
-  background: #f8fafc;
-`;
-
-const TestimonialCard = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-  background: #ffffff;
-  padding: 3rem;
-  border-radius: 1rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  text-align: center;
-`;
-
-const QuoteIcon = styled.div`
-  font-size: 2.5rem;
-  color: #4f46e5;
-  margin-bottom: 1.5rem;
-`;
-
-const TestimonialText = styled.p`
-  font-size: 1.25rem;
-  font-style: italic;
-  color: #4b5563;
-  margin-bottom: 1.5rem;
-  line-height: 1.7;
-`;
-
-const TestimonialAuthor = styled.p`
-  font-weight: 600;
-  color: #1a1a1a;
-  margin: 0;
-`;
-
-const TestimonialRole = styled.p`
-  color: #6b7280;
-  margin-top: 0.25rem;
 `;
 
 const Home = () => {
@@ -452,10 +311,9 @@ const Home = () => {
   return (
     <div className="home-page" ref={domRef}>
       <style>{gradientAnimation}</style>
-      <TawkTo />
       
       {/* Hero Section */}
-      <HeroSection className="hero-section">
+      <HeroSection>
         <ContentWrapper>
           <motion.div
             initial="hidden"
@@ -589,123 +447,22 @@ const Home = () => {
             variants={staggerContainer}
           >
             {services.map((service, index) => (
-              <Card 
+              <ServiceCard 
                 key={index} 
                 variants={fadeInUp}
                 whileHover={{ y: -10 }}
               >
-                <IconWrapper>
+                <ServiceIcon>
                   {service.icon}
-                </IconWrapper>
-                <h3 style={{
-                  fontSize: '1.5rem',
-                  marginBottom: '1rem',
-                  color: '#1a1a1a',
-                  fontWeight: 600
-                }}>
+                </ServiceIcon>
+                <ServiceTitle>
                   {service.title}
-                </h3>
-                <p style={{
-                  color: '#6b7280',
-                  lineHeight: '1.7',
-                  marginBottom: '1.5rem',
-                  flexGrow: 1
-                }}>
+                </ServiceTitle>
+                <ServiceDescription>
                   {service.description}
-                </p>
-                <Link to="/services" style={{
-                  color: '#1b1b1b',
-                  fontWeight: 500,
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  textDecoration: 'none',
-                  marginTop: 'auto',
-                  alignSelf: 'flex-start',
-                  position: 'relative',
-                }}>
-                  Learn more <FiArrowRight style={{ marginLeft: '0.5rem', transition: 'transform 0.3s ease' }} />
-                </Link>
-              </Card>
+                </ServiceDescription>
+              </ServiceCard>
             ))}
-          </motion.div>
-        </ContentWrapper>
-      </Section>
-      <Section>
-        <ContentWrapper>
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            <h1 className="title">
-              <span>Welcome to Cyber Monk Studioz</span>
-            </h1>
-            <motion.p 
-              className="subtitle" 
-              style={{
-                fontSize: '1.1rem',
-                maxWidth: '600px',
-                opacity: 0.9,
-                lineHeight: 1.8,
-                margin: 'var(--spacing-md) 0 var(--spacing-xl)',
-                fontFamily: 'var(--font-secondary)',
-                fontWeight: 500,
-                color: '#1a1a1a',
-              }}
-              variants={fadeInUp}
-            >
-              End-to-end creative and digital solutions crafted to elevate your brand.
-              <br />
-              <span style={{ fontStyle: 'italic', color: '#4a5568' }}>Crafting digital experiences that inspire and engage.</span>
-            </motion.p>
-            <motion.div 
-              style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '2rem' }}
-              variants={fadeInUp}
-            >
-              <Link to="/booking" style={{ textDecoration: 'none' }}>
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                  style={{
-                    padding: '0.8rem 2rem',
-                    fontSize: '20px',
-                    fontWeight: 500,
-                    color: '#1a1a1a',
-                    backgroundColor: '#ffffff',
-                    border: '2px solid #1a1a1a',
-                    borderRadius: '50px',
-                    cursor: 'pointer',
-                    fontFamily: 'var(--font-primary)',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.05em',
-                  }}
-                >
-                  Book Now
-                </motion.button>
-              </Link>
-              <Link to="/portfolio" style={{ textDecoration: 'none' }}>
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                  style={{
-                    padding: '0.8rem 2rem',
-                    fontSize: '20px',
-                    fontWeight: 500,
-                    color: '#ffffff',
-                    background: 'linear-gradient(90deg, #1b1b1bff, #b6b4baff)',
-                    border: 'none',
-                    borderRadius: '50px',
-                    cursor: 'pointer',
-                    fontFamily: 'var(--font-primary)',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.05em',
-                  }}
-                >
-                  View Our Work
-                </motion.button>
-              </Link>
-            </motion.div>
           </motion.div>
         </ContentWrapper>
       </Section>
@@ -927,18 +684,15 @@ const Home = () => {
                       background: 'linear-gradient(90deg, #1b1b1b, #b6b4ba)',
                       color: 'white',
                       border: 'none',
+                    }}
+                  >
+                    Get In Touch
+                  </Button>
                 </Link>
               </motion.div>
-            </motion.div>
-          </HeroContent>
+            </div>
+          </motion.div>
         </ContentWrapper>
-      </HeroSection>
-
-      <Section>
-        <SectionTitle>Our Services</SectionTitle>
-        <ServicesGrid>
-          {services.map((service, index) => (
-            <ServiceCard
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

@@ -175,7 +175,8 @@ const Contact = () => {
       {/* Decorative Elements */}
       <div className="decorative-circle-1" />
       <div className="decorative-circle-2" />
-
+      <br></br>
+      <br></br>
       {/* Hero Section */}
       <section className="contact-hero">
         <div className="container">

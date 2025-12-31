@@ -289,25 +289,10 @@ const HeroContainer = styled.div`
         position: relative;
         display: inline-block;
         margin: 0 0.2em;
-        text-shadow: 
-          0 0 5px rgba(0, 0, 0, 0.8),
-          0 0 10px rgba(0, 0, 0, 0.6);
-        filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.4));
         z-index: 1;
+        text-shadow: none !important;
+        filter: none !important;
         
-        &::before {
-          content: attr(data-text);
-          position: absolute;
-          left: 0;
-          top: 0;
-          color: #ff4444;
-          z-index: -1;
-          text-shadow: 
-            0 0 10px rgba(0, 0, 0, 0.9),
-            0 0 20px rgba(0, 0, 0, 0.8);
-          filter: blur(2px);
-          opacity: 0.8;
-        }
         
         &::after {
           content: '';
@@ -522,7 +507,7 @@ const HeroSection = () => {
 
       const bloomPass = new UnrealBloomPass(
         new THREE.Vector2(window.innerWidth, window.innerHeight),
-        0.8,
+        0.4,
         0.4,
         0.85
       );
@@ -765,10 +750,10 @@ const HeroSection = () => {
             float intensity = pow(0.7 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0);
             vec3 atmosphere = mix(vec3(0.45, 0.3, 0.64), vec3(0.4, 0.5, 0.92), intensity) * intensity;
             
-            float pulse = sin(time * 2.0) * 0.1 + 0.9;
+            float pulse = sin(time * 2.0) * 0.05 + 0.95;
             atmosphere *= pulse;
             
-            gl_FragColor = vec4(atmosphere, intensity * 0.25);
+            gl_FragColor = vec4(atmosphere, intensity * 0.15);
           }
         `,
         side: THREE.BackSide,
@@ -1022,14 +1007,6 @@ const HeroSection = () => {
         <br></br>
         <br></br>
         <br></br>
-        <div ref={subtitleRef} className="hero-subtitle cosmos-subtitle">
-          <p className="subtitle-line">
-            Where vision meets reality, 
-          </p>
-          <p className="subtitle-line">
-            we shape the future of tomorrow
-          </p>
-        </div>
         
         <div className="hero-buttons">
           <Link to="/contact" className="hero-button primary">
@@ -1047,7 +1024,7 @@ const HeroSection = () => {
           const titles = {
             0: 'HORIZON',
             1: 'CYBER MONK STUDIOZ',
-            2: 'INFINITY'
+            2: 'HORIZON'
           };
           
           const subtitles = {
@@ -1060,8 +1037,8 @@ const HeroSection = () => {
               line2: 'we build worlds of meaningful digital experiences.'
             },
             2: {
-              line1: 'In the space between thought and creation,',
-              line2: 'we find the essence of true innovation'
+              line1: 'In the space between vision and execution,',
+              line2: 'innovation finds its true form.'
             }
           };
           

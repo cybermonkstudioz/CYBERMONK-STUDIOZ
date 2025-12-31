@@ -76,7 +76,8 @@ const ServiceModal = ({ service, onClose, navigate }) => {
             fontSize: '1.5rem',
             cursor: 'pointer',
             color: '#000000ff',
-            zIndex: 10
+            zIndex: 10,
+            borderRadius: '8px'
           }}
         >
           <FiX />
@@ -312,19 +313,25 @@ const ServiceModal = ({ service, onClose, navigate }) => {
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
-                      backgroundColor: '#4f46e5',
-                      color: 'white',
+                      backgroundColor: 'transparent',
+                      color: '#4f46e5',
                       padding: '0.75rem 1.5rem',
-                      borderRadius: '8px',
+                      borderRadius: '12px',
                       textDecoration: 'none',
                       fontWeight: 600,
                       fontSize: '1rem',
-                      transition: 'background-color 0.3s ease, transform 0.2s ease',
+                      transition: 'all 0.3s ease, transform 0.2s ease',
                       marginTop: '1.5rem',
-                      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                      border: '2px solid #4f46e5'
                     }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#4338ca'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#4f46e5'}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#4f46e5';
+                      e.currentTarget.style.color = 'white';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                      e.currentTarget.style.color = '#4f46e5';
+                    }}
                     onClick={(e) => {
                       e.preventDefault();
                       navigate('/booking', { state: { service: service.title } });
@@ -416,7 +423,7 @@ const ServiceModal = ({ service, onClose, navigate }) => {
                 border: '1px solid #d1d5db',
                 color: '#0a0a0aff',
                 padding: '0.5rem 1.25rem',
-                borderRadius: '6px',
+                borderRadius: '12px',
                 cursor: 'pointer',
                 fontWeight: 500,
                 display: 'flex',
@@ -434,16 +441,23 @@ const ServiceModal = ({ service, onClose, navigate }) => {
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: '#4f46e5',
-                color: 'white',
+                backgroundColor: 'transparent',
+                color: '#4f46e5',
                 padding: '0.625rem 1.25rem',
-                borderRadius: '6px',
+                borderRadius: '12px',
                 textDecoration: 'none',
                 fontWeight: 500,
-                transition: 'all 0.2s ease'
+                transition: 'all 0.2s ease',
+                border: '2px solid #4f46e5'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#4338ca'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#4f46e5'}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#4f46e5';
+                e.currentTarget.style.color = 'white';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = '#4f46e5';
+              }}
             >
               Get Started
               <FiArrowRight style={{ marginLeft: '0.5rem' }} />
@@ -612,7 +626,7 @@ const Services = () => {
             <motion.div variants={fadeInUp} className="text-center">
               <span className="section-subtitle" style={{
                 display: 'inline-block',
-                color: '#6c757d',
+                color: '#ffffff',
                 textTransform: 'uppercase',
                 letterSpacing: '2px',
                 marginBottom: '1rem',
@@ -625,7 +639,7 @@ const Services = () => {
                 lineHeight: 1.1,
                 letterSpacing: '-0.03em',
                 margin: '0.5rem 0 1.5rem',
-                background: 'linear-gradient(45deg, #000000ff, #000000ff)',
+                background: 'linear-gradient(45deg, #ffffff, #ffffff)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 maxWidth: '800px',
@@ -647,7 +661,7 @@ const Services = () => {
                 opacity: 0.9,
                 lineHeight: 1.8,
                 margin: '0 auto var(--spacing-xxl)',
-                color: '#4a5568'
+                color: '#ffffff'
               }}>
                 We craft exceptional digital experiences that drive results. From stunning websites to engaging content, 
                 our comprehensive services are designed to elevate your brand in the digital landscape.
@@ -820,7 +834,7 @@ const Services = () => {
                       fontSize: '1.5rem',
                       fontWeight: 700,
                       margin: '1rem 0 0',
-                      color: '#1a202c',
+                      color: '#ffffff',
                       lineHeight: 1.3,
                       textAlign: 'center'
                     }}>
@@ -831,7 +845,7 @@ const Services = () => {
                   <p style={{
                     fontSize: '1rem',
                     lineHeight: 1.7,
-                    color: '#4a5568',
+                    color: '#4f46e5',
                     marginBottom: '1.5rem',
                     minHeight: '4.5em'
                   }}>
@@ -869,7 +883,7 @@ const Services = () => {
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  backgroundColor: '#f8fafc',
+                  backgroundColor: 'transparent',
                   transition: 'all 0.3s ease'
                 }}>
                   <Link 
@@ -884,7 +898,18 @@ const Services = () => {
                       transition: 'all 0.3s ease',
                       position: 'relative',
                       overflow: 'hidden',
-                      padding: '0.5rem 0'
+                      padding: '0.5rem 1rem',
+                      borderRadius: '12px',
+                      border: '2px solid #4f46e5',
+                      backgroundColor: 'transparent'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#4f46e5';
+                      e.currentTarget.style.color = 'white';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                      e.currentTarget.style.color = '#4f46e5';
                     }}
                     onClick={(e) => {
                       e.preventDefault();

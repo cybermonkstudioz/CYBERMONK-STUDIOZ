@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Logo = ({ size = 40, color = '#1a1a1a', withText = true, className = '' }) => {
+const Logo = ({ size = 40, color = '#ffffff', withText = true, className = '' }) => {
   return (
     <div className={`flex flex-col items-center ${className}`}>
       {withText && (

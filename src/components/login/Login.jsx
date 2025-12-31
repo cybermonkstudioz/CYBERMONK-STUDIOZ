@@ -15,9 +15,18 @@ const Login = () => {
     e.preventDefault();
     setError('');
 
-    // Placeholder login. Accept any credentials and mark as authenticated.
-    login();
-    navigate(from, { replace: true });
+    const formData = new FormData(e.target);
+    const email = formData.get('username');
+    const password = formData.get('password');
+
+    // Call login with credentials
+    const result = login({ email, password });
+    
+    if (result.success) {
+      navigate(from, { replace: true });
+    } else {
+      setError(result.message);
+    }
   };
 
   return (

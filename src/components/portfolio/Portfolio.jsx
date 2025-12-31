@@ -49,15 +49,42 @@ const Portfolio = () => {
     },
     {
       id: 2,
-      title: 'Mobile App Design',
+      title: 'Mobile App Dashboard',
       category: 'app',
-      description: 'Intuitive mobile application for task management',
-      image: 'https://source.unsplash.com/random/800x600/?mobile,app',
-      url: '/portfolio/mobile-app-design',
-      tags: ['React Native', 'Firebase']
+      description: 'Clean and intuitive user interface design for mobile dashboard',
+      image: 'https://source.unsplash.com/random/800x600/?mobile,app,dashboard',
+      url: '/portfolio/mobile-app-dashboard',
+      tags: ['React Native', 'UI/UX Design']
     },
     {
       id: 3,
+      title: 'Mobile Navigation App',
+      category: 'app',
+      description: 'Seamless navigation between app features with modern design',
+      image: 'https://source.unsplash.com/random/800x600/?mobile,app,navigation',
+      url: '/portfolio/mobile-navigation-app',
+      tags: ['React Native', 'Navigation']
+    },
+    {
+      id: 4,
+      title: 'Interactive Mobile App',
+      category: 'app',
+      description: 'Engaging interactive components with smooth animations',
+      image: 'https://source.unsplash.com/random/800x600/?mobile,app,interactive',
+      url: '/portfolio/interactive-mobile-app',
+      tags: ['React Native', 'Animations']
+    },
+    {
+      id: 5,
+      title: 'Modern Mobile Design',
+      category: 'app',
+      description: 'Contemporary mobile app aesthetics with premium UI elements',
+      image: 'https://source.unsplash.com/random/800x600/?mobile,app,modern',
+      url: '/portfolio/modern-mobile-design',
+      tags: ['React Native', 'Modern UI']
+    },
+    {
+      id: 6,
       title: 'Brand Identity',
       category: 'branding',
       description: 'Complete brand identity for a modern startup',
@@ -66,7 +93,7 @@ const Portfolio = () => {
       tags: ['Logo Design', 'Brand Guidelines']
     },
     {
-      id: 4,
+      id: 7,
       title: 'Web Application',
       category: 'web',
       description: 'Custom web application for business automation',
@@ -75,7 +102,7 @@ const Portfolio = () => {
       tags: ['Vue.js', 'Django', 'PostgreSQL']
     },
     {
-      id: 5,
+      id: 8,
       title: 'UI/UX Design',
       category: 'design',
       description: 'User-centered design for a fintech platform',
@@ -84,7 +111,7 @@ const Portfolio = () => {
       tags: ['Figma', 'User Research']
     },
     {
-      id: 6,
+      id: 9,
       title: 'Marketing Website',
       category: 'web',
       description: 'High-converting marketing website with analytics',
@@ -187,7 +214,7 @@ const Portfolio = () => {
               margin: '0 auto',
               textAlign: 'center',
               fontSize: '1.2rem',
-              color: '#4a5568',
+              color: '#ffffff',
             }}>
               Discover our collection of innovative projects and creative solutions that have helped our clients achieve their business goals.
             </p>
@@ -314,7 +341,7 @@ const Portfolio = () => {
                           fontSize: '1.5rem',
                           fontWeight: 600,
                           marginBottom: '0.5rem',
-                          color: 'var(--color-text-primary)',
+                          color: '#ffffff',
                         }}>
                           {project.title}
                         </h3>
@@ -323,6 +350,7 @@ const Portfolio = () => {
                           marginBottom: '1rem',
                           opacity: 0.9,
                           lineHeight: 1.6,
+                          color: '#ffffff',
                         }}>
                           {project.description}
                         </p>
@@ -441,7 +469,7 @@ const Portfolio = () => {
             >
               <h3 style={{
                 ...styles.heading3,
-                color: '#4a5568',
+                color: '#ffffff',
                 marginBottom: '1rem',
               }}>
                 No projects found in this category
@@ -450,7 +478,7 @@ const Portfolio = () => {
                 ...styles.paragraph,
                 maxWidth: '600px',
                 margin: '0 auto',
-                color: '#718096',
+                color: '#ffffff',
               }}>
                 We couldn't find any projects matching the selected category. Please try another filter or check back later for updates.
               </p>
@@ -487,11 +515,12 @@ const Portfolio = () => {
                 margin: '0 auto var(--spacing-xl)',
                 opacity: 0.8,
                 lineHeight: 1.7,
+                color: '#ffffff',
               }}>
                 Let's collaborate to bring your ideas to life. Get in touch to discuss your project and how we can help you achieve your goals.
               </p>
               <Link 
-                to="/contact" 
+                to="/booking" 
                 className="btn btn-primary"
                 style={{
                   display: 'inline-block',
