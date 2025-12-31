@@ -11,8 +11,12 @@ const ContentWrapper = styled(motion.div)`
   z-index: 3;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   width: 100%;
+  
+  @media (min-width: 768px) {
+    padding: 2rem;
+  }
   
   @media (min-width: 1024px) {
     padding: 0 4rem;
@@ -26,28 +30,47 @@ const HeroContent = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 3.5rem;
+  font-size: 2rem;
   font-weight: 800;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   line-height: 1.2;
   background: linear-gradient(to right, #ffffff, #e2e8f0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-align: center;
+  padding: 0 1rem;
   
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
     font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  @media (min-width: 1024px) {
+    font-size: 3.5rem;
   }
 `;
 
 const Subtitle = styled.p`
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: #e2e8f0;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   line-height: 1.6;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+  padding: 0 1rem;
+  text-align: center;
+  
+  @media (min-width: 768px) {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media (min-width: 1024px) {
+    font-size: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
 `;
 
 const StyledButton = styled(Link)`
@@ -70,29 +93,54 @@ const StyledButton = styled(Link)`
 `;
 
 const Section = styled.section`
-  padding: 6rem 0;
+  padding: 3rem 0;
   background: var(--color-bg-primary);
+  
+  @media (min-width: 768px) {
+    padding: 4rem 0;
+  }
+  
+  @media (min-width: 1024px) {
+    padding: 6rem 0;
+  }
 `;
 
 const SectionTitle = styled.h2`
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   color: var(--color-text-primary);
+  padding: 0 1rem;
   
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
     font-size: 2rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  @media (min-width: 1024px) {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
   }
 `;
 
 const ServicesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 0 2rem;
+  }
+  
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
 `;
 
 const ServiceCard = styled(motion.div)`
@@ -375,18 +423,20 @@ const Home = () => {
             </motion.p>
           </motion.div>
           
-          <motion.div 
-            style={{
-              display: 'grid',
-              gap: '2rem',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              marginTop: '3rem'
-            }}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={staggerContainer}
-          >
+            <motion.div 
+              style={{
+                display: 'grid',
+                gap: '1.5rem',
+                gridTemplateColumns: '1fr',
+                marginTop: '2rem',
+                padding: '0 1rem'
+              }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={staggerContainer}
+              className="services-grid-responsive"
+            >
             {services.map((service, index) => (
               <Card 
                 key={index} 
@@ -443,14 +493,16 @@ const Home = () => {
             <motion.p 
               className="subtitle" 
               style={{
-                fontSize: '1.1rem',
+                fontSize: '1rem',
                 maxWidth: '600px',
                 opacity: 0.9,
                 lineHeight: 1.8,
-                margin: 'var(--spacing-md) 0 var(--spacing-xl)',
+                margin: '1rem auto 2rem',
                 fontFamily: 'var(--font-secondary)',
                 fontWeight: 500,
                 color: '#1a1a1a',
+                padding: '0 1rem',
+                textAlign: 'center'
               }}
               variants={fadeInUp}
             >
@@ -459,7 +511,14 @@ const Home = () => {
               <span style={{ fontStyle: 'italic', color: '#4a5568' }}>Crafting digital experiences that inspire and engage.</span>
             </motion.p>
             <motion.div 
-              style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '2rem' }}
+              style={{ 
+                display: 'flex', 
+                gap: '1rem', 
+                flexWrap: 'wrap', 
+                marginTop: '2rem',
+                justifyContent: 'center',
+                padding: '0 1rem'
+              }}
               variants={fadeInUp}
             >
               <Link to="/booking" style={{ textDecoration: 'none' }}>
@@ -530,10 +589,13 @@ const Home = () => {
             }}>Client's Forum</p>
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gridTemplateColumns: '1fr',
               gap: '1.5rem',
-              marginTop: 'var(--spacing-lg)'
-            }}>
+              marginTop: '2rem',
+              padding: '0 1rem'
+            }}
+            className="testimonials-grid-responsive"
+            >
               {[
                 {
                   quote: "Cyber Monk Studioz transformed our online presence completely. Their attention to detail and creative approach is unmatched.",
@@ -634,15 +696,16 @@ const Home = () => {
         style={{
           position: 'relative',
           width: '100%',
-          height: '300px',
+          height: '200px',
           overflow: 'hidden',
           backgroundColor: '#ffffff',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          margin: '2rem 0',
-          padding: '2rem 0'
+          margin: '1.5rem 0',
+          padding: '1.5rem 0'
         }}
+        className="animated-divider-responsive"
       >
         <div 
           style={{
@@ -667,13 +730,15 @@ const Home = () => {
             variants={fadeInUp}
             style={{
               position: 'relative',
-              padding: '100px 0',
+              padding: '3rem 1rem',
               textAlign: 'center',
               background: 'linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%)',
               borderRadius: '20px',
               overflow: 'hidden',
-              marginBottom: '4rem'
+              marginBottom: '2rem',
+              margin: '0 1rem 2rem'
             }}
+            className="cta-section-responsive"
           >
             <div className="container">
               <motion.h3
@@ -682,13 +747,15 @@ const Home = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
                 style={{
-                  fontSize: '2.5rem',
+                  fontSize: '1.75rem',
                   fontWeight: 700,
-                  marginBottom: '1.5rem',
+                  marginBottom: '1rem',
                   color: 'var(--color-black)',
                   textTransform: 'uppercase',
-                  letterSpacing: '0.1em'
+                  letterSpacing: '0.1em',
+                  padding: '0 1rem'
                 }}
+                className="cta-title-responsive"
               >
                 Crafting Digital Experiences
               </motion.h3>

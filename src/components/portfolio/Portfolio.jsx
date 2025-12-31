@@ -210,10 +210,12 @@ const Portfolio = () => {
             style={{
               display: 'flex',
               flexWrap: 'wrap',
-              gap: '1rem',
+              gap: '0.75rem',
               justifyContent: 'center',
-              marginBottom: '3rem',
+              marginBottom: '2rem',
+              padding: '0 1rem'
             }}
+            className="portfolio-filters-responsive"
           >
             {categories.map((category) => (
               <motion.button
@@ -221,17 +223,18 @@ const Portfolio = () => {
                 variants={fadeInUp}
                 onClick={() => setActiveFilter(category.id)}
                 style={{
-                  padding: '0.6rem 1.8rem',
+                  padding: '0.5rem 1.2rem',
                   backgroundColor: activeFilter === category.id ? 'var(--color-accent)' : 'transparent',
                   color: activeFilter === category.id ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
                   border: `1px solid ${activeFilter === category.id ? 'var(--color-accent)' : 'var(--color-border)'}`,
                   borderRadius: '50px',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
-                  fontSize: '0.95rem',
+                  fontSize: '0.85rem',
                   fontWeight: 500,
                   fontFamily: 'inherit',
                 }}
+                className="portfolio-filter-button"
                 whileHover={{
                   backgroundColor: activeFilter === category.id ? 'var(--color-accent-light)' : 'var(--color-bg-tertiary)',
                   borderColor: activeFilter === category.id ? 'var(--color-accent-light)' : 'var(--color-accent)',
@@ -249,9 +252,11 @@ const Portfolio = () => {
             variants={staggerContainer}
             style={{
               ...styles.grid,
-              gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
-              gap: '2rem',
+              gridTemplateColumns: '1fr',
+              gap: '1.5rem',
+              padding: '0 1rem'
             }}
+            className="portfolio-grid-responsive"
           >
             {filteredProjects.map((project) => (
               <motion.div
@@ -519,5 +524,44 @@ const Portfolio = () => {
     </div>
   );
 };
+
+// Add mobile responsive styles
+const mobileStyles = `
+  @media (max-width: 768px) {
+    .portfolio-grid-responsive {
+      grid-template-columns: 1fr !important;
+      gap: 1.5rem !important;
+      padding: 0 1rem !important;
+    }
+    
+    .portfolio-filters-responsive {
+      gap: 0.5rem !important;
+      margin-bottom: 2rem !important;
+    }
+    
+    .portfolio-filter-button {
+      font-size: 0.75rem !important;
+      padding: 0.4rem 1rem !important;
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .portfolio-grid-responsive {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+      gap: 2rem !important;
+      padding: 0 !important;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .portfolio-grid-responsive {
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)) !important;
+    }
+  }
+`;
+
+const styleElement = document.createElement('style');
+styleElement.textContent = mobileStyles;
+document.head.appendChild(styleElement);
 
 export default Portfolio;

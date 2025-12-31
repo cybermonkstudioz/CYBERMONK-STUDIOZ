@@ -703,9 +703,10 @@ const Services = () => {
                 display: 'flex',
                 flexWrap: 'wrap',
                 justifyContent: 'center',
-                gap: '1rem',
+                gap: '0.75rem',
                 marginBottom: '2rem',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                padding: '0 1rem'
               }}
             >
               {serviceCategories.map((category) => (
@@ -713,7 +714,7 @@ const Services = () => {
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
                   style={{
-                    padding: '0.75rem 1.5rem',
+                    padding: '0.6rem 1.2rem',
                     borderRadius: '50px',
                     border: 'none',
                     backgroundColor: selectedCategory === category.id ? '#4f46e5' : '#fff',
@@ -725,9 +726,10 @@ const Services = () => {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: '0.95rem',
+                    fontSize: '0.85rem',
                     whiteSpace: 'nowrap'
                   }}
+                  className="category-filter-button"
                 >
                   {category.name}
                   {selectedCategory === category.id && (
@@ -746,11 +748,13 @@ const Services = () => {
             variants={staggerContainer}
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-              gap: '2rem',
+              gridTemplateColumns: '1fr',
+              gap: '1.5rem',
               position: 'relative',
-              zIndex: 1
+              zIndex: 1,
+              padding: '0 1rem'
             }}
+            className="services-grid-responsive"
           >
             {filteredServices.map((service, index) => (
               <motion.div
@@ -1151,5 +1155,51 @@ const styles = `
 const styleElement = document.createElement('style');
 styleElement.textContent = styles;
 document.head.appendChild(styleElement);
+
+// Add mobile responsive styles
+const mobileStyles = `
+  @media (max-width: 768px) {
+    .services-grid-responsive {
+      grid-template-columns: 1fr !important;
+      gap: 1.5rem !important;
+      padding: 0 1rem !important;
+    }
+    
+    .category-filter-button {
+      font-size: 0.8rem !important;
+      padding: 0.5rem 1rem !important;
+    }
+    
+    .service-card {
+      padding: 1.5rem !important;
+    }
+    
+    .service-card h3 {
+      font-size: 1.25rem !important;
+    }
+    
+    .service-card p {
+      font-size: 0.9rem !important;
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .services-grid-responsive {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+      gap: 2rem !important;
+      padding: 0 !important;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .services-grid-responsive {
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+    }
+  }
+`;
+
+const mobileStyleElement = document.createElement('style');
+mobileStyleElement.textContent = mobileStyles;
+document.head.appendChild(mobileStyleElement);
 
 export default Services;

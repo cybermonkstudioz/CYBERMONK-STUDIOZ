@@ -15,6 +15,7 @@ import {
 } from 'react-icons/fa';
 import { FiUsers, FiLayers, FiCode, FiCheckCircle } from 'react-icons/fi';
 import Logo from '../common/Logo';
+import './About.css';
 
 // Import team member images
 import hariImg from '../../../src/assets/images/hari.jpg';
@@ -406,14 +407,16 @@ const About = () => {
             <motion.div 
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                gridTemplateColumns: '1fr',
                 gap: '1.5rem',
-                marginTop: '4rem'
+                marginTop: '2rem',
+                padding: '0 1rem'
               }}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={staggerContainer}
+              className="stats-grid-responsive"
             >
               {stats.map((stat) => (
                 <Counter 
@@ -485,10 +488,12 @@ const About = () => {
 
             <div style={{
               display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: 'var(--spacing-xxl)',
+              gridTemplateColumns: '1fr',
+              gap: 'var(--spacing-lg)',
               alignItems: 'center',
-            }}>
+            }}
+            className="about-hero-grid-responsive"
+            >
               <motion.div variants={fadeInUp}>
                 <h2 style={{
                   fontSize: '2rem',
@@ -676,10 +681,12 @@ const About = () => {
 
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '2rem',
-              marginTop: '2rem'
-            }}>
+              gridTemplateColumns: '1fr',
+              gap: '1.5rem',
+              marginTop: '2rem',
+              padding: '0 1rem'
+            }}
+            className="values-grid-responsive"
               {[
                 {
                   icon: <FaLightbulb style={{
@@ -940,14 +947,15 @@ const About = () => {
                 
                 <div style={{
                   display: 'flex',
-                  flexDirection: 'row',
+                  flexDirection: 'column',
                   justifyContent: 'center',
                   gap: '2rem',
                   margin: '0 auto',
-                  width: '95%',
+                  width: '100%',
                   maxWidth: '1200px',
                   padding: '1rem'
-                }}>
+                }}
+                className="directors-grid-responsive"
                   {[{
                     name: 'Srihariharan',
                     role: 'Creative Director',
@@ -985,7 +993,8 @@ const About = () => {
                   >
                     <div style={{ 
                       position: 'relative', 
-                      width: '350px', 
+                      width: '100%', 
+                      maxWidth: '350px',
                       height: '350px', 
                       overflow: 'hidden', 
                       margin: '0 auto',
@@ -1094,13 +1103,14 @@ const About = () => {
                 
                 <div style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-                  gap: '1rem',
+                  gridTemplateColumns: '1fr',
+                  gap: '1.5rem',
                   margin: '0 auto',
-                  width: '90%',
+                  width: '100%',
                   maxWidth: '900px',
                   padding: '0.5rem'
-                }}>
+                }}
+                className="creative-unit-grid-responsive"
                 {[{
                   name: 'Rahav',
                   role: 'App Developer',
@@ -1133,7 +1143,8 @@ const About = () => {
                   >
                     <div style={{ 
                       position: 'relative', 
-                      width: '350px', 
+                      width: '100%', 
+                      maxWidth: '350px',
                       height: '350px', 
                       overflow: 'hidden', 
                       margin: '0 auto',

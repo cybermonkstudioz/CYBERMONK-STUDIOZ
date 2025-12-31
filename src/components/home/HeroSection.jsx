@@ -29,6 +29,32 @@ const HeroContainer = styled.div`
     }
   }
   
+  @keyframes slideInFromLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes hoverBounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    25% {
+      transform: translateY(-5px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+    75% {
+      transform: translateY(-3px);
+    }
+  }
+  
   @keyframes gradientShift {
     0% {
       background-position: 0% 50%;
@@ -38,6 +64,15 @@ const HeroContainer = styled.div`
     }
     100% {
       background-position: 0% 50%;
+    }
+  }
+  
+  @keyframes glowPulse {
+    0%, 100% {
+      filter: brightness(1) drop-shadow(0 4px 2px rgba(0, 0, 0, 0.3));
+    }
+    50% {
+      filter: brightness(1.2) drop-shadow(0 8px 4px rgba(255, 68, 68, 0.6));
     }
   }
   
@@ -65,12 +100,13 @@ const HeroContainer = styled.div`
       .hero-title {
         font-size: clamp(3rem, 8vw, 6rem);
         font-weight: 800;
-        margin-bottom: 2rem;
-        background: linear-gradient(45deg, #ffffff, #e2e8f0, #cbd5e1);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        margin: 0;
+        color: #FF0066;
         letter-spacing: 0.05em;
+        line-height: 1.2;
+        text-align: left;
+        width: 100%;
+        max-width: 800px;
         
         .title-char {
           display: inline-block;
@@ -79,55 +115,213 @@ const HeroContainer = styled.div`
         }
       }
       
-      .hero-tagline {
-        font-size: clamp(1.2rem, 3vw, 1.8rem);
-        font-weight: 600;
-        margin-bottom: 2rem;
-        background: linear-gradient(90deg, #ffd700, #ffed4e, #ffd700, #fff59d, #ffd700);
-        background-size: 200% auto;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        color: #ffd700;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        font-family: var(--font-creative), 'Syne', -apple-system, BlinkMacSystemFont, sans-serif;
+      .hero-punch {
+        text-align: center;
+        margin: 10vh 0 0 0;
+        user-select: none;
         position: relative;
+        z-index: 100;
+        width: 100%;
+        max-width: 1200px;
+        pointer-events: none;
+        padding: 0 1rem;
+        
+        @media (min-width: 768px) {
+          text-align: left;
+          margin: 15vh 0 0 5%;
+          width: 90%;
+          padding: 0 2rem;
+        }
+      }
+
+      .hero-word {
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        font-weight: 900;
+        font-size: clamp(2rem, 8vw, 6.8rem);
+        letter-spacing: 0.05em;
+        line-height: 1.1;
+        color: #F5F5F5;
         opacity: 1;
-        transform: translateY(0px) scale(1);
-        animation: gradientShift 4s ease infinite;
-        z-index: 10;
+        text-shadow: 
+          2px 2px 4px rgba(0, 0, 0, 0.8),
+          0 0 20px rgba(0, 0, 0, 0.5);
+        position: relative;
+        z-index: 100;
+        max-width: 95%;
+        margin: 0 auto;
+        padding: 0 1rem;
+        text-transform: uppercase;
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+        text-stroke: 1px rgba(255, 255, 255, 0.1);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        text-align: center;
+        
+        @media (min-width: 768px) {
+          font-size: clamp(3rem, 8vw, 6.8rem);
+          text-align: left;
+          max-width: 90%;
+          margin: 0;
+          padding: 0;
+        }
+      }
+
+      .hero-subline {
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        font-weight: 600;
+        font-size: clamp(0.9rem, 3vw, 1.6rem);
+        letter-spacing: 0.1em;
+        margin-top: 1rem;
+        text-transform: uppercase;
+        opacity: 0;
+        transform: translateX(-100px);
+        position: relative;
+        display: block;
+        text-align: center;
+        width: 100%;
+        padding: 0 1rem;
+        color: #ffffff;
+        text-shadow: 
+          0 0 10px rgba(0, 0, 0, 0.8),
+          0 0 5px rgba(0, 0, 0, 0.8);
+        filter: drop-shadow(0 4px 2px rgba(0, 0, 0, 0.3));
+        animation: slideInFromLeft 1.2s ease-out 0.8s forwards, float 6s ease-in-out infinite;
+        position: relative;
+        z-index: 1;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        
+        @media (min-width: 768px) {
+          font-size: 1.4rem;
+          text-align: right;
+          padding-right: 0.5em;
+          padding-left: 0;
+          letter-spacing: 0.15em;
+          margin-top: 1.5rem;
+        }
+        
+        @media (min-width: 1024px) {
+          font-size: 1.6rem;
+        }
+        
+        &:hover {
+          animation: hoverBounce 0.6s ease-in-out, float 6s ease-in-out infinite, glowPulse 1.5s ease-in-out infinite;
+          transform: translateX(10px) scale(1.05);
+          color: #ff4444;
+          text-shadow: 
+            0 0 20px rgba(255, 68, 68, 0.8),
+            0 0 40px rgba(255, 68, 68, 0.6),
+            0 0 60px rgba(255, 68, 68, 0.4);
+        }
         
         &::before {
+          content: attr(data-text);
+          position: absolute;
+          left: 0;
+          top: 0;
+          color: #ffffff;
+          z-index: -1;
+          text-shadow: 
+            0 0 15px rgba(0, 0, 0, 0.9),
+            0 0 30px rgba(0, 0, 0, 0.8),
+            0 0 45px rgba(0, 0, 0, 0.7);
+          filter: blur(2px);
+          opacity: 0.7;
+        }
+        
+        &::before, &::after {
           content: '';
           position: absolute;
           top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 120%;
-          height: 120%;
-          background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
-          z-index: -1;
-          animation: pulseGlow 3s ease-in-out infinite;
+          width: 50px;
+          height: 2px;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+          opacity: 0;
+          transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .tagline-char {
-          display: inline-block;
-          opacity: 1;
-          transform: translateY(0px) rotateX(0deg);
+        &::before {
+          left: -70px;
+          transform: translateY(-50%) translateX(-10px);
+        }
+        
+        &::after {
+          right: -70px;
+          transform: translateY(-50%) translateX(10px);
+        }
+        
+        &:hover {
+          &::before, &::after {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+          }
+        }
+        
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-5px); }
+        }
+        
+        @keyframes gradientShift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        
+        @media (max-width: 1024px) {
+          font-size: 1.4rem;
+          letter-spacing: 0.1em;
+        }
+        
+        @media (max-width: 768px) {
+          font-size: clamp(0.85rem, 2.5vw, 1.2rem);
+          text-align: center;
+          
+          &::before, &::after {
+            display: none;
+          }
         }
       }
       
-      .hero-subtitle {
-        max-width: 800px;
+      .premium-text {
+        color: #ff4444;
+        font-weight: 800;
+        font-size: 1.15em;
+        position: relative;
+        display: inline-block;
+        margin: 0 0.2em;
+        text-shadow: 
+          0 0 5px rgba(0, 0, 0, 0.8),
+          0 0 10px rgba(0, 0, 0, 0.6);
+        filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.4));
+        z-index: 1;
         
-        .subtitle-line {
-          font-size: 1.25rem;
-          color: #e2e8f0;
-          margin-bottom: 1rem;
-          opacity: 0;
-          transform: translateY(30px);
-          line-height: 1.6;
+        &::before {
+          content: attr(data-text);
+          position: absolute;
+          left: 0;
+          top: 0;
+          color: #ff4444;
+          z-index: -1;
+          text-shadow: 
+            0 0 10px rgba(0, 0, 0, 0.9),
+            0 0 20px rgba(0, 0, 0, 0.8);
+          filter: blur(2px);
+          opacity: 0.8;
+        }
+        
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: linear-gradient(90deg, transparent, #ffffff, #ff0000, #ff0000, #ffffff, transparent);
+          background-size: 300% auto;
+          animation: gradientShift 3s ease infinite;
+          height: 2px;
+          bottom: -4px;
+          box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.5);
         }
       }
     }
@@ -150,22 +344,48 @@ const HeroContainer = styled.div`
         font-size: clamp(3rem, 8vw, 6rem);
         font-weight: 800;
         margin-bottom: 2rem;
-        background: linear-gradient(45deg, #ffffff, #e2e8f0, #cbd5e1);
+        background: linear-gradient(45deg, #800020, #f7e7ce, #f8f6ff);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         letter-spacing: 0.05em;
+        background-size: 200% auto;
+        animation: gradientShift 4s ease infinite;
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5)) 
+                drop-shadow(0 0 40px rgba(255, 255, 255, 0.3))
+                drop-shadow(0 0 60px rgba(255, 255, 255, 0.1));
+        
+        @keyframes gradientShift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
       }
       
       .hero-subtitle {
         max-width: 800px;
         
-        .subtitle-line {
-          font-size: 1.25rem;
-          color: #e2e8f0;
-          margin-bottom: 1rem;
-          line-height: 1.6;
+      .subtitle-line {
+        margin: 0.8em 0;
+        font-size: clamp(1.2rem, 4vw, 2em);
+        font-weight: 400;
+        line-height: 1.3;
+        color: #ffffff;
+        text-shadow: 
+          0 2px 10px rgba(0, 0, 0, 0.8),
+          0 0 20px rgba(0, 0, 0, 0.6),
+          0 0 30px rgba(0, 0, 0, 0.4);
+        opacity: 1;
+        letter-spacing: 1px;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.7));
+        padding: 0 1rem;
+        text-align: center;
+        
+        @media (min-width: 768px) {
+          padding: 0;
+          text-align: left;
         }
+      }
       }
     }
   }
@@ -176,17 +396,32 @@ const HeroContainer = styled.div`
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 2rem;
+    padding: 0 1rem;
+    width: 100%;
+    
+    @media (min-width: 768px) {
+      padding: 0;
+      width: auto;
+    }
     
     .hero-button {
       display: inline-block;
-      padding: 0.875rem 2rem;
+      padding: 0.75rem 1.5rem;
       border-radius: 9999px;
       font-weight: 600;
       text-decoration: none;
       transition: all 0.3s ease;
       border: none;
       cursor: pointer;
-      font-size: 1rem;
+      font-size: 0.9rem;
+      width: 100%;
+      text-align: center;
+      
+      @media (min-width: 768px) {
+        padding: 0.875rem 2rem;
+        font-size: 1rem;
+        width: auto;
+      }
       
       &.primary {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -256,7 +491,8 @@ const HeroSection = () => {
       
       // Scene setup
       refs.scene = new THREE.Scene();
-      refs.scene.fog = new THREE.FogExp2(0x000000, 0.00025);
+      refs.scene.fog = new THREE.FogExp2(0x1a1a1a, 0.00025);
+      refs.scene.background = new THREE.Color(0x1a1a1a);
 
       // Camera
       refs.camera = new THREE.PerspectiveCamera(
@@ -325,15 +561,17 @@ const HeroSection = () => {
           positions[j * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
           positions[j * 3 + 2] = radius * Math.cos(phi);
 
-          // Color variation
+          // Color variation matching brand colors
           const color = new THREE.Color();
           const colorChoice = Math.random();
-          if (colorChoice < 0.7) {
-            color.setHSL(0, 0, 0.8 + Math.random() * 0.2);
+          if (colorChoice < 0.4) {
+            color.setHSL(0.75, 0.6, 0.7); // Purple
+          } else if (colorChoice < 0.7) {
+            color.setHSL(0.6, 0.5, 0.8); // Blue-purple
           } else if (colorChoice < 0.9) {
-            color.setHSL(0.08, 0.5, 0.8);
+            color.setHSL(0.08, 0.3, 0.8); // Soft gold accent
           } else {
-            color.setHSL(0.6, 0.5, 0.8);
+            color.setHSL(0, 0, 0.9); // White
           }
           
           colors[j * 3] = color.r;
@@ -402,8 +640,9 @@ const HeroSection = () => {
       const material = new THREE.ShaderMaterial({
         uniforms: {
           time: { value: 0 },
-          color1: { value: new THREE.Color(0x0033ff) },
-          color2: { value: new THREE.Color(0xff0066) },
+          color1: { value: new THREE.Color(0x764ba2) },
+          color2: { value: new THREE.Color(0x667eea) },
+          color3: { value: new THREE.Color(0x9d50bb) },
           opacity: { value: 0.3 }
         },
         vertexShader: `
@@ -425,14 +664,17 @@ const HeroSection = () => {
         fragmentShader: `
           uniform vec3 color1;
           uniform vec3 color2;
+          uniform vec3 color3;
           uniform float opacity;
           uniform float time;
           varying vec2 vUv;
           varying float vElevation;
           
           void main() {
-            float mixFactor = sin(vUv.x * 10.0 + time) * cos(vUv.y * 10.0 + time);
-            vec3 color = mix(color1, color2, mixFactor * 0.5 + 0.5);
+            float mixFactor1 = sin(vUv.x * 10.0 + time) * cos(vUv.y * 10.0 + time);
+            float mixFactor2 = cos(vUv.x * 8.0 - time * 0.5) * sin(vUv.y * 8.0 - time * 0.5);
+            vec3 color = mix(color1, color2, mixFactor1 * 0.5 + 0.5);
+            color = mix(color, color3, mixFactor2 * 0.3 + 0.3);
             
             float alpha = opacity * (1.0 - length(vUv - 0.5) * 2.0);
             alpha *= 1.0 + vElevation * 0.01;
@@ -457,10 +699,10 @@ const HeroSection = () => {
       const { current: refs } = threeRefs;
       
       const layers = [
-        { distance: -50, height: 60, color: 0x1a1a2e, opacity: 1 },
-        { distance: -100, height: 80, color: 0x16213e, opacity: 0.8 },
-        { distance: -150, height: 100, color: 0x0f3460, opacity: 0.6 },
-        { distance: -200, height: 120, color: 0x0a4668, opacity: 0.4 }
+        { distance: -50, height: 60, color: 0x16213e, opacity: 1 },
+        { distance: -100, height: 80, color: 0x1a1a2e, opacity: 0.8 },
+        { distance: -150, height: 100, color: 0x0f0f23, opacity: 0.6 },
+        { distance: -200, height: 120, color: 0x764ba2, opacity: 0.3 }
       ];
 
       layers.forEach((layer, index) => {
@@ -521,7 +763,7 @@ const HeroSection = () => {
           
           void main() {
             float intensity = pow(0.7 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0);
-            vec3 atmosphere = vec3(0.3, 0.6, 1.0) * intensity;
+            vec3 atmosphere = mix(vec3(0.45, 0.3, 0.64), vec3(0.4, 0.5, 0.92), intensity) * intensity;
             
             float pulse = sin(time * 2.0) * 0.1 + 0.9;
             atmosphere *= pulse;
@@ -645,43 +887,54 @@ const HeroSection = () => {
   useEffect(() => {
     if (!isReady) return;
     
-    gsap.set([titleRef.current, taglineRef.current, subtitleRef.current], {
-      visibility: 'visible'
+    const tl = gsap.timeline({
+      defaults: { duration: 1, ease: "power3.out" }
     });
-
-    const tl = gsap.timeline();
-
-    if (titleRef.current) {
-      const titleChars = titleRef.current.querySelectorAll('.title-char');
-      tl.from(titleChars, {
-        y: 200,
-        opacity: 0,
-        duration: 1.5,
-        stagger: 0.05,
-        ease: "power4.out"
-      }, "-=0.5");
-    }
-
-    if (taglineRef.current) {
-      tl.from(taglineRef.current, {
-        opacity: 0,
-        y: 30,
-        scale: 0.9,
+    
+    // Animate title characters
+    tl.fromTo(
+      ".title-char",
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.03,
         duration: 1.2,
-        ease: "power3.out"
-      }, "-=0.8");
-    }
-
-    if (subtitleRef.current) {
-      const subtitleLines = subtitleRef.current.querySelectorAll('.subtitle-line');
-      tl.from(subtitleLines, {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power3.out"
-      }, "-=0.8");
-    }
+        ease: "back.out(1.7)",
+      },
+      "+=0.2"
+    );
+    
+    // Animate hero word only (subline now uses CSS animation)
+    setTimeout(() => {
+      gsap.to('.hero-word', {
+        y: 0,
+        opacity: 1,
+        duration: 1.6,
+        ease: 'power4.out',
+        delay: 0.3
+      });
+    }, 100);
+    
+    // Animate tagline characters with staggered effect
+    tl.to(".tagline-char", {
+      opacity: 1,
+      y: 0,
+      stagger: {
+        amount: 0.5,
+        from: "center"
+      },
+      duration: 0.8,
+      ease: "back.out(1.7)"
+    }, "-=0.5");
+    
+    // Animate subtitle
+    tl.to(".hero-subtitle", {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: "power3.out"
+    }, "-=0.8");
 
     return () => {
       tl.kill();
@@ -752,13 +1005,7 @@ const HeroSection = () => {
     ));
   };
 
-  const splitTagline = (text) => {
-    return text.split('').map((char, i) => (
-      <span key={i} className="tagline-char">
-        {char}
-      </span>
-    ));
-  };
+  // Split tagline function removed as we're using direct JSX now
 
   return (
     <HeroContainer ref={containerRef}>
@@ -766,14 +1013,15 @@ const HeroSection = () => {
       
 
       <div className="hero-content cosmos-content">
-        <h1 ref={titleRef} className="hero-title">
-          {splitTitle('HORIZON')}
-        </h1>
-        
-        <div ref={taglineRef} className="hero-tagline">
-          {splitTagline('Creativity, Engineered at a Premium Level')}
+        <div ref={taglineRef} className="hero-punch">
+          <div className="hero-word" data-text="CREATIVITY">CREATIVITY</div>
+          <div className="hero-subline" data-text="ENGINEERED AT PREMIUM LEVEL">
+            ENGINEERED AT <span className="premium-text">PREMIUM</span> LEVEL
+          </div>
         </div>
-        
+        <br></br>
+        <br></br>
+        <br></br>
         <div ref={subtitleRef} className="hero-subtitle cosmos-subtitle">
           <p className="subtitle-line">
             Where vision meets reality, 
@@ -798,7 +1046,7 @@ const HeroSection = () => {
         {[...Array(2)].map((_, i) => {
           const titles = {
             0: 'HORIZON',
-            1: 'COSMOS',
+            1: 'CYBER MONK STUDIOZ',
             2: 'INFINITY'
           };
           
@@ -808,8 +1056,8 @@ const HeroSection = () => {
               line2: 'we shape the future of tomorrow'
             },
             1: {
-              line1: 'Beyond the boundaries of imagination,',
-              line2: 'lies the universe of possibilities'
+              line1: 'Beyond imagination,',
+              line2: 'we build worlds of meaningful digital experiences.'
             },
             2: {
               line1: 'In the space between thought and creation,',
