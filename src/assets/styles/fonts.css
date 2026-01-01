@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Unbounded:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Primary font for tech/creative look */
+  --font-tech: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Creative, experimental font for headings and highlights */
+  --font-creative: 'Syne', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Funky, modern font for CTAs and highlights */
+  --font-accent: 'Unbounded', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Fallback system fonts */
+  --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+body {
+  font-family: var(--font-tech);
+  line-height: 1.6;
+  color: var(--color-black);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings - Using Syne for creative impact */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-creative);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+/* Body text - Using Space Grotesk for readability */
+p, li, div, span {
+  font-family: var(--font-tech);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Buttons and CTAs - Using Unbounded for impact */
+button, .btn, a.btn, .cta {
+  font-family: var(--font-accent);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Creative text styles */
+.creative-text {
+  font-family: var(--font-creative);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-family: var(--font-creative);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-family: var(--font-tech);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  opacity: 0.9;
+}
+
+/* Special text effects */
+.text-gradient {
+  background: linear-gradient(90deg, #4F46E5, #06B6D4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Animation for creative text */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
+}

@@ -1,0 +1,182 @@
+@import './assets/styles/fonts.css';
+
+:root {
+  /* Nebula Dreams Color Palette */
+  --color-bg-primary: #0f0f23; /* Space black */
+  --color-bg-secondary: #1a1a2e; /* Dark blue-gray */
+  --color-bg-tertiary: #16213e; /* Medium dark blue */
+  --color-accent: #764ba2; /* Purple nebula */
+  --color-accent-light: #9d50bb; /* Lighter purple */
+  --color-text-primary: #ffffff; /* Pure white */
+  --color-text-secondary: #e2e8f0; /* Soft white */
+  --color-text-muted: #a8b2d1; /* Soft blue-gray */
+  --color-border: rgba(255, 255, 255, 0.1); /* Subtle border */
+  --color-card-bg: rgba(26, 26, 46, 0.8); /* Semi-transparent card */
+  
+  /* Legacy variables for compatibility */
+  --color-black: var(--color-bg-primary);
+  --color-white: var(--color-text-primary);
+  --color-grey: var(--color-text-muted);
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-xxl: 4rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  transition: background-color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: var(--spacing-sm);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-accent-light);
+}
+
+button, .btn {
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.text-uppercase { text-transform: uppercase; }
+.text-lowercase { text-transform: lowercase; }
+.text-capitalize { text-transform: capitalize; }
+
+/* Global Mobile Responsive Styles */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  h1 {
+    font-size: 2rem !important;
+  }
+  
+  h2 {
+    font-size: 1.75rem !important;
+  }
+  
+  h3 {
+    font-size: 1.5rem !important;
+  }
+  
+  p {
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+}
+
+/* Team Member Card Styles */
+.team-member-card {
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+  background: var(--color-card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 350px;
+  margin: 0 auto;
+}
+
+.team-member-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(118, 75, 162, 0.3);
+  z-index: 10;
+  border-color: var(--color-accent);
+}
+
+.member-bio {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(to top, var(--color-bg-primary) 0%, rgba(15, 15, 35, 0.8) 50%, rgba(15, 15, 35, 0) 100%);
+  color: var(--color-text-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.team-member-card:hover .member-bio {
+  opacity: 1;
+}
+
+.member-bio p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.team-member-card:hover .member-bio p {
+  animation: fadeInUp 0.5s ease forwards;
+}

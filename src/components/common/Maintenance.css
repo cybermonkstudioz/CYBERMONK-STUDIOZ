@@ -1,0 +1,114 @@
+.maintenance-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-bg-primary) 0%, var(--color-bg-tertiary) 100%);
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.maintenance-content {
+  text-align: center;
+  background: var(--color-card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-border);
+  padding: 60px 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 100%;
+}
+
+.animation-wrapper {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.maintenance-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.maintenance-message {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.maintenance-info {
+  background: rgba(118, 75, 162, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  border-left: 4px solid var(--color-accent);
+}
+
+.maintenance-info p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+}
+
+.maintenance-contact {
+  border-top: 1px solid var(--color-border);
+  padding-top: 20px;
+}
+
+.maintenance-contact p {
+  color: var(--color-text-secondary);
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+.contact-link {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+  color: var(--color-accent-light);
+  text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .maintenance-content {
+    padding: 40px 20px;
+    margin: 20px;
+  }
+  
+  .maintenance-title {
+    font-size: 2rem;
+  }
+  
+  .animation-wrapper Lottie {
+    width: 200px !important;
+    height: 200px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .maintenance-title {
+    font-size: 1.8rem;
+  }
+  
+  .maintenance-message {
+    font-size: 1rem;
+  }
+  
+  .maintenance-content {
+    padding: 30px 15px;
+  }
+}
