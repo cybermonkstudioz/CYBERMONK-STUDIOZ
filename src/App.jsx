@@ -15,6 +15,7 @@ const About = lazy(() => import("./components/about/About"));
 const Services = lazy(() => import("./components/services/Services"));
 const Portfolio = lazy(() => import("./components/portfolio/Portfolio"));
 const MobileAppDashboardDetails = lazy(() => import("./components/portfolio/MobileAppDashboardDetails"));
+const BrandIdentityDetails = lazy(() => import("./components/portfolio/BrandIdentityDetails"));
 const MarketingWebsiteDetails = lazy(() => import("./components/portfolio/MarketingWebsiteDetails"));
 const EcommerceDetails = lazy(() => import("./components/portfolio/EcommerceDetails"));
 const WebApplicationDetails = lazy(() => import("./components/portfolio/WebApplicationDetails"));
@@ -53,6 +54,7 @@ function App() {
                     <Route path="/services" element={<Services />} />
                     <Route path="/portfolio" element={<Portfolio />} />
                     <Route path="/portfolio/mobile-app-dashboard" element={<MobileAppDashboardDetails />} />
+                    <Route path="/portfolio/brand-identity" element={<BrandIdentityDetails />} />
                     <Route path="/portfolio/marketing-website" element={<MarketingWebsiteDetails />} />
                     <Route path="/portfolio/ecommerce-platform" element={<EcommerceDetails />} />
                     <Route path="/portfolio/web-application" element={<WebApplicationDetails />} />

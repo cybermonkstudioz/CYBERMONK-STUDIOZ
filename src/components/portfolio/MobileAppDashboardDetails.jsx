@@ -8,6 +8,12 @@ const ProjectDetailsContainer = styled.div`
   background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
   min-height: 100vh;
   color: #ffffff;
+  
+  @media (max-width: 768px) {
+    min-height: auto;
+    height: auto;
+    padding: 4rem 0 2rem;
+  }
 `;
 
 const Container = styled.div`
@@ -153,7 +159,7 @@ const MobileAppDashboardDetails = () => {
           </ProjectHeader>
           
           <ProjectImage 
-            src="https://cdn.dribbble.com/users/285267/screenshots/17394538/medibank-dashboard-app.png" 
+            src="https://cdn.dribbble.com/userupload/18106152/file/original-5ba1f6fd13d66bfd53fd614829ba2681.png?format=webp&resize=400x300&vertical=center" 
             alt="Mobile App Dashboard Project"
           />
           

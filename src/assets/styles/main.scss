@@ -35,7 +35,8 @@ html, body {
   height: auto !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
-  touch-action: pan-y;
+  touch-action: pan-y !important;
+  position: relative;
 }
 
 *,
@@ -44,7 +45,7 @@ html, body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  touch-action: pan-y;
+  touch-action: pan-y !important;
 }
 
 html {
@@ -62,6 +63,7 @@ body {
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   position: relative;
+  touch-action: pan-y;
 }
 
 // Typography

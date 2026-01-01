@@ -32,14 +32,15 @@ html, body {
   height: auto !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
-  touch-action: pan-y;
+  touch-action: pan-y !important;
+  position: relative;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  touch-action: pan-y;
+  touch-action: pan-y !important;
 }
 
 body {
@@ -87,6 +88,13 @@ button, .btn {
 
 /* Global Mobile Responsive Styles */
 @media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    touch-action: pan-y !important;
+    position: relative !important;
+  }
+  
   body {
     overflow-x: hidden;
   }
@@ -183,6 +191,24 @@ button, .btn {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Mobile scrolling fix */
+@media (max-width: 768px) {
+  .hero-canvas {
+    position: absolute !important;
+    pointer-events: none !important;
+    touch-action: none !important;
+  }
+  
+  .hero-content {
+    min-height: auto !important;
+    position: relative !important;
+  }
+  
+  .scroll-sections .content-section {
+    min-height: auto !important;
   }
 }
 

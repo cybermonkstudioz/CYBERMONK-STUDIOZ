@@ -8,6 +8,12 @@ const ProjectDetailsContainer = styled.div`
   background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
   min-height: 100vh;
   color: #ffffff;
+  
+  @media (max-width: 768px) {
+    min-height: auto;
+    height: auto;
+    padding: 4rem 0 2rem;
+  }
 `;
 
 const Container = styled.div`

@@ -18,6 +18,11 @@ const HeroContainer = styled.div`
   background: #000;
   color: #ffffff;
   
+  @media (max-width: 768px) {
+    min-height: auto;
+    height: auto;
+    padding-bottom: 4rem;
+  }
   @keyframes pulseGlow {
     0%, 100% {
       transform: translate(-50%, -50%) scale(1);
@@ -295,6 +300,12 @@ const HeroContainer = styled.div`
     width: 100%;
     height: 100%;
     z-index: 1;
+    
+    @media (max-width: 768px) {
+      position: absolute;
+      pointer-events: none;
+      touch-action: none;
+    }
   }
   
   .hero-content {
@@ -308,6 +319,11 @@ const HeroContainer = styled.div`
     text-align: center;
     padding: 2rem;
     
+    @media (max-width: 768px) {
+      min-height: auto;
+      height: auto;
+      padding: 4rem 2rem 2rem;
+    }
     &.cosmos-content {
       .hero-title {
         font-size: clamp(3rem, 8vw, 6rem);
@@ -538,6 +554,12 @@ const HeroContainer = styled.div`
       align-items: center;
       text-align: center;
       padding: 2rem;
+      
+      @media (max-width: 768px) {
+        min-height: auto;
+        height: auto;
+        padding: 4rem 2rem;
+      }
       
       .hero-title {
         font-size: clamp(3rem, 8vw, 6rem);

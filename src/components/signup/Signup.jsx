@@ -117,6 +117,13 @@ const StyledWrapper = styled.div`
   background: radial-gradient(circle at 20% 20%, rgba(3, 244, 15, 0.08), transparent 25%),
               radial-gradient(circle at 80% 30%, rgba(3, 244, 15, 0.08), transparent 25%),
               #0a0a0a;
+
+  @media (max-width: 768px) {
+    min-height: auto;
+    height: auto;
+    padding: 2rem 0;
+  }
+
   display: flex;
   justify-content: center;
   align-items: center;
