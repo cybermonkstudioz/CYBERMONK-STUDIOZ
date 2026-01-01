@@ -44,7 +44,7 @@ const Portfolio = () => {
       category: 'web',
       description: 'A full-featured e-commerce solution with modern UI/UX',
       image: 'https://source.unsplash.com/random/800x600/?ecommerce',
-      url: '/ecommerce-details',
+      url: '/portfolio/ecommerce-platform',
       tags: ['React', 'Node.js', 'MongoDB']
     },
     {
@@ -52,17 +52,44 @@ const Portfolio = () => {
       title: 'Mobile App Dashboard',
       category: 'app',
       description: 'Clean and intuitive user interface design for mobile dashboard',
-      image: 'https://cdn.dribbble.com/users/285267/screenshots/17394538/medibank-dashboard-app.png',
-      url: '/mobile-app-dashboard-details',
+      image: 'https://source.unsplash.com/random/800x600/?mobile,app,dashboard',
+      url: '/portfolio/mobile-app-dashboard',
       tags: ['React Native', 'UI/UX Design']
+    },
+    {
+      id: 3,
+      title: 'Mobile Navigation App',
+      category: 'app',
+      description: 'Seamless navigation between app features with modern design',
+      image: 'https://source.unsplash.com/random/800x600/?mobile,app,navigation',
+      url: '/portfolio/mobile-navigation-app',
+      tags: ['React Native', 'Navigation']
+    },
+    {
+      id: 4,
+      title: 'Interactive Mobile App',
+      category: 'app',
+      description: 'Engaging interactive components with smooth animations',
+      image: 'https://source.unsplash.com/random/800x600/?mobile,app,interactive',
+      url: '/portfolio/interactive-mobile-app',
+      tags: ['React Native', 'Animations']
+    },
+    {
+      id: 5,
+      title: 'Modern Mobile Design',
+      category: 'app',
+      description: 'Contemporary mobile app aesthetics with premium UI elements',
+      image: 'https://source.unsplash.com/random/800x600/?mobile,app,modern',
+      url: '/portfolio/modern-mobile-design',
+      tags: ['React Native', 'Modern UI']
     },
     {
       id: 6,
       title: 'Brand Identity',
       category: 'branding',
       description: 'Complete brand identity for a modern startup',
-      image: 'https://user-gen-media-assets.s3.amazonaws.com/gemini_images/f7cb5753-6ab2-4dab-a063-88ddcdc0635f.png',
-      url: '/brand-identity-details',
+      image: 'https://source.unsplash.com/random/800x600/?branding',
+      url: '/portfolio/brand-identity',
       tags: ['Logo Design', 'Brand Guidelines']
     },
     {
@@ -71,8 +98,17 @@ const Portfolio = () => {
       category: 'web',
       description: 'Custom web application for business automation',
       image: 'https://source.unsplash.com/random/800x600/?webapp',
-      url: '/web-application-details',
+      url: '/portfolio/web-application',
       tags: ['Vue.js', 'Django', 'PostgreSQL']
+    },
+    {
+      id: 8,
+      title: 'UI/UX Design',
+      category: 'design',
+      description: 'User-centered design for a fintech platform',
+      image: 'https://source.unsplash.com/random/800x600/?ui,ux',
+      url: '/portfolio/ui-ux-design',
+      tags: ['Figma', 'User Research']
     },
     {
       id: 9,
@@ -80,7 +116,7 @@ const Portfolio = () => {
       category: 'web',
       description: 'High-converting marketing website with analytics',
       image: 'https://source.unsplash.com/random/800x600/?marketing',
-      url: '/marketing-website-details',
+      url: '/portfolio/marketing-website',
       tags: ['Gatsby', 'Contentful']
     },
   ];
@@ -89,6 +125,7 @@ const Portfolio = () => {
     { id: 'all', name: 'All Projects' },
     { id: 'web', name: 'Web Development' },
     { id: 'app', name: 'Mobile Apps' },
+    { id: 'design', name: 'UI/UX Design' },
     { id: 'branding', name: 'Branding' }
   ];
 
