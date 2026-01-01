@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { AuthProvider } from "./context/AuthContext";
 
@@ -30,6 +30,16 @@ const Maintenance = lazy(() => import("./components/common/Maintenance"));
 // Layout
 const Header = lazy(() => import("./components/layout/Header"));
 const Footer = lazy(() => import("./components/layout/Footer"));
+
+// Component to handle conditional footer rendering
+const ConditionalFooter = () => {
+  const location = useLocation();
+  // Don't show footer on home page
+  if (location.pathname === "/") {
+    return null;
+  }
+  return <Footer />;
+};
 
 function App() {
   const isMaintenanceMode = false;
@@ -75,7 +85,7 @@ function App() {
                 </AnimatePresence>
               </main>
 
-              <Footer />
+              <ConditionalFooter />
               {/* <TawkTo /> */}
             </div>
           )}
