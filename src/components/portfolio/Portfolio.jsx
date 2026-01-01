@@ -156,9 +156,10 @@ const Portfolio = () => {
 
   return (
     <div className="portfolio-page" style={{
-      ...styles.container,
+      width: '100%',
       backgroundColor: 'var(--color-bg-primary)',
-      minHeight: '100vh'
+      minHeight: '100vh',
+      overflow: 'hidden'
     }}>
       {/* Hero Section */}
       <section style={{
@@ -193,7 +194,7 @@ const Portfolio = () => {
       <section style={{
         ...styles.section,
         paddingTop: '0',
-        backgroundColor: 'var(--color-bg-secondary)',
+        backgroundColor: 'var(--color-bg-primary)',
       }}>
         <div style={styles.container}>
           {/* Filter Buttons */}

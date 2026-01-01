@@ -231,7 +231,13 @@ button, .btn {
 }
 
 /* Portfolio page specific fixes */
-.portfolio-page,
+.portfolio-page {
+  background-color: var(--color-bg-primary) !important;
+  width: 100vw !important;
+  min-width: 100vw !important;
+  overflow-x: hidden !important;
+}
+
 .portfolio-page section,
 .portfolio-page div {
   background-color: var(--color-bg-primary) !important;
