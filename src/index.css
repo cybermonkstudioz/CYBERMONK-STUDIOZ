@@ -238,8 +238,7 @@ button, .btn {
   overflow-x: hidden !important;
 }
 
-.portfolio-page section,
-.portfolio-page div {
+.portfolio-page section {
   background-color: var(--color-bg-primary) !important;
 }
 

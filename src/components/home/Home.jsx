@@ -1289,7 +1289,7 @@ const HeroSection = () => {
       </div>
 
       <div className="scroll-sections">
-        {[...Array(3)].map((_, i) => {
+        {[...Array(2)].map((_, i) => {
           const titles = {
             0: 'HORIZON',
             1: 'CYBER MONK STUDIOZ',
