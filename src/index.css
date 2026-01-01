@@ -27,10 +27,19 @@
   --spacing-xxl: 4rem;
 }
 
+html, body {
+  width: 100%;
+  height: auto !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  touch-action: pan-y;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  touch-action: pan-y;
 }
 
 body {
