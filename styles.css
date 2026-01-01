@@ -15,8 +15,15 @@
 }
 
 /* ====== Reset ====== */
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+* { 
+  box-sizing: border-box; 
+  overscroll-behavior: contain;
+}
+html { 
+  scroll-behavior: smooth; 
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
 body {
   margin: 0;
   background: var(--black);
@@ -24,8 +31,11 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   min-height: 100vh;
+  height: auto;
+  touch-action: pan-y;
 }
 
 /* ====== Typography ====== */
@@ -494,6 +504,7 @@ input[type="button"] {
   background: url('Art.gif') center/cover no-repeat;
   opacity: 0.08;
   mix-blend-mode: lighten;
+  pointer-events: none;
 }
 .hero-content {
   position: relative;
@@ -711,16 +722,19 @@ input:focus, select:focus, textarea:focus {
   html {
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    height: 100%;
+    height: auto;
+    min-height: 100%;
   }
   
   /* Prevent horizontal scroll */
   body {
     overflow-x: hidden;
+    overflow-y: auto;
     position: relative;
     min-height: 100vh;
+    height: auto;
     -webkit-overflow-scrolling: touch;
-    height: 100%;
+    touch-action: pan-y;
   }
   
   /* Fix viewport issues */

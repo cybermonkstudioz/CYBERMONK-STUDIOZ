@@ -17,6 +17,9 @@ menuToggle?.addEventListener('click', () => {
     body.style.top = '';
     body.classList.remove('nav-open');
     window.scrollTo(0, scrollY);
+    // Ensure body scroll is restored
+    body.style.overflow = '';
+    body.style.position = '';
   }
 });
 
@@ -33,6 +36,9 @@ document.addEventListener('click', (e) => {
     body.style.top = '';
     body.classList.remove('nav-open');
     window.scrollTo(0, scrollY);
+    // Ensure body scroll is restored
+    body.style.overflow = '';
+    body.style.position = '';
   }
 });
 
@@ -47,6 +53,9 @@ window.addEventListener('resize', () => {
     body.style.top = '';
     body.classList.remove('nav-open');
     window.scrollTo(0, scrollY);
+    // Ensure body scroll is restored
+    body.style.overflow = '';
+    body.style.position = '';
   }
 });
 
