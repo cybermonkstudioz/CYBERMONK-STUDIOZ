@@ -51,6 +51,8 @@ body {
   line-height: 1.6;
   background-color: var(--color-white);
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
 }
 
 // Typography

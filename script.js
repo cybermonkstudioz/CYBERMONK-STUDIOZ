@@ -1,13 +1,29 @@
 // ===== MOBILE MENU =====
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.nav');
+const body = document.body;
 
 menuToggle?.addEventListener('click', () => {
-  nav.classList.toggle('active');
-  menuToggle.setAttribute(
-    'aria-expanded',
-    nav.classList.contains('active')
-  );
+  const isOpen = nav.classList.toggle('active');
+  menuToggle.setAttribute('aria-expanded', isOpen);
+  
+  // Prevent body scroll when nav is open
+  if (isOpen) {
+    body.classList.add('nav-open');
+  } else {
+    body.classList.remove('nav-open');
+  }
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (nav.classList.contains('active') && 
+      !nav.contains(e.target) && 
+      !menuToggle.contains(e.target)) {
+    nav.classList.remove('active');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    body.classList.remove('nav-open');
+  }
 });
 
 // ===== SMOOTH SCROLL =====
@@ -28,8 +44,10 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
     window.scrollTo({ top: y, behavior: 'smooth' });
 
+    // Close mobile menu and unlock body scroll
     nav.classList.remove('active');
     menuToggle?.setAttribute('aria-expanded', 'false');
+    body.classList.remove('nav-open');
   });
 });
 

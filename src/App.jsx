@@ -14,6 +14,10 @@ const Home = lazy(() => import("./components/home/Home"));
 const About = lazy(() => import("./components/about/About"));
 const Services = lazy(() => import("./components/services/Services"));
 const Portfolio = lazy(() => import("./components/portfolio/Portfolio"));
+const MobileAppDashboardDetails = lazy(() => import("./components/portfolio/MobileAppDashboardDetails"));
+const MarketingWebsiteDetails = lazy(() => import("./components/portfolio/MarketingWebsiteDetails"));
+const EcommerceDetails = lazy(() => import("./components/portfolio/EcommerceDetails"));
+const WebApplicationDetails = lazy(() => import("./components/portfolio/WebApplicationDetails"));
 const Contact = lazy(() => import("./components/contact/ContactNew"));
 const Booking = lazy(() => import("./components/booking/Booking"));
 const AuthPage = lazy(() => import("./components/auth/AuthPage"));
@@ -48,6 +52,10 @@ function App() {
                     <Route path="/about" element={<About />} />
                     <Route path="/services" element={<Services />} />
                     <Route path="/portfolio" element={<Portfolio />} />
+                    <Route path="/portfolio/mobile-app-dashboard" element={<MobileAppDashboardDetails />} />
+                    <Route path="/portfolio/marketing-website" element={<MarketingWebsiteDetails />} />
+                    <Route path="/portfolio/ecommerce-platform" element={<EcommerceDetails />} />
+                    <Route path="/portfolio/web-application" element={<WebApplicationDetails />} />
                     <Route 
                       path="/booking" 
                       element={
