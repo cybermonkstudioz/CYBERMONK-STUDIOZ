@@ -172,3 +172,32 @@ function appendMsg(cls, text) {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') chatbot.style.display = 'none';
 });
+
+// ===== LOTTIE ANIMATION =====
+document.addEventListener('DOMContentLoaded', () => {
+  const animationContainer = document.getElementById('loadingAnimation');
+  
+  if (animationContainer && typeof lottie !== 'undefined') {
+    const animation = lottie.loadAnimation({
+      container: animationContainer,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'loading animation.json'
+    });
+
+    // Adjust animation size for mobile
+    function adjustAnimationSize() {
+      if (window.innerWidth < 768) {
+        animationContainer.style.width = '150px';
+        animationContainer.style.height = '150px';
+      } else {
+        animationContainer.style.width = '200px';
+        animationContainer.style.height = '200px';
+      }
+    }
+
+    adjustAnimationSize();
+    window.addEventListener('resize', adjustAnimationSize);
+  }
+});

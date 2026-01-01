@@ -30,18 +30,45 @@
     gap: 2rem !important;
     width: 100% !important;
     padding: 0.5rem !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
   
   .creative-unit-grid-responsive {
     grid-template-columns: 1fr !important;
     gap: 1.5rem !important;
     width: 100% !important;
+    justify-items: center !important;
   }
   
   .team-member-image-container {
     width: 100% !important;
     max-width: 100% !important;
     height: 300px !important;
+  }
+  
+  .team-member-card {
+    width: 100% !important;
+    max-width: 350px !important;
+    margin: 0 auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .directors-grid-responsive {
+    padding: 0 0.25rem !important;
+  }
+  
+  .creative-unit-grid-responsive {
+    padding: 0 0.25rem !important;
+  }
+  
+  .team-member-card {
+    max-width: 300px !important;
+  }
+  
+  .team-member-image-container {
+    height: 250px !important;
   }
 }
 

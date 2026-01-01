@@ -155,7 +155,11 @@ const Portfolio = () => {
   };
 
   return (
-    <div style={styles.container}>
+    <div className="portfolio-page" style={{
+      ...styles.container,
+      backgroundColor: 'var(--color-bg-primary)',
+      minHeight: '100vh'
+    }}>
       {/* Hero Section */}
       <section style={{
         ...styles.section,
@@ -473,8 +477,9 @@ const Portfolio = () => {
       {/* CTA Section */}
       <section className="cta-section" style={{
         padding: '6rem 0',
-        background: 'linear-gradient(135deg, var(--color-bg-tertiary) 0%, var(--color-bg-secondary) 100%)',
+        background: 'linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-tertiary) 100%)',
         textAlign: 'center',
+        backgroundColor: 'var(--color-bg-secondary)',
       }}>
         <div className="container">
           <motion.div

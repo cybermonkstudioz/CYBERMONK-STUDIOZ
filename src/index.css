@@ -229,3 +229,15 @@ button, .btn {
 .team-member-card:hover .member-bio p {
   animation: fadeInUp 0.5s ease forwards;
 }
+
+/* Portfolio page specific fixes */
+.portfolio-page,
+.portfolio-page section,
+.portfolio-page div {
+  background-color: var(--color-bg-primary) !important;
+}
+
+.portfolio-page .cta-section {
+  background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-tertiary) 100%) !important;
+  background-color: var(--color-bg-secondary) !important;
+}

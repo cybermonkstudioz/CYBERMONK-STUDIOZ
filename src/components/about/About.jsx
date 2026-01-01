@@ -105,8 +105,8 @@ const staggerContainer = {
 };
 
 const stats = [
-  { id: 1, value: 6, label: 'Projects Completed', icon: <FiLayers size={40} /> },
-  { id: 2, value: 6, label: 'Happy Clients', icon: <FiUsers size={40} /> },
+  { id: 1, value: 10, label: 'Projects Completed', icon: <FiLayers size={40} /> },
+  { id: 2, value: 10, label: 'Happy Clients', icon: <FiUsers size={40} /> },
   { id: 3, value: 98, label: 'Success Rate', icon: <FiCheckCircle size={40} /> },
 ];
 
@@ -954,6 +954,7 @@ const About = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
+                    alignItems: 'center',
                     gap: '2rem',
                     margin: '0 auto',
                     width: '100%',
@@ -1115,7 +1116,8 @@ const About = () => {
                     margin: '0 auto',
                     width: '100%',
                     maxWidth: '900px',
-                    padding: '0.5rem'
+                    padding: '0.5rem',
+                    justifyContent: 'center'
                   }}
                   className="creative-unit-grid-responsive"
                 >

@@ -704,6 +704,17 @@ input:focus, select:focus, textarea:focus {
   border-top: 1px solid rgba(201,162,39,0.2);
 }
 
+/* ====== Loading Animation ====== */
+.loading-animation-container {
+  padding: 40px 0;
+  text-align: center;
+  background: linear-gradient(180deg, #0a0a0a, #0b0b0b);
+}
+
+#loadingAnimation {
+  opacity: 0.8;
+}
+
 /* ====== Footer ====== */
 .footer {
   border-top: 1px solid rgba(201,162,39,0.18);
