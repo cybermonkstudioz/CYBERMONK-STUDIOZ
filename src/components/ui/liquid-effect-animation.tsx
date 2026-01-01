@@ -9,13 +9,16 @@ export function LiquidEffectAnimation() {
   const targetPosition = useRef({ x: 0, y: 0 })
   const animationFrameId = useRef<number>()
 
-  // Handle mouse movement
+  // Handle mouse movement - DISABLED on mobile to prevent scroll blocking
   useEffect(() => {
+    // Only enable on non-touch devices
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+    
     const handleMouseMove = (e: MouseEvent) => {
       // Normalize mouse position to -1 to 1 range
       mousePosition.current = {
         x: (e.clientX / window.innerWidth) * 2 - 1,
-        y: -(e.clientY / window.innerHeight) * 2 + 1
+        y: (e.clientY / window.innerHeight) * 2 - 1,
       }
     }
 
@@ -148,8 +151,18 @@ export function LiquidEffectAnimation() {
   return (
     <div 
       className="fixed inset-0 w-full h-full overflow-hidden z-0"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={() => {
+        // Only enable hover on non-touch devices
+        if (window.matchMedia('(pointer: fine)').matches) {
+          setIsHovered(true);
+        }
+      }}
+      onMouseLeave={() => {
+        // Only enable hover on non-touch devices
+        if (window.matchMedia('(pointer: fine)').matches) {
+          setIsHovered(false);
+        }
+      }}
     >
       <canvas
         ref={canvasRef}

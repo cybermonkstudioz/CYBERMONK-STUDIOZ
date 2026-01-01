@@ -24,8 +24,18 @@ const Footer = () => {
           <Link 
             to="/" 
             className="brand-link"
-            onMouseEnter={() => handleMouseEnter('brand')}
-            onMouseLeave={handleMouseLeave}
+            onMouseEnter={() => {
+              // Only enable hover on non-touch devices
+              if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                handleMouseEnter('brand');
+              }
+            }}
+            onMouseLeave={() => {
+              // Only enable hover on non-touch devices
+              if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                handleMouseLeave();
+              }
+            }}
           >
             Cyber Monk Studioz
           </Link>
@@ -43,8 +53,18 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="social-link"
                 data-platform="instagram"
-                onMouseEnter={() => handleMouseEnter('instagram')}
-                onMouseLeave={handleMouseLeave}
+                onMouseEnter={() => {
+                  // Only enable hover on non-touch devices
+                  if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                    handleMouseEnter('instagram');
+                  }
+                }}
+                onMouseLeave={() => {
+                  // Only enable hover on non-touch devices
+                  if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                    handleMouseLeave();
+                  }
+                }}
               >
                 <FontAwesomeIcon 
                   icon={faInstagram} 
@@ -59,8 +79,18 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="social-link"
                 data-platform="twitter"
-                onMouseEnter={() => handleMouseEnter('twitter')}
-                onMouseLeave={handleMouseLeave}
+                onMouseEnter={() => {
+                  // Only enable hover on non-touch devices
+                  if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                    handleMouseEnter('twitter');
+                  }
+                }}
+                onMouseLeave={() => {
+                  // Only enable hover on non-touch devices
+                  if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                    handleMouseLeave();
+                  }
+                }}
               >
                 <FontAwesomeIcon 
                   icon={faTwitter} 
@@ -75,8 +105,18 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="social-link"
                 data-platform="linkedin"
-                onMouseEnter={() => handleMouseEnter('linkedin')}
-                onMouseLeave={handleMouseLeave}
+                onMouseEnter={() => {
+                  // Only enable hover on non-touch devices
+                  if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                    handleMouseEnter('linkedin');
+                  }
+                }}
+                onMouseLeave={() => {
+                  // Only enable hover on non-touch devices
+                  if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                    handleMouseLeave();
+                  }
+                }}
               >
                 <FontAwesomeIcon 
                   icon={faLinkedinIn} 
@@ -91,8 +131,18 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="social-link"
                 data-platform="youtube"
-                onMouseEnter={() => handleMouseEnter('youtube')}
-                onMouseLeave={handleMouseLeave}
+                onMouseEnter={() => {
+                  // Only enable hover on non-touch devices
+                  if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                    handleMouseEnter('youtube');
+                  }
+                }}
+                onMouseLeave={() => {
+                  // Only enable hover on non-touch devices
+                  if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                    handleMouseLeave();
+                  }
+                }}
               >
                 <FontAwesomeIcon 
                   icon={faYoutube} 
@@ -107,8 +157,18 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="social-link"
                 data-platform="whatsapp"
-                onMouseEnter={() => handleMouseEnter('whatsapp')}
-                onMouseLeave={handleMouseLeave}
+                onMouseEnter={() => {
+                  // Only enable hover on non-touch devices
+                  if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                    handleMouseEnter('whatsapp');
+                  }
+                }}
+                onMouseLeave={() => {
+                  // Only enable hover on non-touch devices
+                  if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                    handleMouseLeave();
+                  }
+                }}
                 title="Click to chat on WhatsApp (Primary: 6374316014, Alternative: 9344531196)"
                 onClick={(e) => {
                   // If the primary number doesn't respond within 2 seconds, suggest the alternative
@@ -132,24 +192,54 @@ const Footer = () => {
             <Link 
               to="/privacy-policy" 
               className="footer-link"
-              onMouseEnter={() => handleMouseEnter('privacy')}
-              onMouseLeave={handleMouseLeave}
+              onMouseEnter={() => {
+                // Only enable hover on non-touch devices
+                if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                  handleMouseEnter('privacy');
+                }
+              }}
+              onMouseLeave={() => {
+                // Only enable hover on non-touch devices
+                if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                  handleMouseLeave();
+                }
+              }}
             >
               Privacy Policy
             </Link>
             <Link 
               to="/terms" 
               className="footer-link"
-              onMouseEnter={() => handleMouseEnter('terms')}
-              onMouseLeave={handleMouseLeave}
+              onMouseEnter={() => {
+                // Only enable hover on non-touch devices
+                if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                  handleMouseEnter('terms');
+                }
+              }}
+              onMouseLeave={() => {
+                // Only enable hover on non-touch devices
+                if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                  handleMouseLeave();
+                }
+              }}
             >
               Terms of Service
             </Link>
             <a 
               href="mailto:cybermonkstudioz@gmail.com" 
               className="footer-link"
-              onMouseEnter={() => handleMouseEnter('email')}
-              onMouseLeave={handleMouseLeave}
+              onMouseEnter={() => {
+                // Only enable hover on non-touch devices
+                if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                  handleMouseEnter('email');
+                }
+              }}
+              onMouseLeave={() => {
+                // Only enable hover on non-touch devices
+                if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                  handleMouseLeave();
+                }
+              }}
             >
               cybermonkstudioz@gmail.com
             </a>

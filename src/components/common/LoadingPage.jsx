@@ -50,12 +50,18 @@ const LoadingPage = () => {
         cursor: 'pointer'
       }}
       onMouseEnter={(e) => {
-        e.target.style.transform = 'translateY(-5px) scale(1.05)';
-        e.target.style.textShadow = '0 0 30px rgba(238, 37, 37, 0.7), 0 0 60px rgba(238, 37, 37, 0.4), 0 8px 16px rgba(0, 0, 0, 0.4)';
+        // Only enable hover on non-touch devices
+        if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+          e.target.style.transform = 'translateY(-5px) scale(1.05)';
+          e.target.style.textShadow = '0 0 30px rgba(238, 37, 37, 0.7), 0 0 60px rgba(238, 37, 37, 0.4), 0 8px 16px rgba(0, 0, 0, 0.4)';
+        }
       }}
       onMouseLeave={(e) => {
-        e.target.style.transform = 'translateY(0) scale(1)';
-        e.target.style.textShadow = '0 0 20px rgba(238, 37, 37, 0.5), 0 0 40px rgba(238, 37, 37, 0.3), 0 4px 8px rgba(0, 0, 0, 0.3)';
+        // Only enable hover on non-touch devices
+        if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+          e.target.style.transform = 'translateY(0) scale(1)';
+          e.target.style.textShadow = '0 0 20px rgba(238, 37, 37, 0.5), 0 0 40px rgba(238, 37, 37, 0.3), 0 4px 8px rgba(0, 0, 0, 0.3)';
+        }
       }}
       >
         Cyber Monk Studioz
@@ -81,15 +87,16 @@ const LoadingPage = () => {
         animation: 'loadingShine 2s linear infinite'
       }}
       onMouseEnter={(e) => {
-        e.target.style.transform = 'scale(1.05)';
-        e.target.style.opacity = '1';
-        e.target.style.textShadow = '0 4px 8px rgba(238, 37, 37, 0.3), 0 2px 4px rgba(0, 0, 0, 0.5)';
+        // Only enable hover on non-touch devices
+        if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+          e.target.style.transform = 'scale(1.05)';
+        }
       }}
       onMouseLeave={(e) => {
-        e.target.style.transform = 'scale(1)';
-        e.target.style.opacity = '0.9';
-        e.target.style.textShadow = '0 2px 4px rgba(0, 0, 0, 0.3)';
-        e.target.style.letterSpacing = '0.05em';
+        // Only enable hover on non-touch devices
+        if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+          e.target.style.transform = 'scale(1)';
+        }
       }}
       >
         Loading premium creative experience...

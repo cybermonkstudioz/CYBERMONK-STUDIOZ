@@ -254,10 +254,11 @@ const FluidCursor = () => {
     updatePointerMove(e.clientX, e.clientY);
   }, [updatePointerMove]);
 
-  // Handle touch move
+  // Handle touch move - DISABLED to allow scrolling on mobile
   const handleTouchMove = useCallback((e) => {
-    e.preventDefault();
-    if (e.touches.length > 0) {
+    // Don't prevent default on touch events to allow scrolling
+    // Only track cursor on desktop devices
+    if (window.matchMedia('(pointer: fine)').matches && e.touches.length > 0) {
       const touch = e.touches[0];
       updatePointerMove(touch.clientX, touch.clientY);
     }
@@ -326,8 +327,16 @@ const FluidCursor = () => {
     // Initialize
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas, { passive: true });
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    
+    // Only add mousemove listener for non-touch devices
+    if (window.matchMedia('(pointer: fine)').matches) {
+      window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    }
+    
+    // Add touchmove listener only for desktop touch devices (not mobile)
+    if (window.matchMedia('(pointer: coarse)').matches && window.matchMedia('(hover: hover)').matches) {
+      window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    }
     
     // Start animation loop
     animationFrameId.current = window.requestAnimationFrame(render);

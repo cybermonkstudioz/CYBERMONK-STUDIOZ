@@ -257,8 +257,18 @@ const Portfolio = () => {
                   position: 'relative',
                   overflow: 'hidden',
                 }}
-                onMouseEnter={() => setHoveredProject(project.id)}
-                onMouseLeave={() => setHoveredProject(null)}
+                onMouseEnter={() => {
+                  // Only enable hover on non-touch devices
+                  if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                    setHoveredProject(project.id);
+                  }
+                }}
+                onMouseLeave={() => {
+                  // Only enable hover on non-touch devices
+                  if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                    setHoveredProject(null);
+                  }
+                }}
               >
                 <div style={{
                   position: 'relative',
@@ -356,7 +366,12 @@ const Portfolio = () => {
                               fontWeight: 500,
                               transition: 'all 0.3s ease',
                             }}
-                            onMouseEnter={(e) => e.stopPropagation()}
+                            onMouseEnter={(e) => {
+                              // Only enable hover on non-touch devices
+                              if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                                e.stopPropagation();
+                              }
+                            }}
                           >
                             <FaSearchPlus style={{ marginRight: '0.5rem' }} />
                             View Details
@@ -378,7 +393,12 @@ const Portfolio = () => {
                               transition: 'all 0.3s ease',
                               border: '1px solid rgba(157, 80, 187, 0.3)',
                             }}
-                            onMouseEnter={(e) => e.stopPropagation()}
+                            onMouseEnter={(e) => {
+                              // Only enable hover on non-touch devices
+                              if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                                e.stopPropagation();
+                              }
+                            }}
                           >
                             <FaExternalLinkAlt style={{ marginRight: '0.5rem' }} />
                             Live Demo
@@ -499,12 +519,18 @@ const Portfolio = () => {
                   border: '1px solid var(--color-accent)',
                 }}
                 onMouseOver={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = 'var(--color-accent)';
+                  // Only enable hover on non-touch devices
+                  if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.color = 'var(--color-accent)';
+                  }
                 }}
                 onMouseOut={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-accent)';
-                  e.currentTarget.style.color = 'var(--color-text-primary)';
+                  // Only enable hover on non-touch devices
+                  if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+                    e.currentTarget.style.backgroundColor = 'var(--color-accent)';
+                    e.currentTarget.style.color = 'var(--color-text-primary)';
+                  }
                 }}
               >
                 Start a Project
