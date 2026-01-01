@@ -56,34 +56,7 @@ const Portfolio = () => {
       url: '/portfolio/mobile-app-dashboard',
       tags: ['React Native', 'Interface Design']
     },
-    {
-      id: 3,
-      title: 'Mobile Navigation App',
-      category: 'app',
-      description: 'Seamless navigation between app features with modern design',
-      image: 'https://source.unsplash.com/random/800x600/?mobile,app,navigation',
-      url: '/portfolio/mobile-navigation-app',
-      tags: ['React Native', 'Navigation']
-    },
-    {
-      id: 4,
-      title: 'Interactive Mobile App',
-      category: 'app',
-      description: 'Engaging interactive components with smooth animations',
-      image: 'https://source.unsplash.com/random/800x600/?mobile,app,interactive',
-      url: '/portfolio/interactive-mobile-app',
-      tags: ['React Native', 'Animations']
-    },
-    {
-      id: 5,
-      title: 'Modern Mobile Design',
-      category: 'app',
-      description: 'Contemporary mobile app aesthetics with premium design elements',
-      image: 'https://source.unsplash.com/random/800x600/?mobile,app,modern',
-      url: '/portfolio/modern-mobile-design',
-      tags: ['React Native', 'Modern Design']
-    },
-    {
+        {
       id: 6,
       title: 'Brand Identity',
       category: 'branding',
@@ -101,16 +74,7 @@ const Portfolio = () => {
       url: '/portfolio/web-application',
       tags: ['Vue.js', 'Django', 'PostgreSQL']
     },
-    {
-      id: 8,
-      title: 'Digital Design',
-      category: 'design',
-      description: 'User-centered design for a fintech platform',
-      image: 'https://source.unsplash.com/random/800x600/?design',
-      url: '/portfolio/digital-design',
-      tags: ['Figma', 'User Research']
-    },
-    {
+        {
       id: 9,
       title: 'Marketing Website',
       category: 'web',
@@ -125,7 +89,6 @@ const Portfolio = () => {
     { id: 'all', name: 'All Projects' },
     { id: 'web', name: 'Web Development' },
     { id: 'app', name: 'Mobile Apps' },
-    { id: 'design', name: 'Digital Design' },
     { id: 'branding', name: 'Branding' }
   ];
 
