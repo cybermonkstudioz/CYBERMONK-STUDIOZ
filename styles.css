@@ -1,13 +1,11 @@
-/* ====== Base tokens ====== */
-:root {
-  --black: #0a0a0a;
-  --black-2: #111213;
-  --gold: #c9a227;
-  --gold-light: #e1c45a;
-  --white: #ffffff;
-  --gray: #cfcfcf;
-  --muted: #9a9a9a;
 
+:root {
+  --white: #ffffff;
+  --black: #0a0a0a;
+  --gold: #c9a227;
+  --gold-light: #e6c847;
+  --gray: #9ca3af;
+  --muted: #6b7280;
   --radius: 12px;
   --ring: 2px;
   --shadow: 0 12px 32px rgba(0,0,0,0.35);
