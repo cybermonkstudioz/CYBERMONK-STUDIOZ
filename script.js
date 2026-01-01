@@ -7,11 +7,16 @@ menuToggle?.addEventListener('click', () => {
   const isOpen = nav.classList.toggle('active');
   menuToggle.setAttribute('aria-expanded', isOpen);
   
-  // Prevent body scroll when nav is open
+  // Prevent body scroll when nav is open, but ensure it works properly on mobile
   if (isOpen) {
+    const scrollY = window.scrollY;
+    body.style.top = `-${scrollY}px`;
     body.classList.add('nav-open');
   } else {
+    const scrollY = Math.abs(parseInt(body.style.top || '0'));
+    body.style.top = '';
     body.classList.remove('nav-open');
+    window.scrollTo(0, scrollY);
   }
 });
 
@@ -22,7 +27,26 @@ document.addEventListener('click', (e) => {
       !menuToggle.contains(e.target)) {
     nav.classList.remove('active');
     menuToggle.setAttribute('aria-expanded', 'false');
+    
+    // Restore scroll position
+    const scrollY = Math.abs(parseInt(body.style.top || '0'));
+    body.style.top = '';
     body.classList.remove('nav-open');
+    window.scrollTo(0, scrollY);
+  }
+});
+
+// Handle resize to ensure proper scroll behavior
+window.addEventListener('resize', () => {
+  if (nav.classList.contains('active')) {
+    nav.classList.remove('active');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    
+    // Restore scroll position
+    const scrollY = Math.abs(parseInt(body.style.top || '0'));
+    body.style.top = '';
+    body.classList.remove('nav-open');
+    window.scrollTo(0, scrollY);
   }
 });
 
@@ -36,20 +60,62 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
     e.preventDefault();
 
-    const offset = 90;
-    const y =
-      target.getBoundingClientRect().top +
-      window.pageYOffset -
-      offset;
-
-    window.scrollTo({ top: y, behavior: 'smooth' });
-
-    // Close mobile menu and unlock body scroll
-    nav.classList.remove('active');
-    menuToggle?.setAttribute('aria-expanded', 'false');
-    body.classList.remove('nav-open');
+    // Close mobile menu and restore scroll before navigating
+    if (nav.classList.contains('active')) {
+      nav.classList.remove('active');
+      menuToggle?.setAttribute('aria-expanded', 'false');
+      
+      // Restore scroll position
+      const scrollY = Math.abs(parseInt(body.style.top || '0'));
+      body.style.top = '';
+      body.classList.remove('nav-open');
+      window.scrollTo(0, scrollY);
+      
+      // Small delay to ensure menu is closed before scrolling
+      setTimeout(() => {
+        scrollToTarget(target);
+      }, 100);
+    } else {
+      scrollToTarget(target);
+    }
   });
 });
+
+function scrollToTarget(target) {
+  const offset = 90;
+  const y =
+    target.getBoundingClientRect().top +
+    window.pageYOffset -
+    offset;
+
+  // Use smooth scroll if supported, otherwise fallback
+  if ('scrollBehavior' in document.documentElement.style) {
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  } else {
+    // Fallback for older browsers
+    const startY = window.pageYOffset;
+    const distance = y - startY;
+    const duration = 800;
+    let start = null;
+
+    function animation(currentTime) {
+      if (start === null) start = currentTime;
+      const timeElapsed = currentTime - start;
+      const run = ease(timeElapsed, startY, distance, duration);
+      window.scrollTo(0, run);
+      if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+
+    function ease(t, b, c, d) {
+      t /= d / 2;
+      if (t < 1) return c / 2 * t * t + b;
+      t--;
+      return -c / 2 * (t * (t - 2) - 1) + b;
+    }
+
+    requestAnimationFrame(animation);
+  }
+}
 
 // ===== CHATBOT =====
 const chatbot = document.getElementById('chatbot');
