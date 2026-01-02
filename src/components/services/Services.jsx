@@ -6,6 +6,7 @@ import { FaPalette, FaInstagram, FaVideo as FaVideoIcon } from 'react-icons/fa';
 import { IoIosSwitch } from 'react-icons/io';
 import styled, { keyframes } from 'styled-components';
 import FluidCursor from '../common/FluidCursor';
+import TawkTo from '../common/TawkTo';
 
 // Modal Component
 const ServiceModal = ({ service, onClose, navigate }) => {
@@ -596,6 +597,7 @@ const Services = () => {
       overflow: 'hidden'
     }}>
       <FluidCursor />
+      <TawkTo />
       {/* Floating Action Button */}
       <AnimatePresence>
         {isScrolled && (

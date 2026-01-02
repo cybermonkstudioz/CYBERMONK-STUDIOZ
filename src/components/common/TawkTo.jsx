@@ -30,12 +30,12 @@ const TawkTo = () => {
       const tawkToScripts = document.querySelectorAll('script[src*="tawk.to"]');
       tawkToScripts.forEach(script => script.remove());
       
-      // Clean up global objects
+      // Don't try to delete read-only properties, just set them to undefined
       if (window.Tawk_API) {
-        delete window.Tawk_API;
+        window.Tawk_API = undefined;
       }
       if (window.Tawk_LoadStart) {
-        delete window.Tawk_LoadStart;
+        window.Tawk_LoadStart = undefined;
       }
     };
   }, []);

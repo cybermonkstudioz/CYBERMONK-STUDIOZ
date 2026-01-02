@@ -8,6 +8,7 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 import { Link } from 'react-router-dom';
 import { FiArrowRight } from 'react-icons/fi';
 import styled from 'styled-components';
+import TawkTo from '../common/TawkTo';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -1387,6 +1388,7 @@ const HeroSection = () => {
 
   return (
     <HeroContainer ref={containerRef}>
+      <TawkTo />
       <canvas ref={canvasRef} className="hero-canvas" />
       
 
