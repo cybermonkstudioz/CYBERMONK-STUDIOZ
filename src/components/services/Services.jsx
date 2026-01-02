@@ -137,7 +137,8 @@ const ServiceModal = ({ service, onClose, navigate }) => {
                     padding: '0.25rem 0.75rem',
                     borderRadius: '9999px',
                     fontSize: '0.875rem',
-                    fontWeight: 500
+                    fontWeight: 500,
+                    whiteSpace: 'nowrap'
                   }}>
                     {service.category === 'web' ? 'Web & App' : 
                      service.category === 'design' ? 'Design' : 'Media'}
@@ -313,24 +314,28 @@ const ServiceModal = ({ service, onClose, navigate }) => {
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
-                      backgroundColor: 'transparent',
-                      color: '#4f46e5',
-                      padding: '0.75rem 1.5rem',
-                      borderRadius: '12px',
+                      background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
+                      color: 'white',
+                      padding: '0.75rem 1.75rem',
+                      borderRadius: '6px',
                       textDecoration: 'none',
                       fontWeight: 600,
-                      fontSize: '1rem',
+                      fontSize: '0.9rem',
                       transition: 'all 0.3s ease, transform 0.2s ease',
                       marginTop: '1.5rem',
-                      border: '2px solid #4f46e5'
+                      border: 'none',
+                      boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
+                      letterSpacing: '0.5px',
+                      textTransform: 'uppercase',
+                      whiteSpace: 'nowrap'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#4f46e5';
-                      e.currentTarget.style.color = 'white';
+                      e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
+                      e.currentTarget.style.boxShadow = '0 8px 20px rgba(102, 126, 234, 0.4)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'transparent';
-                      e.currentTarget.style.color = '#4f46e5';
+                      e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.3)';
                     }}
                     onClick={(e) => {
                       e.preventDefault();
@@ -441,22 +446,27 @@ const ServiceModal = ({ service, onClose, navigate }) => {
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: 'transparent',
-                color: '#4f46e5',
-                padding: '0.625rem 1.25rem',
-                borderRadius: '12px',
+                background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
+                color: 'white',
+                padding: '0.625rem 1.5rem',
+                borderRadius: '6px',
                 textDecoration: 'none',
-                fontWeight: 500,
-                transition: 'all 0.2s ease',
-                border: '2px solid #4f46e5'
+                fontWeight: 600,
+                fontSize: '0.85rem',
+                transition: 'all 0.3s ease',
+                border: 'none',
+                boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
+                letterSpacing: '0.5px',
+                textTransform: 'uppercase',
+                whiteSpace: 'nowrap'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#4f46e5';
-                e.currentTarget.style.color = 'white';
+                e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
+                e.currentTarget.style.boxShadow = '0 8px 20px rgba(102, 126, 234, 0.4)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-                e.currentTarget.style.color = '#4f46e5';
+                e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.3)';
               }}
             >
               Get Started
@@ -632,7 +642,10 @@ const Services = () => {
                 marginBottom: '1rem',
                 fontWeight: 600,
                 fontSize: '0.9rem'
-              }}>What We Offer</span>
+              }}>
+              <br></br>
+              <br></br>
+              What We Offer</span>
               <h1 style={{
                 fontSize: 'clamp(2.5rem, 8vw, 4.5rem)',
                 fontWeight: 800,
@@ -891,25 +904,29 @@ const Services = () => {
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
-                      color: '#4f46e5',
+                      background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
+                      color: 'white',
                       textDecoration: 'none',
                       fontWeight: 600,
-                      fontSize: '0.95rem',
+                      fontSize: '0.8rem',
                       transition: 'all 0.3s ease',
                       position: 'relative',
                       overflow: 'hidden',
-                      padding: '0.5rem 1rem',
-                      borderRadius: '12px',
-                      border: '2px solid #4f46e5',
-                      backgroundColor: 'transparent'
+                      padding: '0.5rem 1.1rem',
+                      borderRadius: '5px',
+                      border: 'none',
+                      boxShadow: '0 3px 10px rgba(102, 126, 234, 0.3)',
+                      letterSpacing: '0.5px',
+                      textTransform: 'uppercase',
+                      whiteSpace: 'nowrap'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#4f46e5';
-                      e.currentTarget.style.color = 'white';
+                      e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
+                      e.currentTarget.style.boxShadow = '0 6px 15px rgba(102, 126, 234, 0.4)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'transparent';
-                      e.currentTarget.style.color = '#4f46e5';
+                      e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                      e.currentTarget.style.boxShadow = '0 3px 10px rgba(102, 126, 234, 0.3)';
                     }}
                     onClick={(e) => {
                       e.preventDefault();
@@ -922,22 +939,11 @@ const Services = () => {
                       display: 'flex',
                       alignItems: 'center',
                       transition: 'transform 0.3s ease',
-                      transform: hoveredCard === index ? 'translateX(5px)' : 'none'
+                      transform: hoveredCard === index ? 'translateX(3px)' : 'none'
                     }}>
                       Get Started
-                      <FiArrowRight style={{ marginLeft: '0.5rem', transition: 'transform 0.3s ease' }} />
+                      <FiArrowRight style={{ marginLeft: '0.4rem', transition: 'transform 0.3s ease', fontSize: '0.85rem' }} />
                     </span>
-                    <span style={{
-                      position: 'absolute',
-                      bottom: 0,
-                      left: 0,
-                      width: '100%',
-                      height: '2px',
-                      backgroundColor: '#4f46e5',
-                      transform: hoveredCard === index ? 'scaleX(1)' : 'scaleX(0)',
-                      transformOrigin: 'left',
-                      transition: 'transform 0.3s ease'
-                    }} />
                   </Link>
                   
                   <span style={{
@@ -949,7 +955,8 @@ const Services = () => {
                     padding: '0.25rem 0.75rem',
                     borderRadius: '50px',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
-                    fontWeight: 500
+                    fontWeight: 500,
+                    whiteSpace: 'nowrap'
                   }}>
                     {service.category === 'web' ? 'Web & App' : 
                      service.category === 'design' ? 'Design' : 'Media'}

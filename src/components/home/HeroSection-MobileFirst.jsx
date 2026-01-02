@@ -34,11 +34,11 @@ const HeroContainer = styled.div`
     padding: 0;
   }
   
-  // Mobile-optimized animations - completely disabled jump effects
+  // Mobile-optimized animations
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(10px); // Reduced from 20px
+      transform: translateY(20px);
     }
     to {
       opacity: 1;
@@ -49,7 +49,7 @@ const HeroContainer = styled.div`
   @keyframes slideInLeft {
     from {
       opacity: 0;
-      transform: translateX(-15px); // Reduced from 30px
+      transform: translateX(-30px);
     }
     to {
       opacity: 1;
@@ -57,20 +57,11 @@ const HeroContainer = styled.div`
     }
   }
   
-  // Completely disable animations on mobile for stability
+  // Disable complex animations on mobile
   @media (max-width: 767px) {
     * {
-      animation-duration: 0.2s !important;
-      transition-duration: 0.15s !important;
-    }
-    
-    // Disable all animations on mobile
-    .hero-title,
-    .hero-subline,
-    .premium-text {
-      animation: none !important;
-      opacity: 1 !important;
-      transform: none !important;
+      animation-duration: 0.4s !important;
+      transition-duration: 0.2s !important;
     }
   }
 `;
@@ -108,8 +99,8 @@ const HeroContent = styled.div`
 `;
 
 const HeroTitle = styled.h1`
-  // Mobile-first typography with clamp() - increased for clarity
-  font-size: clamp(2rem, 8vw, 2.5rem); // Further increased for mobile
+  // Mobile-first typography with clamp()
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
   font-weight: 900;
   line-height: 1.0;
   letter-spacing: 0.02em;
@@ -129,20 +120,18 @@ const HeroTitle = styled.h1`
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
   }
   
-  // Animation - disabled on mobile for stability
+  // Animation - subtle on mobile
   opacity: 0;
-  animation: fadeInUp 0.4s ease-out 0.2s forwards;
+  animation: fadeInUp 0.6s ease-out 0.2s forwards;
   
   @media (max-width: 767px) {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
+    animation: fadeInUp 0.4s ease-out 0.2s forwards;
   }
 `;
 
 const HeroSubline = styled.div`
-  // Mobile-first typography - set to 1.5rem for clarity
-  font-size: 1.5rem; // Fixed size for mobile clarity
+  // Mobile-first typography
+  font-size: clamp(0.8rem, 3vw, 1rem);
   font-weight: 600;
   line-height: 1.3;
   letter-spacing: 0.08em;
@@ -162,21 +151,19 @@ const HeroSubline = styled.div`
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
   }
   
-  // Animation - disabled on mobile for stability
+  // Animation
   opacity: 0;
-  animation: slideInLeft 0.4s ease-out 0.4s forwards;
+  animation: slideInLeft 0.6s ease-out 0.4s forwards;
   
   @media (max-width: 767px) {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
+    animation: slideInLeft 0.4s ease-out 0.3s forwards;
   }
 `;
 
 const PremiumText = styled.span`
   color: #ff4444;
   font-weight: 800;
-  font-size: 1.2em; // Larger on mobile
+  font-size: 1.1em;
   position: relative;
   
   // Simple underline effect
@@ -194,20 +181,15 @@ const PremiumText = styled.span`
       animation: none;
     }
   }
-  
-  // Make premium text even larger on mobile for clarity
-  @media (max-width: 767px) {
-    font-size: 1.3em;
-  }
 `;
 
 const ButtonContainer = styled.div`
-  // Mobile-first button layout - even tighter spacing
+  // Mobile-first button layout
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 1rem;
   align-items: center;
-  margin-top: 0.8rem;
+  margin-top: 2rem;
   
   // Desktop enhancements
   @media (min-width: 768px) {
@@ -218,28 +200,25 @@ const ButtonContainer = styled.div`
 `;
 
 const HeroButton = styled(Link)`
-  // Mobile-first button styles - dramatically smaller for mobile
+  // Mobile-first button styles
   display: inline-block;
-  padding: 0.3rem 0.6rem;
+  padding: 0.875rem 1.5rem;
   border-radius: 50px;
   font-weight: 600;
-  font-size: 0.65rem;
+  font-size: 0.9rem;
   text-decoration: none;
   text-align: center;
-  min-width: 70px;
+  min-width: 140px;
   transition: all 0.2s ease;
   
-  // Dramatically smaller touch targets
+  // Touch-friendly size
   @media (max-width: 767px) {
-    min-height: 28px;
+    min-height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 140px;
-    padding: 0.3rem 0.6rem;
-    font-size: 0.65rem;
-    border-radius: 40px; // Slightly smaller radius
+    max-width: 280px;
   }
   
   // Desktop enhancements
@@ -247,7 +226,6 @@ const HeroButton = styled(Link)`
     padding: 0.875rem 2rem;
     font-size: 0.95rem;
     min-width: 160px;
-    border-radius: 50px;
   }
   
   // Primary button
@@ -262,10 +240,10 @@ const HeroButton = styled(Link)`
       box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
     }
     
-    // No mobile hover effect
+    // Subtle mobile hover
     @media (max-width: 767px) {
       &:hover {
-        transform: none;
+        transform: scale(1.02);
       }
     }
   }
@@ -283,13 +261,12 @@ const HeroButton = styled(Link)`
   }
   
   svg {
-    margin-left: 0.2rem;
+    margin-left: 0.5rem;
     transition: transform 0.2s ease;
-    font-size: 0.6em;
   }
   
   &:hover svg {
-    transform: translateX(1px);
+    transform: translateX(2px);
   }
 `;
 

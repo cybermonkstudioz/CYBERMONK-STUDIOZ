@@ -18,26 +18,29 @@ const HeroContainer = styled.div`
   background: #000;
   color: #ffffff;
   
-  @media (max-width: 768px) {
+  // Mobile-first approach
+  @media (max-width: 767px) {
     min-height: auto;
-    height: auto;
-    padding-bottom: 4rem;
+    height: 100vh;
+    padding-bottom: 0;
   }
+  
+  // Mobile-optimized keyframes
   @keyframes pulseGlow {
     0%, 100% {
       transform: translate(-50%, -50%) scale(1);
       opacity: 0.5;
     }
     50% {
-      transform: translate(-50%, -50%) scale(1.2);
-      opacity: 0.8;
+      transform: translate(-50%, -50%) scale(1.1);
+      opacity: 0.7;
     }
   }
   
   @keyframes slideInFromLeft {
     0% {
       opacity: 0;
-      transform: translateX(-100px);
+      transform: translateX(-50px);
     }
     100% {
       opacity: 1;
@@ -50,13 +53,13 @@ const HeroContainer = styled.div`
       transform: translateY(0);
     }
     25% {
-      transform: translateY(-5px);
+      transform: translateY(-2px);
     }
     50% {
-      transform: translateY(-8px);
+      transform: translateY(-4px);
     }
     75% {
-      transform: translateY(-3px);
+      transform: translateY(-1px);
     }
   }
   
@@ -74,292 +77,33 @@ const HeroContainer = styled.div`
   
   @keyframes glowPulse {
     0%, 100% {
-      filter: brightness(1) drop-shadow(0 4px 2px rgba(0, 0, 0, 0.3));
+      filter: brightness(1) drop-shadow(0 2px 1px rgba(0, 0, 0, 0.3));
     }
     50% {
-      filter: brightness(1.2) drop-shadow(0 8px 4px rgba(255, 68, 68, 0.6));
+      filter: brightness(1.1) drop-shadow(0 4px 2px rgba(255, 68, 68, 0.4));
     }
   }
   
-  @keyframes jumpIn {
-    0% {
-      opacity: 0;
-      transform: translateX(-100px) translateY(30px) scale(0.8);
-    }
-    30% {
-      opacity: 0.7;
-      transform: translateX(-50px) translateY(-15px) scale(1.1);
-    }
-    50% {
-      opacity: 0.9;
-      transform: translateX(-20px) translateY(-8px) scale(1.05);
-    }
-    70% {
-      opacity: 1;
-      transform: translateX(5px) translateY(-3px) scale(0.98);
-    }
-    85% {
-      transform: translateX(-2px) translateY(1px) scale(1.01);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0) translateY(0) scale(1);
-    }
-  }
-  
-  @keyframes enhancedBounce {
-    0%, 100% {
-      transform: translateY(0) translateX(0);
-    }
-    20% {
-      transform: translateY(-12px) translateX(3px);
-    }
-    40% {
-      transform: translateY(-20px) translateX(-2px);
-    }
-    60% {
-      transform: translateY(-8px) translateX(1px);
-    }
-    80% {
-      transform: translateY(-4px) translateX(-1px);
-    }
-  }
-  
-  .clients-forum {
-    padding: 6rem 2rem;
-    background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(16, 16, 16, 0.95) 100%);
-    position: relative;
-    z-index: 5;
-    
-    // Add spacing from screen edges
-    margin: 0 1rem 4rem 1rem; // Added bottom margin for desktop
-    
-    // Add rounded corners
-    border-radius: 20px;
-    
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(45deg, rgba(118, 75, 162, 0.1) 0%, rgba(102, 126, 234, 0.1) 100%);
-      pointer-events: none;
-      border-radius: 20px; // Match parent radius
+  // Reduce motion on mobile
+  @media (max-width: 767px) {
+    *, *::before, *::after {
+      animation-duration: 0.5s !important;
+      transition-duration: 0.2s !important;
     }
     
-    .forum-container {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-      position: relative;
-      z-index: 1;
+    // Disable non-essential animations on mobile
+    .hero-word {
+      animation: none !important;
     }
     
-    .forum-title {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 700;
-      margin-bottom: 3rem;
-      color: #ffffff;
-      text-align: center;
-      background: linear-gradient(45deg, #667eea, #764ba2, #9d50bb);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: 0.05em;
+    .hero-subline {
+      animation: slideInFromLeft 0.6s ease-out 0.4s forwards !important;
     }
     
-    .review-card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 3rem 2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-      transition: all 0.5s ease;
-      position: relative;
-      overflow: hidden;
-      
-      &::before {
-        content: '"';
-        position: absolute;
-        top: -20px;
-        left: 20px;
-        font-size: 120px;
-        color: rgba(102, 126, 234, 0.2);
-        font-family: Georgia, serif;
-      }
-      
-      &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-        border-color: rgba(102, 126, 234, 0.3);
-      }
-    }
-    
-    .review-content {
-      position: relative;
-      z-index: 1;
-    }
-    
-    .rating {
-      margin-bottom: 1.5rem;
-      
-      .star {
-        color: #ffd700;
-        font-size: 1.5rem;
-        margin: 0 0.2rem;
-        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        animation: starPulse 2s ease-in-out infinite;
-        
-        &:nth-child(odd) {
-          animation-delay: 0.1s;
-        }
-      }
-    }
-    
-    .review-message {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #ffffff;
-      margin-bottom: 2rem;
-      font-style: italic;
-      opacity: 0.9;
-    }
-    
-    .review-author {
-      .author-name {
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: #ffffff;
-        margin: 0 0 0.5rem 0;
-      }
-      
-      .author-company {
-        font-size: 0.9rem;
-        color: rgba(255, 255, 255, 0.7);
-        margin: 0;
-      }
-    }
-    
-    .review-indicators {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      
-      .indicator {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        background: transparent;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        
-        &.active {
-          background: linear-gradient(45deg, #667eea, #764ba2);
-          border-color: #667eea;
-          transform: scale(1.2);
-        }
-        
-        &:hover:not(.active) {
-          background: rgba(255, 255, 255, 0.2);
-          border-color: rgba(255, 255, 255, 0.5);
-        }
-      }
-    }
-    
-    @keyframes starPulse {
-      0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      50% {
-        transform: scale(1.1);
-        opacity: 0.8;
-      }
-    }
-    
-    // Mobile-only slide-in animation
-    @keyframes slideInFromLeft {
-      0% {
-        opacity: 0;
-        transform: translateX(-50px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-    
-    // Ultra-minimal mobile client forum section with rounded corners and spacing
-    @media (max-width: 767px) {
-      padding: 1.5rem 0.75rem; // Further reduced from 2.5rem
-      
-      // Add spacing from screen edges on mobile
-      margin: 0 0.5rem;
-      
-      // Smaller border radius on mobile
-      border-radius: 16px;
-      
-      .review-card {
-        padding: 1rem 0.75rem; // Further reduced from 1.5rem 1rem
-        margin-bottom: 1rem; // Further reduced from 1.5rem
-        border-radius: 12px; // Smaller radius
-      }
-      
-      .forum-title {
-        font-size: 1.25rem; // Further reduced from 1.5rem
-        margin-bottom: 1rem; // Further reduced from 1.5rem
-      }
-      
-      .review-message {
-        font-size: 0.875rem; // Further reduced from 0.95rem
-        line-height: 1.5; // Slightly reduced
-        margin-bottom: 1rem; // Further reduced from 1.5rem
-      }
-      
-      .rating {
-        margin-bottom: 0.75rem; // Further reduced from 1rem
-        
-        .star {
-          font-size: 1rem; // Further reduced from 1.25rem
-          margin: 0 0.1rem; // Tighter spacing
-        }
-      }
-      
-      .author-name {
-        font-size: 1rem; // Further reduced from 1.1rem
-        margin-bottom: 0.25rem; // Tighter spacing
-      }
-      
-      .author-company {
-        font-size: 0.75rem; // Further reduced from 0.85rem
-      }
-      
-      // Reduce quote mark size
-      .review-card::before {
-        font-size: 80px; // Reduced from 120px
-        top: -10px; // Adjusted position
-        left: 10px; // Adjusted position
-      }
-      
-      // Reduce indicators
-      .review-indicators {
-        gap: 0.25rem; // Tighter spacing
-        
-        .indicator {
-          width: 8px; // Reduced from 12px
-          height: 8px; // Reduced from 12px
-        }
-      }
-      
-      // Update ::before pseudo-element radius for mobile
-      &::before {
-        border-radius: 16px;
-      }
+    .premium-text::after {
+      animation: none !important;
+      background: linear-gradient(90deg, transparent, #ffffff, #ff0000, transparent);
+      background-size: 100% auto;
     }
   }
   
@@ -371,10 +115,12 @@ const HeroContainer = styled.div`
     height: 100%;
     z-index: 1;
     
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
       position: absolute;
       pointer-events: none;
       touch-action: none;
+      // Reduce canvas complexity for mobile
+      opacity: 0.7;
     }
   }
   
@@ -387,35 +133,52 @@ const HeroContainer = styled.div`
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 2rem;
+    padding: 1rem;
     
-    @media (max-width: 768px) {
-      min-height: auto;
-      height: auto;
-      padding: 4rem 2rem 2rem;
+    @media (max-width: 767px) {
+      min-height: 100vh;
+      height: 100vh;
+      padding: 1.5rem 1rem;
+      justify-content: center;
     }
+    
+    @media (min-width: 768px) {
+      padding: 2rem;
+    }
+    
     &.cosmos-content {
       .hero-title {
-        font-size: clamp(3rem, 8vw, 6rem);
+        font-size: clamp(2rem, 5vw, 4rem);
         font-weight: 800;
         margin: 0;
         color: #FF0066;
-        letter-spacing: 0.05em;
-        line-height: 1.2;
-        text-align: left;
+        letter-spacing: 0.02em;
+        line-height: 1.1;
+        text-align: center;
         width: 100%;
         max-width: 800px;
+        
+        @media (max-width: 767px) {
+          font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+          line-height: 1.0;
+          margin-bottom: 1rem;
+        }
+        
+        @media (min-width: 768px) {
+          text-align: left;
+          font-size: clamp(2.5rem, 6vw, 4rem);
+        }
         
         .title-char {
           display: inline-block;
           opacity: 0;
-          transform: translateY(50px);
+          transform: translateY(30px);
         }
       }
       
       .hero-punch {
         text-align: center;
-        margin: 10vh 0 0 0;
+        margin: 2rem 0 0 0;
         user-select: none;
         position: relative;
         z-index: 100;
@@ -424,9 +187,14 @@ const HeroContainer = styled.div`
         pointer-events: none;
         padding: 0 1rem;
         
+        @media (max-width: 767px) {
+          margin: 1.5rem 0 0 0;
+          padding: 0 0.5rem;
+        }
+        
         @media (min-width: 768px) {
           text-align: left;
-          margin: 15vh 0 0 5%;
+          margin: 3rem 0 0 5%;
           width: 90%;
           padding: 0 2rem;
         }
@@ -435,29 +203,42 @@ const HeroContainer = styled.div`
       .hero-word {
         font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
         font-weight: 900;
-        font-size: clamp(2rem, 8vw, 6.8rem);
-        letter-spacing: 0.05em;
-        line-height: 1.1;
+        font-size: clamp(1.5rem, 6vw, 4.5rem);
+        letter-spacing: 0.03em;
+        line-height: 1.0;
         color: #F5F5F5;
-        opacity: 0;
+        opacity: 1;
         text-shadow: 
-          2px 2px 4px rgba(0, 0, 0, 0.8),
-          0 0 20px rgba(0, 0, 0, 0.5);
+          1px 1px 2px rgba(0, 0, 0, 0.8),
+          0 0 10px rgba(0, 0, 0, 0.5);
         position: relative;
         z-index: 100;
         max-width: 95%;
         margin: 0 auto;
-        padding: 0 1rem;
+        padding: 0 0.5rem;
         text-transform: uppercase;
-        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
-        text-stroke: 1px rgba(255, 255, 255, 0.1);
-        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.1);
+        text-stroke: 0.5px rgba(255, 255, 255, 0.1);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         text-align: center;
-        animation: jumpIn 2.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s forwards, enhancedBounce 3.5s ease-in-out 2.5s infinite;
-        cursor: pointer;
+        
+        // Simplified mobile animations
+        @media (max-width: 767px) {
+          // Disable complex animations on mobile
+          animation: none;
+          
+          // Only enable simple fade-in
+          opacity: 1;
+          transform: none;
+        }
         
         @media (min-width: 768px) {
-          font-size: clamp(3rem, 8vw, 6.8rem);
+          // Desktop animations
+          animation: jumpIn 2.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s forwards, enhancedBounce 3.5s ease-in-out 2.5s infinite;
+        }
+        
+        @media (min-width: 768px) {
+          font-size: clamp(2rem, 6vw, 4.5rem);
           text-align: left;
           max-width: 90%;
           margin: 0;
@@ -468,40 +249,64 @@ const HeroContainer = styled.div`
       .hero-subline {
         font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
         font-weight: 600;
-        font-size: 1.5rem;
-        line-height: 1.3;
+        font-size: clamp(0.75rem, 2.5vw, 1.2rem);
         letter-spacing: 0.08em;
-        margin-top: 1rem;
+        margin-top: 0.75rem;
         text-transform: uppercase;
         opacity: 0;
-        transform: translateX(-100px);
+        transform: translateX(-50px);
+        position: relative;
+        display: block;
+        text-align: center;
+        width: 100%;
+        padding: 0 0.5rem;
+        color: #ffffff;
+        text-shadow: 
+          0 0 8px rgba(0, 0, 0, 0.8),
+          0 0 4px rgba(0, 0, 0, 0.8);
+        filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.3));
+        animation: slideInFromLeft 1s ease-out 0.8s forwards;
+        position: relative;
+        z-index: 1;
+        transition: all 0.3s ease;
+        cursor: pointer;
         
-        // Mobile-only animations
         @media (max-width: 767px) {
-          animation: slideInFromLeft 0.8s ease-out 0.5s forwards;
+          font-size: clamp(0.7rem, 2vw, 0.9rem);
+          line-height: 1.3;
+          margin-top: 0.5rem;
+          padding: 0 0.25rem;
+          // Simplified mobile animation
+          animation: slideInFromLeft 0.8s ease-out 0.6s forwards;
+          
+          &::before, &::after {
+            display: none;
+          }
         }
         
         @media (min-width: 768px) {
-          font-size: 1.4rem;
+          font-size: 1.2rem;
           text-align: right;
           padding-right: 0.5em;
           padding-left: 0;
-          letter-spacing: 0.15em;
-          margin-top: 1.5rem;
+          letter-spacing: 0.12em;
+          margin-top: 1rem;
         }
         
         @media (min-width: 1024px) {
-          font-size: 1.6rem;
+          font-size: 1.4rem;
         }
         
         &:hover {
-          animation: enhancedBounce 0.8s ease-in-out, glowPulse 1.5s ease-in-out infinite;
-          transform: translateX(10px) scale(1.05);
-          color: #ff4444;
-          text-shadow: 
-            0 0 20px rgba(255, 68, 68, 0.8),
-            0 0 40px rgba(255, 68, 68, 0.6),
-            0 0 60px rgba(255, 68, 68, 0.4);
+          @media (min-width: 768px) {
+            animation: hoverBounce 0.6s ease-in-out, glowPulse 1.5s ease-in-out infinite;
+            transform: translateX(10px) scale(1.05);
+            color: #ff4444;
+            text-shadow: 
+              0 0 20px rgba(255, 68, 68, 0.8),
+              0 0 40px rgba(255, 68, 68, 0.6),
+              0 0 60px rgba(255, 68, 68, 0.4);
+          }
         }
         
         &::before {
@@ -549,7 +354,7 @@ const HeroContainer = styled.div`
         
         @keyframes float {
           0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-5px); }
+          50% { transform: translateY(-3px); }
         }
         
         @keyframes gradientShift {
@@ -557,47 +362,41 @@ const HeroContainer = styled.div`
           50% { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
         }
-        
-        @media (max-width: 1024px) {
-          font-size: 1.4rem;
-          letter-spacing: 0.1em;
-        }
-        
-        @media (max-width: 768px) {
-          font-size: clamp(0.85rem, 2.5vw, 1.2rem);
-          text-align: center;
-          
-          &::before, &::after {
-            display: none;
-          }
-        }
       }
       
       .premium-text {
         color: #ff4444;
         font-weight: 800;
-        font-size: 1.15em;
+        font-size: 1.1em;
         position: relative;
         display: inline-block;
-        margin: 0 0.2em;
+        margin: 0 0.1em;
         z-index: 1;
         text-shadow: none !important;
         filter: none !important;
         
+        @media (max-width: 767px) {
+          font-size: 1.05em;
+          margin: 0 0.05em;
+        }
         
         &::after {
           content: '';
           position: absolute;
-          bottom: -5px;
+          bottom: -3px;
           left: 0;
           width: 100%;
-          height: 2px;
+          height: 1.5px;
           background: linear-gradient(90deg, transparent, #ffffff, #ff0000, #ff0000, #ffffff, transparent);
           background-size: 300% auto;
           animation: gradientShift 3s ease infinite;
-          height: 2px;
-          bottom: -4px;
-          box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.5);
+          bottom: -3px;
+          box-shadow: 0 0 8px 1px rgba(255, 255, 255, 0.5);
+          
+          @media (max-width: 767px) {
+            height: 1px;
+            bottom: -2px;
+          }
         }
       }
     }
@@ -615,12 +414,6 @@ const HeroContainer = styled.div`
       align-items: center;
       text-align: center;
       padding: 2rem;
-      
-      @media (max-width: 768px) {
-        min-height: auto;
-        height: auto;
-        padding: 4rem 2rem;
-      }
       
       .hero-title {
         font-size: clamp(3rem, 8vw, 6rem);
@@ -674,89 +467,94 @@ const HeroContainer = styled.div`
   
   .hero-buttons {
     display: flex;
-    gap: 1rem;
+    gap: 0.75rem;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     padding: 0 1rem;
     width: 100%;
     
-    // Mobile button spacing
     @media (max-width: 767px) {
       gap: 0.5rem;
       margin-top: 1rem;
+      padding: 0 0.5rem;
+      flex-direction: column;
+      align-items: center;
     }
     
     @media (min-width: 768px) {
       padding: 0;
       width: auto;
+      flex-direction: row;
+      gap: 1rem;
     }
     
     .hero-button {
       display: inline-block;
-      padding: 0.5rem 1rem; // Reduced from 0.75rem 1.5rem
+      padding: 0.75rem 1.25rem;
       border-radius: 9999px;
       font-weight: 600;
       text-decoration: none;
       transition: all 0.3s ease;
       border: none;
       cursor: pointer;
-      font-size: 0.75rem; // Reduced from 0.9rem
-      width: 100%;
+      font-size: 0.85rem;
       text-align: center;
-      min-height: 36px; // Added min-height
+      min-width: 120px;
       
-      // Mobile-specific sizing
       @media (max-width: 767px) {
-        padding: 0.4rem 0.8rem; // Further reduced for mobile
-        font-size: 0.7rem; // Further reduced for mobile
-        min-height: 32px; // Further reduced for mobile
+        padding: 0.875rem 1.5rem;
+        font-size: 0.9rem;
+        width: 100%;
+        max-width: 280px;
+        min-width: auto;
       }
       
       @media (min-width: 768px) {
         padding: 0.875rem 2rem;
-        font-size: 1rem;
+        font-size: 0.95rem;
         width: auto;
       }
       
       &.primary {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
         
         &:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+          @media (min-width: 768px) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.5);
+          }
+          
+          @media (max-width: 767px) {
+            transform: scale(1.02);
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.4);
+          }
         }
-        transition: transform 0.3s ease;
       }
       
       &.secondary {
         background: transparent;
         color: white;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        
-        // Mobile nebula color
-        @media (max-width: 767px) {
-          background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-          color: white;
-          border: none;
-        }
+        border: 1.5px solid rgba(255, 255, 255, 0.3);
         
         &:hover {
           background: rgba(255, 255, 255, 0.1);
           border-color: rgba(255, 255, 255, 0.5);
-          
-          // Mobile hover effect
-          @media (max-width: 767px) {
-            background: linear-gradient(135deg, #8b5cf6 0%, #667eea 100%);
-            border: none;
-          }
         }
       }
       
+      svg {
+        margin-left: 0.5rem;
+        transition: transform 0.3s ease;
+        font-size: 0.9em;
+      }
+      
       &:hover svg {
-        transform: translateX(5px);
+        @media (min-width: 768px) {
+          transform: translateX(3px);
+        }
       }
     }
   }
@@ -775,7 +573,6 @@ const HeroSection = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [currentSection, setCurrentSection] = useState(1);
   const [isReady, setIsReady] = useState(false);
-  const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const totalSections = 2;
   
   const threeRefs = useRef({
@@ -790,43 +587,15 @@ const HeroSection = () => {
     locations: []
   });
 
-  // Review data
-  const reviews = [
-    {
-      name: "Ganesh Kumar",
-      message: "Cyber Monk Studioz transformed our digital presence completely. Their creativity and technical expertise exceeded our expectations. The team delivered a stunning website that perfectly captures our brand essence.",
-      rating: 5
-    },
-    {
-      name: "Sruthi G",
-      message: "Working with Cyber Monk Studioz was an incredible experience. They brought our vision to life with innovative solutions and attention to detail. Highly recommend for any digital project!",
-      rating: 4.5
-    },
-    {
-      name: "Rajesh",
-      message: "The team's dedication to excellence is unmatched. They delivered our project on time and beyond our expectations. Their creative approach to problem-solving is impressive.",
-      rating: 5
-    },
-    {
-      name: "Ravikumar",
-      message: "Outstanding service and exceptional results! Cyber Monk Studioz helped us increase our conversion rates by 40%. Their expertise in UX design is remarkable.",
-      rating: 5
-    }
-  ];
-
-  // Auto-loop reviews
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentReviewIndex((prevIndex) => (prevIndex + 1) % reviews.length);
-    }, 4000); // Change review every 4 seconds
-
-    return () => clearInterval(interval);
-  }, [reviews.length]);
-
-  // Initialize Three.js
+  // Initialize Three.js with mobile optimizations
   useEffect(() => {
     const initThree = () => {
       const { current: refs } = threeRefs;
+      
+      // Detect mobile and reduce quality
+      const isMobile = window.innerWidth <= 767;
+      const pixelRatio = isMobile ? 1 : Math.min(window.devicePixelRatio, 2);
+      const starCount = isMobile ? 1000 : 5000;
       
       // Scene setup
       refs.scene = new THREE.Scene();
@@ -835,43 +604,46 @@ const HeroSection = () => {
 
       // Camera
       refs.camera = new THREE.PerspectiveCamera(
-        75,
+        isMobile ? 60 : 75, // Wider FOV on mobile
         window.innerWidth / window.innerHeight,
         0.1,
-        2000
+        isMobile ? 1000 : 2000 // Reduced render distance on mobile
       );
-      refs.camera.position.z = 100;
+      refs.camera.position.z = isMobile ? 150 : 100;
       refs.camera.position.y = 20;
 
       // Renderer
       refs.renderer = new THREE.WebGLRenderer({
         canvas: canvasRef.current,
-        antialias: true,
-        alpha: true
+        antialias: !isMobile, // Disable antialiasing on mobile
+        alpha: true,
+        powerPreference: isMobile ? 'low-power' : 'high-performance'
       });
       refs.renderer.setSize(window.innerWidth, window.innerHeight);
-      refs.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      refs.renderer.setPixelRatio(pixelRatio);
       refs.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      refs.renderer.toneMappingExposure = 0.5;
+      refs.renderer.toneMappingExposure = isMobile ? 0.3 : 0.5;
 
-      // Post-processing
-      refs.composer = new EffectComposer(refs.renderer);
-      const renderPass = new RenderPass(refs.scene, refs.camera);
-      refs.composer.addPass(renderPass);
+      // Post-processing - skip on mobile for performance
+      if (!isMobile) {
+        refs.composer = new EffectComposer(refs.renderer);
+        const renderPass = new RenderPass(refs.scene, refs.camera);
+        refs.composer.addPass(renderPass);
 
-      const bloomPass = new UnrealBloomPass(
-        new THREE.Vector2(window.innerWidth, window.innerHeight),
-        0.4,
-        0.4,
-        0.85
-      );
-      refs.composer.addPass(bloomPass);
+        const bloomPass = new UnrealBloomPass(
+          new THREE.Vector2(window.innerWidth, window.innerHeight),
+          0.4,
+          0.4,
+          0.85
+        );
+        refs.composer.addPass(bloomPass);
+      }
 
       // Create scene elements
-      createStarField();
-      createNebula();
+      createStarField(starCount);
+      if (!isMobile) createNebula();
       createMountains();
-      createAtmosphere();
+      if (!isMobile) createAtmosphere();
       getLocation();
 
       // Start animation
@@ -881,17 +653,18 @@ const HeroSection = () => {
       setIsReady(true);
     };
 
-    const createStarField = () => {
+    const createStarField = (starCount = 5000) => {
       const { current: refs } = threeRefs;
-      const starCount = 5000;
+      const isMobile = window.innerWidth <= 767;
+      const actualStarCount = isMobile ? Math.floor(starCount / 5) : starCount;
       
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < (isMobile ? 1 : 3); i++) {
         const geometry = new THREE.BufferGeometry();
-        const positions = new Float32Array(starCount * 3);
-        const colors = new Float32Array(starCount * 3);
-        const sizes = new Float32Array(starCount);
+        const positions = new Float32Array(actualStarCount * 3);
+        const colors = new Float32Array(actualStarCount * 3);
+        const sizes = new Float32Array(actualStarCount);
 
-        for (let j = 0; j < starCount; j++) {
+        for (let j = 0; j < actualStarCount; j++) {
           const radius = 200 + Math.random() * 800;
           const theta = Math.random() * Math.PI * 2;
           const phi = Math.acos(Math.random() * 2 - 1);
@@ -940,8 +713,9 @@ const HeroSection = () => {
               vColor = color;
               vec3 pos = position;
               
-              // Slow rotation based on depth
-              float angle = time * 0.05 * (1.0 - depth * 0.3);
+              // Slower rotation on mobile
+              float speedMultiplier = ${isMobile ? '0.02' : '0.05'};
+              float angle = time * speedMultiplier * (1.0 - depth * 0.3);
               mat2 rot = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
               pos.xy = rot * pos.xy;
               
@@ -1124,6 +898,7 @@ const HeroSection = () => {
       refs.animationId = requestAnimationFrame(animate);
       
       const time = Date.now() * 0.001;
+      const isMobile = window.innerWidth <= 767;
 
       // Update stars
       refs.stars.forEach((starField, i) => {
@@ -1132,21 +907,23 @@ const HeroSection = () => {
         }
       });
 
-      // Update nebula
-      if (refs.nebula && refs.nebula.material.uniforms) {
+      // Update nebula (skip on mobile)
+      if (refs.nebula && refs.nebula.material.uniforms && !isMobile) {
         refs.nebula.material.uniforms.time.value = time * 0.5;
       }
 
-      // Smooth camera movement with easing
+      // Simplified camera movement on mobile
       if (refs.camera && refs.targetCameraX !== undefined) {
-        const smoothingFactor = 0.05;
+        const smoothingFactor = isMobile ? 0.02 : 0.05;
         
         smoothCameraPos.current.x += (refs.targetCameraX - smoothCameraPos.current.x) * smoothingFactor;
         smoothCameraPos.current.y += (refs.targetCameraY - smoothCameraPos.current.y) * smoothingFactor;
         smoothCameraPos.current.z += (refs.targetCameraZ - smoothCameraPos.current.z) * smoothingFactor;
         
-        const floatX = Math.sin(time * 0.1) * 2;
-        const floatY = Math.cos(time * 0.15) * 1;
+        // Reduce float intensity on mobile
+        const floatMultiplier = isMobile ? 0.3 : 1;
+        const floatX = Math.sin(time * 0.1) * 2 * floatMultiplier;
+        const floatY = Math.cos(time * 0.15) * 1 * floatMultiplier;
         
         refs.camera.position.x = smoothCameraPos.current.x + floatX;
         refs.camera.position.y = smoothCameraPos.current.y + floatY;
@@ -1154,15 +931,20 @@ const HeroSection = () => {
         refs.camera.lookAt(0, 10, -600);
       }
 
-      // Parallax mountains with subtle animation
-      refs.mountains.forEach((mountain, i) => {
-        const parallaxFactor = 1 + i * 0.5;
-        mountain.position.x = Math.sin(time * 0.1) * 2 * parallaxFactor;
-        mountain.position.y = Math.cos(time * 0.15) * 1 * parallaxFactor;
-      });
+      // Simplified parallax on mobile
+      if (!isMobile) {
+        refs.mountains.forEach((mountain, i) => {
+          const parallaxFactor = 1 + i * 0.5;
+          mountain.position.x = Math.sin(time * 0.1) * 2 * parallaxFactor;
+          mountain.position.y = Math.cos(time * 0.15) * 1 * parallaxFactor;
+        });
+      }
 
-      if (refs.composer) {
+      // Render with or without post-processing
+      if (refs.composer && !isMobile) {
         refs.composer.render();
+      } else if (refs.renderer) {
+        refs.renderer.render(refs.scene, refs.camera);
       }
     };
 
@@ -1222,48 +1004,10 @@ const HeroSection = () => {
     refs.locations = locations;
   };
 
-  // GSAP Animations - COMPLETELY DISABLED ON MOBILE
+  // GSAP Animations - Run after component is ready
   useEffect(() => {
-    // Check if mobile and skip ALL animations
-    const isMobile = window.innerWidth <= 767;
+    if (!isReady) return;
     
-    if (isMobile || !isReady) {
-      // On mobile, kill any existing GSAP animations and set elements to visible
-      gsap.killTweensOf('.hero-word');
-      gsap.killTweensOf('.hero-subline');
-      gsap.killTweensOf('.hero-title');
-      gsap.killTweensOf('.title-char');
-      gsap.killTweensOf('.tagline-char');
-      
-      // Set all text elements to visible state immediately
-      const elements = document.querySelectorAll('.hero-word, .hero-subline, .hero-title, .title-char, .tagline-char');
-      elements.forEach(el => {
-        if (el) {
-          el.style.opacity = '1';
-          el.style.transform = 'none';
-          el.style.visibility = 'visible';
-          el.style.transition = 'none';
-        }
-      });
-      
-      // Also disable any CSS animations
-      const style = document.createElement('style');
-      style.textContent = `
-        @media (max-width: 767px) {
-          .hero-word, .hero-subline, .hero-title, .title-char, .tagline-char {
-            animation: none !important;
-            transition: none !important;
-            transform: none !important;
-            opacity: 1 !important;
-          }
-        }
-      `;
-      document.head.appendChild(style);
-      
-      return;
-    }
-    
-    // Only run GSAP animations on desktop
     const tl = gsap.timeline({
       defaults: { duration: 1, ease: "power3.out" }
     });
@@ -1355,11 +1099,10 @@ const HeroSection = () => {
         
         mountain.userData.targetZ = targetZ;
         const location = mountain.position.z;
-        
-        // Fix: Don't send mountains too far back, only move them within reasonable range
-        if (progress > 0.85) {
-          mountain.position.z = mountain.userData.baseZ - (scrollY * speed * 0.3); // Move closer instead of far away
-        } else {
+        if (progress > 0.7) {
+          mountain.position.z = 600000;
+        }
+        if (progress < 0.7) {
           mountain.position.z = refs.locations[i];
         }
       });
@@ -1390,19 +1133,16 @@ const HeroSection = () => {
       <canvas ref={canvasRef} className="hero-canvas" />
       
 
-      <div className="hero-content cosmos-content">
-        <div ref={taglineRef} className="hero-punch">
-          <div className="hero-word" data-text="CREATIVITY">CREATIVITY</div>
-          <div className="hero-subline" data-text="ENGINEERED AT PREMIUM LEVEL">
+      <div className="hero-content cosmos-content mobile-hero">
+        <div ref={taglineRef} className="hero-punch responsive-mb-lg">
+          <div className="hero-word responsive-mb-sm" data-text="CREATIVITY">CREATIVITY</div>
+          <div className="hero-subline responsive-mt-md" data-text="ENGINEERED AT PREMIUM LEVEL">
             ENGINEERED AT <span className="premium-text">PREMIUM</span> LEVEL
           </div>
         </div>
-        <br></br>
-        <br></br>
-        <br></br>
         
-        <div className="hero-buttons">
-          <Link to="/services" className="hero-button primary">
+        <div className="hero-buttons mobile-button-stack responsive-mt-xl">
+          <Link to="/contact" className="hero-button primary">
             Get Started <FiArrowRight />
           </Link>
           <Link to="/about" className="hero-button secondary">
@@ -1410,6 +1150,7 @@ const HeroSection = () => {
           </Link>
         </div>
       </div>
+
 
       <div className="scroll-sections">
         {[...Array(2)].map((_, i) => {
@@ -1451,38 +1192,6 @@ const HeroSection = () => {
             </section>
           );
         })}
-      </div>
-
-      {/* Client's Forum Section */}
-      <div className="clients-forum">
-        <div className="forum-container">
-          <h2 className="forum-title">What Our Clients Say</h2>
-          <div className="review-card">
-            <div className="review-content">
-              <div className="rating">
-                {[...Array(Math.floor(reviews[currentReviewIndex].rating))].map((_, i) => (
-                  <span key={i} className="star">★</span>
-                ))}
-                {reviews[currentReviewIndex].rating % 1 !== 0 && (
-                  <span className="star half-star">☆</span>
-                )}
-              </div>
-              <p className="review-message">{reviews[currentReviewIndex].message}</p>
-              <div className="review-author">
-                <h4 className="author-name">{reviews[currentReviewIndex].name}</h4>
-              </div>
-            </div>
-          </div>
-          <div className="review-indicators">
-            {reviews.map((_, index) => (
-              <button
-                key={index}
-                className={`indicator ${index === currentReviewIndex ? 'active' : ''}`}
-                onClick={() => setCurrentReviewIndex(index)}
-              />
-            ))}
-          </div>
-        </div>
       </div>
     </HeroContainer>
   );
